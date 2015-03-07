@@ -1,0 +1,44 @@
+/* Global forms style */
+
+.mailerlite-form {
+
+}
+
+.mailerlite-form .mailerlite-form-description {
+    margin-bottom: 10px;
+}
+
+.mailerlite-form .mailerlite-form-field {
+    margin-bottom: 10px;
+}
+
+.mailerlite-form .mailerlite-form-field label {
+    display: block;
+}
+
+.mailerlite-form .mailerlite-subscribe-button-container {
+    text-align: center;
+}
+
+.mailerlite-form input.error {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.mailerlite-form label.error {
+    color: #ff0000;
+}
+
+.mailerlite-form-response {
+    margin-top: 20px;
+    display: none;
+    text-align: center;
+    color: #00a154;
+}
+
+.mailerlite-form-loader {
+    display:none;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 20px;
+}

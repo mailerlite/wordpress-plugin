@@ -1,0 +1,401 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.7\n"
+"Project-Id-Version: MailerLite wordpress plugin\n"
+"Language: fi\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+
+#. mailerlite
+#: include/mailerlite-admin.php:52
+msgid "Forms"
+msgstr "Lomakkeet"
+
+#. mailerlite
+#: include/mailerlite-admin.php:52 include/templates/admin/main.php:5
+msgid "Signup forms"
+msgstr "Tilauslomake"
+
+#. mailerlite
+#: include/mailerlite-admin.php:53
+msgid "Settings"
+msgstr "Asetukset"
+
+#. mailerlite
+#: include/mailerlite-admin.php:133
+msgid "Subscribe for newsletter!"
+msgstr "Tilaa uutiskirje"
+
+#. mailerlite
+#: include/mailerlite-admin.php:134 include/mailerlite-admin.php:301
+msgid "Newsletter signup"
+msgstr "Uutiskirjeen tilaus"
+
+#. mailerlite
+#: include/mailerlite-admin.php:135 include/mailerlite-admin.php:302
+msgid "Just simple MailerLite form!"
+msgstr "Helppo MailerLite lomake!"
+
+#. mailerlite
+#. default
+#: include/mailerlite-admin.php:136 include/mailerlite-admin.php:303
+#: include/templates/admin/edit_custom.php:55
+msgid "Subscribe"
+msgstr "Tilaa"
+
+#. mailerlite
+#: include/mailerlite-admin.php:142 include/mailerlite-admin.php:305
+msgid "Email"
+msgstr "Sähköposti"
+
+#. mailerlite
+#: include/mailerlite-admin.php:198
+msgid "Embedded webform"
+msgstr "Upotettu nettilomake"
+
+#. mailerlite
+#: include/mailerlite-admin.php:267
+msgid "You not allowed to do that"
+msgstr "Sinulla ei ole lupaa tehdä noin"
+
+#. mailerlite
+#: include/mailerlite-admin.php:277
+msgid "Wrong MailerLite API key"
+msgstr "Väärä MailerLIte API-avain"
+
+#. mailerlite
+#: include/mailerlite-admin.php:299
+msgid "New custom signup form"
+msgstr "Uusi rekisteröintilomake"
+
+#. mailerlite
+#: include/mailerlite-admin.php:310
+msgid "New embedded signup form"
+msgstr "Uusi upotettu rekisteröintilomake"
+
+#. mailerlite
+#: include/mailerlite-form.php:75
+msgid "Subscriber successfully saved"
+msgstr "Tilaaja tallennettu onnistuneesti"
+
+#. mailerlite
+#: include/mailerlite-form.php:79
+msgid "Form not found"
+msgstr "Lomaketta ei löydy"
+
+#. mailerlite
+#: include/mailerlite-form.php:84
+msgid "Wrong data provided"
+msgstr "Väärä tieto syötetty"
+
+#. mailerlite
+#: include/mailerlite-widget.php:13
+msgid "Mailerlite sign up form"
+msgstr "MailerLiten rekisteröintilomake"
+
+#. mailerlite
+#: include/mailerlite-widget.php:14
+msgid "MailerLite sign up form Widget"
+msgstr "MailerLiten rekisteröintilomake Widgetiltä"
+
+#. mailerlite
+#: include/mailerlite-widget.php:66
+msgid "Select form:"
+msgstr "Valitse lomake"
+
+#. mailerlite
+#: include/templates/admin/api_key.php:8
+msgid ""
+"Hi there! You will be able to create awesome signup forms, but first we need "
+"your MailerLite API key!"
+msgstr ""
+"Hei siellä! Voit nyt luoda hienoja tilauslomakkeita, mutta ensin tarvitsemme "
+"sinun MailerLite API-avaimesi!"
+
+#. mailerlite
+#: include/templates/admin/api_key.php:17
+#: include/templates/admin/settings.php:19
+msgid "Enter an API key"
+msgstr "Syötä API-avain"
+
+#. mailerlite
+#: include/templates/admin/api_key.php:18
+#: include/templates/admin/settings.php:20
+msgid "Don't know where to find it?"
+msgstr "Etkö tiedä mistä löytäisit sen?"
+
+#. mailerlite
+#: include/templates/admin/api_key.php:18
+#: include/templates/admin/settings.php:20
+msgid "Check it here!"
+msgstr "Katso tästä!"
+
+#. mailerlite
+#: include/templates/admin/api_key.php:23
+#: include/templates/admin/settings.php:25
+msgid "Save this key"
+msgstr "Tallenna tämä avain"
+
+#. mailerlite
+#: include/templates/admin/api_key.php:29
+#: include/templates/admin/settings.php:31
+msgid "Don't have an account?"
+msgstr "Eikö sinulla ole tiliä?"
+
+#. mailerlite
+#: include/templates/admin/api_key.php:30
+#: include/templates/admin/settings.php:32
+msgid "Register!"
+msgstr "Rekisteröidy!"
+
+#. mailerlite
+#: include/templates/admin/create.php:5
+msgid "Create new signup form"
+msgstr "Luo uusi rekisteröintilomake"
+
+#. mailerlite
+#: include/templates/admin/create.php:11
+msgid "Form type"
+msgstr "Lomaketyyppi"
+
+#. mailerlite
+#: include/templates/admin/create.php:17
+msgid "Custom signup form"
+msgstr "Mukautettu tilauslomake"
+
+#. mailerlite
+#: include/templates/admin/create.php:23
+msgid "Webforms created using MailerLite"
+msgstr "MailerLitellä tehtyjä tilauslomakkeita"
+
+#. mailerlite
+#: include/templates/admin/create.php:28
+msgid "Create form"
+msgstr "Luo lomake"
+
+#. mailerlite
+#: include/templates/admin/create.php:29
+#: include/templates/admin/edit_custom.php:96
+#: include/templates/admin/edit_embedded.php:42
+msgid "Back"
+msgstr "Takaisin"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:5
+msgid "Edit custom signup form"
+msgstr "Editoi mukautettua lomaketta"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:7
+#: include/templates/admin/edit_embedded.php:7
+msgid "Form saved."
+msgstr "Lomake tallennettu"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:7
+#: include/templates/admin/edit_embedded.php:7
+msgid "Back to forms list"
+msgstr "Takaisin lomakelistaan"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:15
+msgid "Main information"
+msgstr "Tärkeää tietoa"
+
+#. default
+#: include/templates/admin/edit_custom.php:20
+msgid "Form name"
+msgstr "Lomakkeen nimi"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:21
+#: include/templates/admin/edit_embedded.php:21
+msgid "Tip:"
+msgstr "Vinkki:"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:21
+#: include/templates/admin/edit_embedded.php:21
+msgid "This title won't be displayed in public!"
+msgstr "Tätä nimeä ei näytetä julkisesti!"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:28
+msgid "Form details"
+msgstr "Lomakkeen tiedot"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:33
+#: include/templates/admin/edit_embedded.php:20
+msgid "Form title"
+msgstr "Lomakkeen otsikko"
+
+#. mailerlite
+#. default
+#: include/templates/admin/edit_custom.php:34
+#: include/templates/admin/edit_custom.php:55
+msgid "Example:"
+msgstr "Esimerkki:"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:34
+msgid "Newsletter signup!"
+msgstr "Uutiskirjeen tilaus!"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:37
+msgid "Form description"
+msgstr "Lomakkeen kuvaus"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:54
+msgid "Button title"
+msgstr "Painikkeen otsikko"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:62
+msgid "Form fields and lists"
+msgstr "Lomakkeen kentät ja listat"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:67
+msgid "Fields"
+msgstr "Kentät"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:80
+msgid "Lists"
+msgstr "Listat"
+
+#. mailerlite
+#: include/templates/admin/edit_custom.php:95
+#: include/templates/admin/edit_embedded.php:41
+msgid "Save form"
+msgstr "Tallenna lomake"
+
+#. mailerlite
+#: include/templates/admin/edit_embedded.php:5
+msgid "Edit webform"
+msgstr "Editoi nettilomaketta"
+
+#. mailerlite
+#: include/templates/admin/edit_embedded.php:15
+msgid "Webform details"
+msgstr "Nettilomakkeen yksityiskohdat"
+
+#. mailerlite
+#: include/templates/admin/edit_embedded.php:24
+msgid "Webform"
+msgstr "Nettilomake"
+
+#. mailerlite
+#: include/templates/admin/main.php:5
+msgid "Add New"
+msgstr "Lisää uusi"
+
+#. mailerlite
+#: include/templates/admin/main.php:14
+msgid "ID"
+msgstr "ID"
+
+#. mailerlite
+#: include/templates/admin/main.php:15
+msgid "Name"
+msgstr "Nimi"
+
+#. mailerlite
+#: include/templates/admin/main.php:16
+msgid "Type"
+msgstr "Tyyppi"
+
+#. mailerlite
+#: include/templates/admin/main.php:17
+msgid "Date"
+msgstr "Päivä"
+
+#. mailerlite
+#: include/templates/admin/main.php:29
+msgid "Edit"
+msgstr "Editoi"
+
+#. mailerlite
+#: include/templates/admin/main.php:30
+msgid "Are you sure you want to delete this form?"
+msgstr "Haluatko varmasti poistaa tämän lomakkeen?"
+
+#. mailerlite
+#: include/templates/admin/main.php:30
+msgid "Delete"
+msgstr "Poista"
+
+#. mailerlite
+#: include/templates/admin/main.php:33
+msgid "Custom form"
+msgstr "Mukautettu lomake"
+
+#. mailerlite
+#: include/templates/admin/main.php:33
+msgid "Embedded form"
+msgstr "Upotettu lomake"
+
+#. mailerlite
+#: include/templates/admin/main.php:42
+msgid "There is no signup forms created yet!"
+msgstr "Tilauslomake puuttuu vielä!"
+
+#. mailerlite
+#: include/templates/admin/main.php:43
+msgid "Add signup form"
+msgstr "Luo tilauslomake"
+
+#. mailerlite
+#: include/templates/admin/settings.php:5
+msgid "Plugin settings"
+msgstr "Liitännäisen asetukset"
+
+#. mailerlite
+#: include/templates/admin/settings.php:10
+msgid "Here you able to change your API key!"
+msgstr "Tässä voit muuttaa API-avaintasi!"
+
+#. mailerlite
+#: include/templates/admin/sidebar.php:4
+msgid "Need help?"
+msgstr "Tarvitsetko apua?"
+
+#. mailerlite
+#: include/templates/admin/sidebar.php:6
+msgid ""
+"Have any questions? Stuck on something or found bug? Feel free to contact us!"
+msgstr ""
+"Onko sinulla kysymyksiä? Oletko jumissa tai löysitkö bugin? Ole hyvä ja ole "
+"meihin yhteydessä!"
+
+#. mailerlite
+#: include/templates/common/tiny_mce.php:13
+msgid ""
+"Select form from list below, and hit \"Add Shortcode\" to add the shortcode "
+"to your post!"
+msgstr ""
+"Valitse lomake allaolevasta listasta ja klikkaa \"Lisää Shortkoodi\" "
+"lisätäksesi lyhenteen artikkeliisi."
+
+#. mailerlite
+#: include/templates/common/tiny_mce.php:24
+msgid "Add Shortcode"
+msgstr "Lisää Shortkoodi"
+
+#. mailerlite
+#: include/templates/forms/custom_form.php:19
+msgid "Please wait..."
+msgstr "Ole hyvä ja odota..."
+
+#. mailerlite
+#: include/templates/forms/custom_form.php:27
+msgid "Thank you for signup!"
+msgstr "Kiitos tilauksestasi!"
