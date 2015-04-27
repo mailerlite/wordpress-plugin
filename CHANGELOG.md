@@ -1,3 +1,6 @@
+### 1.0.9
+* Curl safe mode fix
+
 ### 1.0.8
 * Fix shortcode popup
 

@@ -47,7 +47,7 @@ Plugin features:
 
 * Requires PHP `>=5.3`.
 
-### What is the plugin license? =
+### What is the plugin license?
 
 * This plugin is released under a GPL license.
 
