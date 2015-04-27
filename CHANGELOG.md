@@ -1,3 +1,9 @@
+### 1.0.11
+* Version fix for official WP plugins site
+
+### 1.0.10
+* Some code refactor, array fixes for <5.4
+
 ### 1.0.9
 * Curl safe mode fix
 
