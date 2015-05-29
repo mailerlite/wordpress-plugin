@@ -181,7 +181,6 @@ class MailerLite_Admin
                                 'Newsletter signup', 'mailerlite'
                             );
                         $form_description = isset($_POST['form_description'])
-                        && $_POST['form_description'] != ''
                             ? $_POST['form_description']
                             : __(
                                 'Just simple MailerLite form!', 'mailerlite'
