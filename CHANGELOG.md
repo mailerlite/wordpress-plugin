@@ -1,5 +1,5 @@
 ### 1.0.13
-* Empty form description allowedg
+* Empty form description allowed
 
 ### 1.0.12
 * Fixed mistype in pull request
