@@ -1,3 +1,9 @@
+### 1.0.13
+* Empty form description allowedg
+
+### 1.0.12
+* Fixed mistype in pull request
+
 ### 1.0.11
 * Version fix for official WP plugins site
 
