@@ -4,7 +4,7 @@ Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.0.12
+Stable tag: 1.0.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.0.13 =
+* Empty form description allowed
 = 1.0.12 =
 * Fix mistype in curl method
 = 1.0.11 =
@@ -156,6 +158,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Upgrade Notice ==
 
+= 1.0.13 =
+* Empty form description allowed
 = 1.0.12 =
 * Fix mistype in curl method
 = 1.0.11 =
