@@ -104,9 +104,7 @@ class MailerLite_Shortcode
 
         ob_start();
         load_mailerlite_form($form_attributes['form_id']);
-        $output_string = ob_get_contents();
-        ob_end_clean();
 
-        return $output_string;
+        return ob_get_clean();
     }
 }

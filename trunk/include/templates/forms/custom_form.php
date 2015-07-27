@@ -13,11 +13,8 @@
                         $input_type = 'text';
                     } ?>
                     <div class="mailerlite-form-field">
-                        <label
-                            for="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"><?php echo $title; ?></label>
-                        <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"
-                               type="<?php echo $input_type; ?>" required="required"
-                               name="form_fields[<?php echo $field; ?>]"/>
+                        <label for="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"><?php echo $title; ?></label>
+                        <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>" type="<?php echo $input_type; ?>" required="required" name="form_fields[<?php echo $field; ?>]"/>
                     </div>
                 <?php endforeach; ?>
                 <div class="mailerlite-form-loader"><?php _e('Please wait...', 'mailerlite'); ?></div>
