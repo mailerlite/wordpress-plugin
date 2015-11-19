@@ -159,7 +159,7 @@ class MailerLite_Form
         ) {
             wp_register_script(
                 'jquery-validation-plugin',
-                'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js',
+                'https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js',
                 array('jquery')
             );
         } else if (!wp_script_is('jquery-validation-plugin')
@@ -169,7 +169,7 @@ class MailerLite_Form
         ) {
             wp_register_script(
                 'jquery-validation-plugin',
-                'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js',
+                'https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js',
                 array('google-hosted-jquery')
             );
         }

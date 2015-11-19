@@ -62,6 +62,15 @@ function mailerlite_install()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
+
+    $sql = "ALTER TABLE  " . $table_name . " DEFAULT CHARACTER SET utf8 COLLATE " . $charset_collate;
+    dbDelta($sql);
+
+    $sql = "ALTER TABLE  " . $table_name . " CHANGE  `name`  `name` TINYTEXT CHARACTER SET utf8 COLLATE " . $charset_collate;
+    dbDelta($sql);
+
+    $sql = "ALTER TABLE  " . $table_name . " CHANGE  `data`  `data` TINYTEXT CHARACTER SET utf8 COLLATE " . $charset_collate;
+    dbDelta($sql);
 }
 
 register_activation_hook(__FILE__, 'mailerlite_install');
