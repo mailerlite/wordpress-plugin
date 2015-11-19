@@ -4,7 +4,7 @@
  * Plugin Name: Official MailerLite Sign Up Forms
  * Description: Official MailerLite Sign Up Forms plugin for WordPress. Ability
  * to embed MailerLite webforms and create custom ones just with few clicks.
- * Version: 1.0.15
+ * Version: 1.0.17
  * Author: MailerGroup
  * Author URI: https://www.mailerlite.com
  * License: GPLv2 or later
@@ -28,7 +28,7 @@
 define('MAILERLITE_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MAILERLITE_PLUGIN_URL', plugins_url('', __FILE__));
 
-define('MAILERLITE_VERSION', '1.0.15');
+define('MAILERLITE_VERSION', '1.0.17');
 
 function mailerlite_load_plugin_textdomain()
 {
@@ -49,28 +49,29 @@ function mailerlite_install()
     $table_name = $wpdb->prefix . "mailerlite_forms";
 
     //$charset_collate = $wpdb->get_charset_collate();
-    $charset_collate = 'utf8_bin';
 
-    $sql = "CREATE TABLE " . $table_name . " (
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    $charset_collate = ' CHARACTER SET utf8 COLLATE utf8_bin';
+
+    $sql = "CREATE TABLE IF NOT EXISTS " . $table_name . " (
               id mediumint(9) NOT NULL AUTO_INCREMENT,
               time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
               name tinytext NOT NULL,
               type tinyint(1) default '1' NOT NULL,
               data text NOT NULL,
               PRIMARY KEY (id)
-           ) ".$charset_collate.";";
-
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+           ) DEFAULT ".$charset_collate. ";";
     dbDelta($sql);
 
-    $sql = "ALTER TABLE  " . $table_name . " DEFAULT CHARACTER SET utf8 COLLATE " . $charset_collate;
-    dbDelta($sql);
+    $sql = "ALTER TABLE  " . $table_name . " " . $charset_collate . ";";
+    $wpdb->query($sql);
 
-    $sql = "ALTER TABLE  " . $table_name . " CHANGE  `name`  `name` TINYTEXT CHARACTER SET utf8 COLLATE " . $charset_collate;
-    dbDelta($sql);
+    $sql = "ALTER TABLE  " . $table_name . " CHANGE  `name`  `name` TINYTEXT " . $charset_collate . ";";
+    $wpdb->query($sql);
 
-    $sql = "ALTER TABLE  " . $table_name . " CHANGE  `data`  `data` TINYTEXT CHARACTER SET utf8 COLLATE " . $charset_collate;
-    dbDelta($sql);
+    $sql = "ALTER TABLE  " . $table_name . " CHANGE  `data`  `data` TEXT " . $charset_collate . ";";
+    $wpdb->query($sql);
 }
 
 register_activation_hook(__FILE__, 'mailerlite_install');
