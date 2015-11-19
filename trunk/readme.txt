@@ -3,8 +3,8 @@ Contributors: mailerlite
 Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
-Tested up to: 4.2.3
-Stable tag: 1.0.14
+Tested up to: 4.3.1
+Stable tag: 1.0.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,7 +113,7 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 = Where can I find my MailerLite API key? =
 
-[Check it here!](http://mailerlite.helpscoutdocs.com/article/12-does-mailerlite-offer-an-api "Check it here!")
+[Check it here!](https://kb.mailerlite.com/does-mailerlite-offer-an-api/ "Check it here!")
 
 == Screenshots ==
 
@@ -127,6 +127,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.0.15 =
+* Updated links to knowledge base about api key, changed db charset for table - utf8_bin
 = 1.0.14 =
 * Removed new lines for some cases
 = 1.0.13 =
@@ -160,6 +162,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Upgrade Notice ==
 
+= 1.0.14 =
+* Updated links to knowledge base about api key, changed db charset for table - utf8_bin
 = 1.0.14 =
 * Removed new lines for some cases
 = 1.0.13 =

@@ -20,7 +20,7 @@
                         <p class="title"><?php _e('Enter an API key', 'mailerlite'); ?></p>
 
                         <p><?php _e("Don't know where to find it?", 'mailerlite'); ?> <a
-                                href="http://mailerlite.helpscoutdocs.com/article/12-does-mailerlite-offer-an-api"
+                                href="https://kb.mailerlite.com/does-mailerlite-offer-an-api/"
                                 target="_blank"><?php _e("Check it here!", 'mailerlite'); ?></a></p>
                     </div>
                     <div class="input-block">
