@@ -4,7 +4,7 @@
  * Plugin Name: Official MailerLite Sign Up Forms
  * Description: Official MailerLite Sign Up Forms plugin for WordPress. Ability
  * to embed MailerLite webforms and create custom ones just with few clicks.
- * Version: 1.0.17
+ * Version: 1.0.18
  * Author: MailerGroup
  * Author URI: https://www.mailerlite.com
  * License: GPLv2 or later
@@ -28,7 +28,10 @@
 define('MAILERLITE_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MAILERLITE_PLUGIN_URL', plugins_url('', __FILE__));
 
-define('MAILERLITE_VERSION', '1.0.17');
+define('MAILERLITE_VERSION', '1.0.18');
+
+define('MAILERLITE_PHP_VERSION', '5.0.1');
+define('MAILERLITE_WP_VERSION', '3.0.1');
 
 function mailerlite_load_plugin_textdomain()
 {
@@ -44,7 +47,31 @@ add_action('init', 'mailerlite_load_plugin_textdomain');
 
 function mailerlite_install()
 {
+    global $wp_version;
     global $wpdb;
+
+    $message = '';
+
+    if ( version_compare( PHP_VERSION, MAILERLITE_PHP_VERSION, '<' ) )
+    {
+        $message = '<p> The <strong>MailerLite</strong> plugin requires PHP version '.MAILERLITE_PHP_VERSION.' or greater.</p>';
+    }
+
+    if (version_compare( $wp_version, MAILERLITE_WP_VERSION, '<' ))
+    {
+        $message = '<p> The <strong>MailerLite</strong> plugin requires WordPress version '.MAILERLITE_WP_VERSION.' or greater.</p>';
+    }
+
+    if (!function_exists('curl_version'))
+    {
+        $message = '<p> The <strong>MailerLite</strong> plugin requires <strong>php-curl</strong> library. Please visit <a target="_blank" href="http://php.net/curl">php.net/curl</a></p>';
+    }
+
+    if ($message)
+    {
+        deactivate_plugins( basename( __FILE__ ) );
+        wp_die($message, 'Plugin Activation Error', array('response' => 200, 'back_link' => TRUE));
+    }
 
     $table_name = $wpdb->prefix . "mailerlite_forms";
 
