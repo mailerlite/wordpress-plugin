@@ -32,6 +32,10 @@
     </div>
 </div>
 
+<? if (!empty($form_data['language'])):?>
+    <script type='text/javascript' src='<?=MAILERLITE_PLUGIN_URL?>/assets/js/localization/jquery.validate/messages_<?=strtolower($form_data['language'])?>.js'></script>
+<? endif; ?>
+
 <script type="text/javascript">
 
     jQuery(document).ready(function () {

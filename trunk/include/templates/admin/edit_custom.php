@@ -73,6 +73,20 @@
                                                 class="description"><strong><?php _e('Example:'); ?></strong> <?php _e('Subscribe'); ?></span>
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <th><label for="language"><?php _e('Validation messages', 'mailerlite'); ?></label>
+                                        </th>
+                                        <td>
+                                            <select id="language" name="language">
+                                                <?php foreach ($languages as $langKey => $langName): ?>
+                                                    <option data-code="<?php echo $langKey; ?>"
+                                                            value="<?php echo $langKey; ?>"<?php echo $langKey == $form->data['language'] ? ' selected="selected"' : ''; ?>><?php echo $langName; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

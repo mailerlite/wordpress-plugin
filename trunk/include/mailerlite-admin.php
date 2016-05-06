@@ -192,6 +192,11 @@ class MailerLite_Admin
                                 'Subscribe', 'mailerlite'
                             );
 
+                        $language = isset($_POST['language'])
+                        && $_POST['language'] != ''
+                            ? sanitize_text_field($_POST['language'])
+                            : '';
+
                         $selected_fields = isset($_POST['form_selected_field'])
                         && is_array(
                             $_POST['form_selected_field']
@@ -228,6 +233,7 @@ class MailerLite_Admin
                             'title' => $form_title,
                             'description' => wpautop($form_description, true),
                             'button' => $button_name,
+                            'language' => $language,
                             'lists' => $form_lists,
                             'fields' => $prepared_fields
                         );
@@ -247,6 +253,9 @@ class MailerLite_Admin
 
                         $result = 'success';
                     }
+
+                    include(MAILERLITE_PLUGIN_DIR
+                        . 'include/settings/languages.php');
 
                     include(MAILERLITE_PLUGIN_DIR
                         . 'include/templates/admin/edit_custom.php');
