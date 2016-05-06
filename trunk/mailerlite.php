@@ -28,7 +28,7 @@
 define('MAILERLITE_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MAILERLITE_PLUGIN_URL', plugins_url('', __FILE__));
 
-define('MAILERLITE_VERSION', '1.0.18');
+define('MAILERLITE_VERSION', '1.1.1');
 
 define('MAILERLITE_PHP_VERSION', '5.0.1');
 define('MAILERLITE_WP_VERSION', '3.0.1');
