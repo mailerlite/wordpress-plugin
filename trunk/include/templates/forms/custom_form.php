@@ -37,28 +37,31 @@
 <? endif; ?>
 
 <script type="text/javascript">
+    (function() {
+        var jQuery = jQueryWP || jQuery;
 
-    jQuery(document).ready(function () {
-        var form_container = jQuery("#mailerlite-form_<?php echo $form_id; ?>[data-temp-id=<?php echo $unique_id; ?>] form");
-        form_container.submit(function (e) {
-            e.preventDefault();
-        }).validate({
-            submitHandler: function (form) {
+        jQuery(document).ready(function () {
+            var form_container = jQuery("#mailerlite-form_<?php echo $form_id; ?>[data-temp-id=<?php echo $unique_id; ?>] form");
+            form_container.submit(function (e) {
+                e.preventDefault();
+            }).validate({
+                    submitHandler: function (form) {
 
-                jQuery(this.submitButton).prop('disabled', true);
+                        jQuery(this.submitButton).prop('disabled', true);
 
-                form_container.find('.mailerlite-subscribe-button-container').fadeOut(function () {
-                    form_container.find('.mailerlite-form-loader').fadeIn()
-                });
+                        form_container.find('.mailerlite-subscribe-button-container').fadeOut(function () {
+                            form_container.find('.mailerlite-form-loader').fadeIn()
+                                        });
 
-                var data = jQuery(form).serialize();
+                        var data = jQuery(form).serialize();
 
-                jQuery.post('<?php echo admin_url( 'admin-ajax.php' ); ?>', data, function (response) {
-                    form_container.find('.mailerlite-form-inputs').fadeOut(function () {
-                        form_container.find('.mailerlite-form-response').fadeIn()
-                    });
-                });
-            }
+                        jQuery.post('<?php echo admin_url( 'admin-ajax.php' ); ?>', data, function (response) {
+                            form_container.find('.mailerlite-form-inputs').fadeOut(function () {
+                                form_container.find('.mailerlite-form-response').fadeIn()
+                                            });
+                        });
+                    }
+            });
         });
-    });
+    })();
 </script>
