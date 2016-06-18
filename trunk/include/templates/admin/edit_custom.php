@@ -81,7 +81,7 @@
                                             <select id="language" name="language">
                                                 <?php foreach ($languages as $langKey => $langName): ?>
                                                     <option data-code="<?php echo $langKey; ?>"
-                                                            value="<?php echo $langKey; ?>"<?php echo $langKey == $form->data['language'] ? ' selected="selected"' : ''; ?>><?php echo $langName; ?></option>
+                                                            value="<?php echo $langKey; ?>"<?php echo $langKey == (isset($form->data['language'])?$form->data['language']:'') ? ' selected="selected"' : ''; ?>><?php echo $langName; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
 
