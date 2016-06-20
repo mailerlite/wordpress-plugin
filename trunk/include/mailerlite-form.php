@@ -228,6 +228,10 @@ function mailerlite_universal() { ?>
     <!-- End MailerLite Universal -->
 <?php }
 
-if (!empty(get_option('mailerlite_api_key')) && !empty(get_option('account_id')) && !empty(get_option('account_subdomain'))) {
+$mailerlite_api_key = get_option('mailerlite_api_key');
+$account_id = get_option('account_id');
+$account_subdomain = get_option('account_subdomain');
+
+if ($mailerlite_api_key && $account_id && $account_subdomain) {
     add_action('wp_head', 'mailerlite_universal');
 }
