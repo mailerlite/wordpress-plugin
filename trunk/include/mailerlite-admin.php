@@ -398,8 +398,6 @@ class MailerLite_Admin
         $response = json_decode($response);
 
         if (!empty($response->account)) {
-            var_dump('set option');
-
             update_option('account_id', $response->account->id);
             update_option('account_subdomain', $response->account->subdomain);
         }
