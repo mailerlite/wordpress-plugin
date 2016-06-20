@@ -212,3 +212,22 @@ function load_mailerlite_form($form_id)
         );
     }
 }
+
+function mailerlite_universal() { ?>
+    <!-- MailerLite Universal -->
+    <script>
+        (function(m,a,i,l,e,r){m['MailerLiteObject']=e;function f(){
+            var c={a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+            f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=f.q;r=a.createElement(i);
+            var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l;_.parentNode.insertBefore(r,_);
+        })(window, document, 'script', 'https://app.mailerlite.com/js/universal.js', 'ml');
+
+        ml('host', 'https://app.mailerlite.com/');
+        ml('accounts', '<?php echo get_option('account_id'); ?>', '<?php echo get_option('account_subdomain'); ?>', 'load');
+    </script>
+    <!-- End MailerLite Universal -->
+<?php }
+
+if (!empty(get_option('mailerlite_api_key')) && !empty(get_option('account_id')) && !empty(get_option('account_subdomain'))) {
+    add_action('wp_head', 'mailerlite_universal');
+}

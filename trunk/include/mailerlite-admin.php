@@ -21,6 +21,10 @@ class MailerLite_Admin
 
         self::$api_key = get_option('mailerlite_api_key');
 
+        if (!empty(self::$api_key) && (empty(get_option('account_id')) || empty(get_option('account_subdomain')))) {
+            self::update_account_info();
+        }
+
         if (!self::$initiated) {
             self::init_hooks();
         }
@@ -373,8 +377,31 @@ class MailerLite_Admin
             $mailerlite_error = __('Wrong MailerLite API key', 'mailerlite');
         } else {
             update_option('mailerlite_api_key', $key);
+
+            self::update_account_info();
+
             update_option('mailerlite_enabled', true);
             self::$api_key = $key;
+        }
+    }
+
+    public static function update_account_info() {
+        // request to mailerlite api
+        $opts = array(
+            'http' => array(
+                'method' => "GET",
+                'header' => "X-MailerLite-ApiKey: " . self::$api_key . "\r\n"
+            )
+        );
+        $context = stream_context_create($opts);
+        $response = file_get_contents('https://api.mailerlite.com/api/v2', false, $context);
+        $response = json_decode($response);
+
+        if (!empty($response->account)) {
+            var_dump('set option');
+
+            update_option('account_id', $response->account->id);
+            update_option('account_subdomain', $response->account->subdomain);
         }
     }
 
