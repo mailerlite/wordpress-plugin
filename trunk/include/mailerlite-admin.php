@@ -21,7 +21,10 @@ class MailerLite_Admin
 
         self::$api_key = get_option('mailerlite_api_key');
 
-        if (!empty(self::$api_key) && (empty(get_option('account_id')) || empty(get_option('account_subdomain')))) {
+        $account_id = get_option('account_id');
+        $account_subdomain = get_option('account_subdomain');
+        
+        if (self::$api_key && (!$account_id || !$account_subdomain)) {
             self::update_account_info();
         }
 
