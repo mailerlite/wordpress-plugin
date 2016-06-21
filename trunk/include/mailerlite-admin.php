@@ -23,7 +23,7 @@ class MailerLite_Admin
 
         $account_id = get_option('account_id');
         $account_subdomain = get_option('account_subdomain');
-        
+
         if (self::$api_key && (!$account_id || !$account_subdomain)) {
             self::update_account_info();
         }
@@ -115,6 +115,10 @@ class MailerLite_Admin
      */
     public static function mailerlite_main()
     {
+        if (isset($_GET['mailerlite_popups_disabled'])) {
+            update_option('mailerlite_popups_disabled', !!$_GET['mailerlite_popups_disabled']);
+        }
+
         global $fields, $lists, $form, $forms_data, $webforms, $mailerlite_error, $result, $wpdb;
 
         //Check for api key
@@ -402,6 +406,7 @@ class MailerLite_Admin
         if (!empty($response->account)) {
             update_option('account_id', $response->account->id);
             update_option('account_subdomain', $response->account->subdomain);
+            update_option('mailerlite_popups_disabled', false);
         }
     }
 

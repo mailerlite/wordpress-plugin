@@ -231,7 +231,8 @@ function mailerlite_universal() { ?>
 $mailerlite_api_key = get_option('mailerlite_api_key');
 $account_id = get_option('account_id');
 $account_subdomain = get_option('account_subdomain');
+$mailerlite_popups_disabled = get_option('mailerlite_popups_disabled');
 
-if ($mailerlite_api_key && $account_id && $account_subdomain) {
+if (!$mailerlite_popups_disabled && $mailerlite_api_key && $account_id && $account_subdomain) {
     add_action('wp_head', 'mailerlite_universal');
 }

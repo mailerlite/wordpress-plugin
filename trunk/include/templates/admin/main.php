@@ -2,6 +2,32 @@
 <?php include_once('header.php'); ?>
 
 <div class="wrap columns-2 dd-wrap">
+    <h2>Popup forms</h2>
+    <div class="popup-descriptipn"
+         style="background: #ffffff; margin: 10px 0px 10px 0px; padding: 15px; border: 1px solid #e1e1e1;">
+        <?php if (!get_option('mailerlite_popups_disabled')) { ?>
+            <p style="margin: 0px 0px 10px 0px;">
+                <strong>MailerLite tracking script is enabled.</strong> Want to <a
+                    style="color: #666666" href="<?php echo admin_url('admin.php?page=mailerlite_main&mailerlite_popups_disabled=1'); ?>">turn it off?</a>
+            </p>
+            <p></p>
+            <p style="margin: 0px 0px 0px 0px;">
+                Create popup forms in your MailerLite account and it will be displayed
+                in your blog.
+            </p>
+        <?php } else { ?>
+            <p style="margin: 0px 0px 10px 0px;">
+                <strong>MailerLite tracking script is disabled.</strong> Want to <a href="<?php echo admin_url('admin.php?page=mailerlite_main&mailerlite_popups_disabled=0'); ?>" style="color: #666666">turn it on?</a>
+            </p>
+            <p></p>
+            <p style="margin: 0px 0px 0px 0px;">Your popup forms won't be displayed while the tracking script is
+                disabled.
+            </p>
+        <?php } ?>
+    </div>
+</div>
+
+<div class="wrap columns-2 dd-wrap">
     <h2><?php echo __('Signup forms', 'mailerlite'); ?> <a
             href="<?php echo admin_url('admin.php?page=mailerlite_main&view=create'); ?>"
             class="add-new-h2"><?php _e('Add New', 'mailerlite'); ?></a></h2>
