@@ -380,11 +380,10 @@ class MailerLite_Admin
             $mailerlite_error = __('Wrong MailerLite API key', 'mailerlite');
         } else {
             update_option('mailerlite_api_key', $key);
-
-            self::update_account_info();
-
             update_option('mailerlite_enabled', true);
             self::$api_key = $key;
+
+            self::update_account_info();
         }
     }
 
