@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . '/base/ML_Rest.php';
 
 class ML_Lists extends ML_Rest
 {
-    function ML_Lists($api_key)
+    function __construct($api_key)
     {
         $this->name = 'lists';
 
