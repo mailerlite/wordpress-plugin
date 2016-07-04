@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . '/base/ML_Rest.php';
 
 class ML_Campaigns extends ML_Rest
 {
-    function ML_Campaigns($api_key)
+    function __construct($api_key)
     {
         $this->name = 'campaigns';
 
