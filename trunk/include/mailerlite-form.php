@@ -220,9 +220,8 @@ function mailerlite_universal() { ?>
             var c={a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
             f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=f.q;r=a.createElement(i);
             var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l;_.parentNode.insertBefore(r,_);
-        })(window, document, 'script', 'https://app.mailerlite.com/js/universal.js', 'ml');
+        })(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
 
-        ml('host', 'https://app.mailerlite.com/');
         ml('accounts', '<?php echo get_option('account_id'); ?>', '<?php echo get_option('account_subdomain'); ?>', 'load');
     </script>
     <!-- End MailerLite Universal -->
