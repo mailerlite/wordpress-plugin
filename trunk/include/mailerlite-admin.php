@@ -154,6 +154,8 @@ class MailerLite_Admin
             && $_GET['view'] == 'edit'
             && absint($_GET['id'])
         ) {
+            $_POST = array_map( 'stripslashes_deep', $_POST);
+
             $form_id = absint($_GET['id']);
 
             $form = $wpdb->get_row(
