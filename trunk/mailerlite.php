@@ -73,7 +73,7 @@ function mailerlite_install()
         wp_die($message, 'Plugin Activation Error', array('response' => 200, 'back_link' => TRUE));
     }
 
-    $table_name = $wpdb->prefix . "mailerlite_forms";
+    $table_name = $wpdb->base_prefix . "mailerlite_forms";
 
     //$charset_collate = $wpdb->get_charset_collate();
 

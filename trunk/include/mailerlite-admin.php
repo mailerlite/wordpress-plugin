@@ -159,7 +159,7 @@ class MailerLite_Admin
             $form_id = absint($_GET['id']);
 
             $form = $wpdb->get_row(
-                "SELECT * FROM " . $wpdb->prefix
+                "SELECT * FROM " . $wpdb->base_prefix
                 . "mailerlite_forms WHERE id = " . $form_id
             );
 
@@ -252,7 +252,7 @@ class MailerLite_Admin
                         );
 
                         $wpdb->update(
-                            $wpdb->prefix . 'mailerlite_forms',
+                            $wpdb->base_prefix . 'mailerlite_forms',
                             array(
                                 'name' => $form_name,
                                 'data' => serialize($form_data)
@@ -300,7 +300,7 @@ class MailerLite_Admin
                         );
 
                         $wpdb->update(
-                            $wpdb->prefix . 'mailerlite_forms',
+                            $wpdb->base_prefix . 'mailerlite_forms',
                             array(
                                 'name' => $form_name,
                                 'data' => serialize($form_data)
@@ -320,7 +320,7 @@ class MailerLite_Admin
                 }
             } else {
                 $forms_data = $wpdb->get_results(
-                    "SELECT * FROM " . $wpdb->prefix
+                    "SELECT * FROM " . $wpdb->base_prefix
                     . "mailerlite_forms ORDER BY time DESC"
                 );
 
@@ -333,13 +333,13 @@ class MailerLite_Admin
             && absint($_GET['id'])
         ) {
             $wpdb->delete(
-                $wpdb->prefix . 'mailerlite_forms', array('id' => $_GET['id'])
+                $wpdb->base_prefix . 'mailerlite_forms', array('id' => $_GET['id'])
             );
             wp_redirect('admin.php?page=mailerlite_main');
         } //Signup forms list
         else {
             $forms_data = $wpdb->get_results(
-                "SELECT * FROM " . $wpdb->prefix
+                "SELECT * FROM " . $wpdb->base_prefix
                 . "mailerlite_forms ORDER BY time DESC"
             );
 
@@ -444,7 +444,7 @@ class MailerLite_Admin
         }
 
         $wpdb->insert(
-            $wpdb->prefix . 'mailerlite_forms',
+            $wpdb->base_prefix . 'mailerlite_forms',
             array(
                 'name' => $form_name,
                 'time' => date('Y-m-d h:i:s'),

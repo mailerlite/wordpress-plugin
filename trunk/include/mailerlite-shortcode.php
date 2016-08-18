@@ -77,7 +77,7 @@ class MailerLite_Shortcode
         }
 
         $forms = $wpdb->get_results(
-            "SELECT * FROM " . $wpdb->prefix . "mailerlite_forms"
+            "SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms"
         );
 
         include(MAILERLITE_PLUGIN_DIR

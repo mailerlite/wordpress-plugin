@@ -36,7 +36,7 @@ class MailerLite_Widget extends WP_Widget
             $instance['mailerlite_form_id']
         ) ? $instance['mailerlite_form_id'] : 0;
         $form = $wpdb->get_row(
-            "SELECT * FROM " . $wpdb->prefix . "mailerlite_forms WHERE id = "
+            "SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms WHERE id = "
             . $form_id
         );
 
@@ -68,7 +68,7 @@ class MailerLite_Widget extends WP_Widget
         global $wpdb;
 
         $forms_data = $wpdb->get_results(
-            "SELECT * FROM " . $wpdb->prefix
+            "SELECT * FROM " . $wpdb->base_prefix
             . "mailerlite_forms ORDER BY time DESC"
         );
 

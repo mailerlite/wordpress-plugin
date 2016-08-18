@@ -59,7 +59,7 @@ class MailerLite_Form
 
         if ($form_id > 0 && isset($form_fields['email'])) {
             $form = $wpdb->get_row(
-                "SELECT * FROM " . $wpdb->prefix
+                "SELECT * FROM " . $wpdb->base_prefix
                 . "mailerlite_forms WHERE id = " . $form_id
             );
 
@@ -199,7 +199,7 @@ function load_mailerlite_form($form_id)
     global $wpdb;
 
     $form = $wpdb->get_row(
-        "SELECT * FROM " . $wpdb->prefix . "mailerlite_forms WHERE id = "
+        "SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms WHERE id = "
         . $form_id
     );
 
