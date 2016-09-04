@@ -58,7 +58,7 @@ MailerLite is easy to use web-based email marketing software. It can help you cr
 Yes, you can easily register at https://www.mailerlite.com
 
 ### How to display a form in posts or pages?
-Use shortcode with form id which you created [mailerlite form_id=0].
+Use shortcode with form id which you created [mailerlite_form form_id=1].
 
 ### How to display a form in widget areas like a sidebar?
 Just add "Mailerlite sign up form widget" and select form you have created

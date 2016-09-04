@@ -3,8 +3,8 @@ Contributors: mailerlite
 Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
-Tested up to: 4.5.1
-Stable tag: 1.1.12
+Tested up to: 4.6
+Stable tag: 1.1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,7 +72,7 @@ MailerLite is easy to use web-based email marketing software. It can help you cr
 Yes, you can easily register at www.mailerlite.com
 
 = How to display a form in posts or pages? =
-Use shortcode with form id which you created [mailerlite form_id=0].
+Use shortcode with form id which you created [mailerlite_form form_id=1].
 
 = How to display a form in widget areas like a sidebar? =
 Just add "Mailerlite sign up form widget" and select form you have created
@@ -127,6 +127,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.1.13 =
+* tested with 4.6 version
 = 1.1.12 =
 * multisite support
 = 1.1.11 =
@@ -194,6 +196,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Upgrade Notice ==
 
+= 1.1.13 =
+* tested with 4.6 version
 = 1.1.12 =
 * multisite support
 = 1.1.11 =
