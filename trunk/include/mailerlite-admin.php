@@ -198,6 +198,11 @@ class MailerLite_Admin
                             : __(
                                 'Just simple MailerLite form!', 'mailerlite'
                             );
+                        $success_message = isset($_POST['success_message'])
+                            ? $_POST['success_message']
+                            : '<span style="color: rgb(51, 153, 102);">' . _e(
+                                'Thank you for sign up!', 'mailerlite'
+                            ) . '</span>';
                         $button_name = isset($_POST['button_name'])
                         && $_POST['button_name'] != ''
                             ? sanitize_text_field($_POST['button_name'])
@@ -245,6 +250,7 @@ class MailerLite_Admin
                         $form_data = array(
                             'title' => $form_title,
                             'description' => wpautop($form_description, true),
+                            'success_message' => wpautop($success_message, true),
                             'button' => $button_name,
                             'language' => $language,
                             'lists' => $form_lists,
@@ -431,6 +437,9 @@ class MailerLite_Admin
                 'description' => __(
                     'Just simple MailerLite form!', 'mailerlite'
                 ),
+                'success_message' => '<span style="color: rgb(51, 153, 102);">' . _e(
+                        'Thank you for sign up!', 'mailerlite'
+                ) . '</span>',
                 'button' => __('Subscribe', 'mailerlite'),
                 'lists' => array(),
                 'fields' => array('email' => __('Email', 'mailerlite'))

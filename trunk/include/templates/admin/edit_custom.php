@@ -66,6 +66,25 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th><label
+                                                for="success_message"><?php _e('Success message', 'mailerlite'); ?></label>
+                                        </th>
+                                        <td>
+                                            <?php
+                                            $settings = array(
+                                                'media_buttons' => false,
+                                                'textarea_rows' => 4,
+                                                'tinymce' => array(
+                                                    'toolbar1' => 'bold,italic,underline,bullist,numlist,link,unlink,forecolor,alignleft,aligncenter,alignright,undo,redo',
+                                                    'toolbar2' => ''
+                                                )
+                                            );
+
+                                            wp_editor(stripslashes($form->data['success_message']), 'success_message', $settings);
+                                            ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th><label for="button_name"><?php _e('Button title', 'mailerlite'); ?></label>
                                         </th>
                                         <td><input type="text" name="button_name" size="30" maxlength="255"

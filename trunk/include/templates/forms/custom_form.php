@@ -26,7 +26,11 @@
                 <input type="hidden" name="action" value="mailerlite_subscribe_form"/>
             </div>
             <div class="mailerlite-form-response">
-                <h4><?php _e('Thank you for signing up!', 'mailerlite'); ?></h4>
+                <?php if (!empty($form_data['success_message'])) { ?>
+                    <h4><?php echo $form_data['success_message'] ?></h4>
+                <?php } else { ?>
+                    <h4><?php _e('Thank you for signing up!', 'mailerlite'); ?></h4>
+                <?php } ?>
             </div>
         </form>
     </div>
