@@ -401,15 +401,21 @@ class MailerLite_Admin
 
     public static function update_account_info() {
         // request to mailerlite api
-        $opts = array(
-            'http' => array(
-                'method' => "GET",
-                'header' => "X-MailerLite-ApiKey: " . self::$api_key . "\r\n"
-            )
-        );
-        $context = stream_context_create($opts);
-        $response = file_get_contents('https://api.mailerlite.com/api/v2', false, $context);
-        $response = json_decode($response);
+        $ch = curl_init();
+
+        curl_setopt_array($ch, [
+            CURLOPT_URL => 'https://api.mailerlite.com/api/v2',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTPHEADER => [
+                'X-MailerLite-ApiKey: ' . self::$api_key
+            ]
+        ]);
+
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        $response = json_decode($output);
 
         if (!empty($response->account)) {
             update_option('account_id', $response->account->id);
