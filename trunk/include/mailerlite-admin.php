@@ -403,14 +403,14 @@ class MailerLite_Admin
         // request to mailerlite api
         $ch = curl_init();
 
-        curl_setopt_array($ch, [
+        curl_setopt_array($ch, array(
             CURLOPT_URL => 'https://api.mailerlite.com/api/v2',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTPHEADER => [
+            CURLOPT_HTTPHEADER => array(
                 'X-MailerLite-ApiKey: ' . self::$api_key
-            ]
-        ]);
+            )
+        ));
 
         $output = curl_exec($ch);
         curl_close($ch);
