@@ -32,7 +32,7 @@ msgstr "Naujienlaiškio prenumerata."
 # @ mailerlite
 #: include/mailerlite-admin.php:135 include/mailerlite-admin.php:302
 msgid "Just simple MailerLite form!"
-msgstr "Tai pavizdinė MailerLite prenumeratos forma!"
+msgstr "Tai pavyzdinė MailerLite prenumeratos forma!"
 
 # @ mailerlite
 # @ default
@@ -59,7 +59,7 @@ msgstr "Šis veiksmas draudžiamas"
 # @ mailerlite
 #: include/mailerlite-admin.php:277
 msgid "Wrong MailerLite API key"
-msgstr "Netesingas MailerLite API raktas"
+msgstr "Neteisingas MailerLite API raktas"
 
 # @ mailerlite
 #: include/mailerlite-admin.php:299
@@ -114,7 +114,7 @@ msgstr "Išsaugoti raktą"
 #: include/templates/admin/api_key.php:31
 #: include/templates/admin/settings.php:31
 msgid "Don't have an account?"
-msgstr "Neturite paskiros?"
+msgstr "Neturite paskyros?"
 
 # @ mailerlite
 #: include/templates/admin/api_key.php:32
@@ -161,7 +161,7 @@ msgstr "Šio pavadinimo niekas nematys"
 #: include/templates/admin/edit_custom.php:34
 #: include/templates/admin/edit_custom.php:55
 msgid "Example:"
-msgstr "Pavizdys:"
+msgstr "Pavyzdys:"
 
 # @ mailerlite
 #: include/templates/admin/edit_custom.php:34
@@ -260,7 +260,7 @@ msgstr "Forma išsaugota."
 #: include/templates/admin/edit_custom.php:7
 #: include/templates/admin/edit_embedded.php:7
 msgid "Back to forms list"
-msgstr "Grįšti į formų sąrašą"
+msgstr "Grįžti į formų sąrašą"
 
 # @ mailerlite
 #: include/templates/admin/edit_custom.php:15
@@ -400,7 +400,7 @@ msgstr "Palaukite..."
 # @ mailerlite
 #: include/templates/forms/custom_form.php:28
 msgid "Thank you for signup!"
-msgstr "Dekojame už prenumeratą!"
+msgstr "Dėkojame už prenumeratą!"
 
 # @ mailerlite
 #: include/templates/common/tiny_mce.php:24

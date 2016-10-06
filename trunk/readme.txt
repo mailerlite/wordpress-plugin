@@ -3,8 +3,8 @@ Contributors: mailerlite
 Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
-Tested up to: 4.6
-Stable tag: 1.1.16
+Tested up to: 4.6.1
+Stable tag: 1.1.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.1.17 =
+translation errors for LT language, allowing only embed and button forms
 = 1.1.16 =
 * providing support for older PHP versions
 = 1.1.15 =
@@ -202,6 +204,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Upgrade Notice ==
 
+= 1.1.17 =
+translation errors for LT language, allowing only embed and button forms
 = 1.1.16 =
 * providing support for older PHP versions
 = 1.1.15 =
