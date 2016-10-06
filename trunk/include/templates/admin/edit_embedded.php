@@ -34,7 +34,7 @@
                                     <td>
                                         <select id="form_webform_id" name="form_webform_id">
                                             <?php foreach ($webforms->Results as $webform): ?>
-                                                <?php if (!in_array($webform->type, ['embed', 'button'])) { continue; } ?>
+                                                <?php if (!in_array($webform->type, array('embed', 'button'))) { continue; } ?>
                                                 <option data-code="<?php echo $webform->code; ?>"
                                                         value="<?php echo $webform->id; ?>"<?php echo $webform->id == $form->data['id'] ? ' selected="selected"' : ''; ?>><?php echo $webform->name; ?></option>
                                             <?php endforeach; ?>
