@@ -200,7 +200,7 @@ class MailerLite_Admin
                             );
                         $success_message = isset($_POST['success_message'])
                             ? $_POST['success_message']
-                            : '<span style="color: rgb(51, 153, 102);">' . _e(
+                            : '<span style="color: rgb(51, 153, 102);">' . __(
                                 'Thank you for sign up!', 'mailerlite'
                             ) . '</span>';
                         $button_name = isset($_POST['button_name'])
@@ -443,7 +443,7 @@ class MailerLite_Admin
                 'description' => __(
                     'Just simple MailerLite form!', 'mailerlite'
                 ),
-                'success_message' => '<span style="color: rgb(51, 153, 102);">' . _e(
+                'success_message' => '<span style="color: rgb(51, 153, 102);">' . __(
                         'Thank you for sign up!', 'mailerlite'
                 ) . '</span>',
                 'button' => __('Subscribe', 'mailerlite'),
