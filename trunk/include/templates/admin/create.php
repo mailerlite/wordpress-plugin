@@ -23,9 +23,19 @@
                             </p>
 
                             <p>
+                                <?php
+                                    $embed_button_webforms = [];
+
+                                    foreach ($webforms->Results as $webform) {
+                                        if (!in_array($webform->type, array('embed', 'button'))) { continue; }
+
+                                        $embed_button_webforms[] = $webform;
+                                    }
+                                ?>
+
                                 <label for="form_type_webform" class="selectit">
                                     <input id="form_type_webform" type="radio" name="form_type"
-                                           value="2"<?php echo $webforms->RecordsOnPage == 0 ? ' disabled="disabled"' : ''; ?>>
+                                           value="2"<?php echo count($embed_button_webforms) == 0 ? ' disabled="disabled"' : ''; ?>>
                                     <?php echo __('Webforms created using MailerLite', 'mailerlite'); ?>
                                 </label>
                             </p>
