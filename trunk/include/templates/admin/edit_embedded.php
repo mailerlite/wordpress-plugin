@@ -74,6 +74,10 @@
     });
 
     function loadIframe(code) {
+        if (!code) {
+            return;
+        }
+
         jQuery('#webform_example').html(jQuery('<iframe></iframe>', {
             id: 'webform_example_iframe',
             src: "https://app.mailerlite.com/webforms/submit/" + code + "/",
