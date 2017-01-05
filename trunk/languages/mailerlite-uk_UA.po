@@ -399,3 +399,8 @@ msgstr "Будь ласка, зачекайте..."
 #: include/templates/forms/custom_form.php:27
 msgid "Thank you for signup!"
 msgstr "Дякуємо за підписку!"
+
+# @ mailerlite
+#: include/mailerlite_admin.php:395
+msgid "Send this error to info@mailerlite.com or our chat"
+msgstr "Відправте цю помилку на info@mailerlite.com або зв'яжіться з нами через онлайн"

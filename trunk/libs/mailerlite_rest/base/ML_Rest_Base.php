@@ -15,6 +15,8 @@ class ML_Rest_Base
     protected $apiKey = '';
     protected $path = '';
 
+    private $curlError = false;
+
     public function __construct($url = 'https://app.mailerlite.com/api/v1/', $verb = 'GET')
     {
         $this->url = $url;
@@ -136,6 +138,11 @@ class ML_Rest_Base
         $this->setCurlOpts($curlHandle);
         $this->responseBody = curl_exec($curlHandle);
 
+        if ($this->responseBody === false) {
+            $this->responseBody = 'CURL errno: '.curl_errno($curlHandle).', CURL error: '.curl_error($curlHandle);
+            $this->curlError = true;
+        }
+
         $this->responseInfo = curl_getinfo($curlHandle);
 
         curl_close($curlHandle);
@@ -154,6 +161,11 @@ class ML_Rest_Base
         if (!ini_get('open_basedir') && !ini_get('safe_mode')) {
             curl_setopt($curlHandle, CURLOPT_FOLLOWLOCATION, true);
         }
+    }
+
+    public function hasCurlError()
+    {
+        return $this->curlError;
     }
 
     protected function setAuth(&$curlHandle)

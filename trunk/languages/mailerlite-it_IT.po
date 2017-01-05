@@ -399,3 +399,8 @@ msgstr "Aspetta..."
 #: include/templates/forms/custom_form.php:27
 msgid "Thank you for signup!"
 msgstr "Grazie per la tua iscrizione!"
+
+# @ mailerlite
+#: include/mailerlite_admin.php:395
+msgid "Send this error to info@mailerlite.com or our chat"
+msgstr "Invia questo errore di info@mailerlite.com o la nostra chat"

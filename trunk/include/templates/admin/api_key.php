@@ -6,12 +6,7 @@
         <div id="post-body">
             <div id="post-body-content">
                 <p><?php echo __('Hi there! You will be able to create awesome signup forms, but first we need your MailerLite API key!', 'mailerlite'); ?></p>
-                <?php if ($mailerlite_error): ?>
-                    <div class="error">
-                        <p><?php echo $mailerlite_error; ?></p>
-                    </div>
 
-                <?php endif; ?>
                 <div class="mailerlite-activate">
                     <div class="description-block">
                         <p class="title"><?php echo __('Enter an API key', 'mailerlite'); ?></p>

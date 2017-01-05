@@ -9,12 +9,7 @@
         <div id="post-body">
             <div id="post-body-content">
                 <p><?php _e('Here you able to change your API key!', 'mailerlite'); ?></p>
-                <?php if ($mailerlite_error): ?>
-                    <div class="error">
-                        <p><?php echo $mailerlite_error; ?></p>
-                    </div>
 
-                <?php endif; ?>
                 <div class="mailerlite-activate">
                     <div class="description-block">
                         <p class="title"><?php _e('Enter an API key', 'mailerlite'); ?></p>

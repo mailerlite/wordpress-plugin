@@ -399,3 +399,8 @@ msgstr "Ole hyvä ja odota..."
 #: include/templates/forms/custom_form.php:27
 msgid "Thank you for signup!"
 msgstr "Kiitos tilauksestasi!"
+
+# @ mailerlite
+#: include/mailerlite_admin.php:395
+msgid "Send this error to info@mailerlite.com or our chat"
+msgstr "Lähetä tämä virhe info@mailerlite.com tai meidän chat"

@@ -143,6 +143,12 @@ class MailerLite_Admin
 
             $ML_Webforms = new ML_Webforms($api_key);
             $webforms = $ML_Webforms->getAll();
+
+            if ($ML_Webforms->hasCurlError()) {
+                $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Webforms->getResponseBody();
+
+            }
+
             $webforms = json_decode($webforms);
 
             include(MAILERLITE_PLUGIN_DIR
@@ -174,11 +180,26 @@ class MailerLite_Admin
 
                     $ML_Lists = new ML_Lists($api_key);
                     $lists = $ML_Lists->getAll();
+
+                    if ($ML_Lists->hasCurlError()) {
+                        $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
+
+                    }
+
                     $lists = json_decode($lists);
+                    if (empty($lists->Results)) $lists->Results = array();
 
                     $fields = $ML_Lists->setId($lists->Results[0]->id)
                         ->getFields();
+
+                    if ($ML_Lists->hasCurlError()) {
+                        $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
+
+                    }
+
                     $fields = json_decode($fields);
+
+                    if (empty($fields->Fields)) $fields->Fields = array();
 
                     if (isset($_POST['save_custom_signup_form'])) {
                         $form_name = isset($_POST['form_name'])
@@ -269,6 +290,7 @@ class MailerLite_Admin
                         );
 
                         $form->data = $form_data;
+                        $form->name = $form_name;
 
                         $result = 'success';
                     }
@@ -281,7 +303,14 @@ class MailerLite_Admin
                 } else if ($form->type == 2) {
                     $ML_Webforms = new ML_Webforms($api_key);
                     $webforms = $ML_Webforms->getAll();
+
+                    if ($ML_Webforms->hasCurlError()) {
+                        $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Webforms->getResponseBody();
+
+                    }
+
                     $webforms = json_decode($webforms);
+                    if (empty($webforms->Results)) $webforms->Results = array();
 
                     $parsed_webforms = array();
 
@@ -317,6 +346,7 @@ class MailerLite_Admin
                         );
 
                         $form->data = $form_data;
+                        $form->name = $form_name;
 
                         $result = 'success';
                     }
@@ -390,6 +420,9 @@ class MailerLite_Admin
 
         if ($response['http_code'] == 401) {
             $mailerlite_error = __('Wrong MailerLite API key', 'mailerlite');
+        } elseif ($ML_Lists->hasCurlError()) {
+            $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
+
         } else {
             update_option('mailerlite_api_key', $key);
             update_option('mailerlite_enabled', true);

@@ -31,6 +31,7 @@ class MailerLite_Form
      */
     public function generate_form($form_id, $form_type, $form_name, $form_data)
     {
+        global $mailerlite_error;
 
         $this->form_id = $form_id;
         $this->form_type = $form_type;
@@ -49,7 +50,7 @@ class MailerLite_Form
      */
     public static function save_form_data()
     {
-        global $wpdb;
+        global $wpdb, $mailerlite_error;
 
         $form_id = isset($_POST['form_id']) ? absint($_POST['form_id']) : 0;
         $form_fields = isset($_POST['form_fields']) ? $_POST['form_fields']
@@ -95,13 +96,13 @@ class MailerLite_Form
             } else {
                 echo json_encode(
                     array('status' => 'error',
-                        'message' => __('Form not found', 'mailerlite'))
+                          'message' => __('Form not found', 'mailerlite'))
                 );
             }
         } else {
             echo json_encode(
                 array('status' => 'error',
-                    'message' => __('Wrong data provided', 'mailerlite'))
+                      'message' => __('Wrong data provided', 'mailerlite'))
             );
         }
 
@@ -217,12 +218,12 @@ function mailerlite_universal() { ?>
     <!-- MailerLite Universal -->
     <script>
         (function(m,a,i,l,e,r){m['MailerLiteObject']=e;function f(){
-        var c={a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
-        f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
-        var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?'+(~~(new Date().getTime()/10000000));
-        _.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+            var c={a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+            f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=f.q;r=a.createElement(i);
+            var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l;_.parentNode.insertBefore(r,_);
+        })(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
 
-        var ml_account = ml('accounts', '<?php echo get_option('account_id'); ?>', '<?php echo get_option('account_subdomain'); ?>', 'load');
+        ml('accounts', '<?php echo get_option('account_id'); ?>', '<?php echo get_option('account_subdomain'); ?>', 'load');
     </script>
     <!-- End MailerLite Universal -->
 <?php }

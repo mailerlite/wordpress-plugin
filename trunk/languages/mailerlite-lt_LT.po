@@ -406,3 +406,8 @@ msgstr "Dėkojame už prenumeratą!"
 #: include/templates/common/tiny_mce.php:24
 msgid "Add Shortcode"
 msgstr "Pridėti trumpinį"
+
+# @ mailerlite
+#: include/mailerlite_admin.php:395
+msgid "Send this error to info@mailerlite.com or our chat"
+msgstr "Atsiųskite šį klaidos pranešimą info@mailerlite.com arba per chat"

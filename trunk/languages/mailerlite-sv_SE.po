@@ -399,3 +399,8 @@ msgstr "Vänligen vänta..."
 #: include/templates/forms/custom_form.php:27
 msgid "Thank you for signup!"
 msgstr "Tack för din prenumeration!"
+
+# @ mailerlite
+#: include/mailerlite_admin.php:395
+msgid "Send this error to info@mailerlite.com or our chat"
+msgstr "Skicka detta fel att info@mailerlite.com eller vår chatt"
