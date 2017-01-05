@@ -24,7 +24,7 @@
 
                             <p>
                                 <?php
-                                    $embed_button_webforms = [];
+                                    $embed_button_webforms = array();
 
                                     foreach ($webforms->Results as $webform) {
                                         if (!in_array($webform->type, array('embed', 'button'))) { continue; }
