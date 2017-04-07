@@ -17,7 +17,7 @@
                         <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>" type="<?php echo $input_type; ?>" required="required" name="form_fields[<?php echo $field; ?>]"/>
                     </div>
                 <?php endforeach; ?>
-                <div class="mailerlite-form-loader"><?php _e('Please wait...', 'mailerlite'); ?></div>
+                <div class="mailerlite-form-loader"><?php if (!empty($form_data['please_wait'])) echo $form_data['please_wait']; else _e('Please wait...', 'mailerlite'); ?></div>
                 <div class="mailerlite-subscribe-button-container">
                     <input class="mailerlite-subscribe-submit" type="submit"
                            value="<?php echo $form_data['button']; ?>"/>

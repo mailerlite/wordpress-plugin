@@ -230,6 +230,10 @@ class MailerLite_Admin
                             : __(
                                 'Subscribe', 'mailerlite'
                             );
+                        $please_wait = isset($_POST['please_wait'])
+                        && $_POST['please_wait'] != ''
+                            ? sanitize_text_field($_POST['please_wait'])
+                            : '';
 
                         $language = isset($_POST['language'])
                         && $_POST['language'] != ''
@@ -273,6 +277,7 @@ class MailerLite_Admin
                             'description' => wpautop($form_description, true),
                             'success_message' => wpautop($success_message, true),
                             'button' => $button_name,
+                            'please_wait' => $please_wait,
                             'language' => $language,
                             'lists' => $form_lists,
                             'fields' => $prepared_fields
