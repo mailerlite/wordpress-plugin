@@ -404,3 +404,8 @@ msgstr "Kiitos tilauksestasi!"
 #: include/mailerlite_admin.php:395
 msgid "Send this error to info@mailerlite.com or our chat"
 msgstr "Lähetä tämä virhe info@mailerlite.com tai meidän chat"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:20
+msgid "Please wait message"
+msgstr "\"Ole hyvä ja odota\" viesti"

@@ -404,3 +404,8 @@ msgstr "Grazie per la tua iscrizione!"
 #: include/mailerlite_admin.php:395
 msgid "Send this error to info@mailerlite.com or our chat"
 msgstr "Invia questo errore di info@mailerlite.com o la nostra chat"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:20
+msgid "Please wait message"
+msgstr "\"Aspetta\" nota"

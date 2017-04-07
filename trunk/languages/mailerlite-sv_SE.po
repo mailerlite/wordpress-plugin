@@ -404,3 +404,8 @@ msgstr "Tack för din prenumeration!"
 #: include/mailerlite_admin.php:395
 msgid "Send this error to info@mailerlite.com or our chat"
 msgstr "Skicka detta fel att info@mailerlite.com eller vår chatt"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:20
+msgid "Please wait message"
+msgstr "\"Vänligen vänta\" meddelande"

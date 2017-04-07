@@ -404,3 +404,8 @@ msgstr "Спасибо за подписку!"
 #: include/mailerlite_admin.php:395
 msgid "Send this error to info@mailerlite.com or our chat"
 msgstr "Отправьте эту ошибку на info@mailerlite.com или чат на нашем сайте."
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:20
+msgid "Please wait message"
+msgstr "\"Пожалуйста, подождите\" записка"

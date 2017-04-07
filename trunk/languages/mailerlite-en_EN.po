@@ -403,3 +403,8 @@ msgstr "Add Shortcode"
 #: include/mailerlite_admin.php:395
 msgid "Send this error to info@mailerlite.com or our chat"
 msgstr "Send this error to info@mailerlite.com or our chat"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:20
+msgid "Please wait message"
+msgstr "\"Please wait\" message"
