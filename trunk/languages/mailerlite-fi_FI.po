@@ -360,7 +360,7 @@ msgstr "Liitännäisen asetukset"
 
 #. mailerlite
 #: include/templates/admin/settings.php:10
-msgid "Here you able to change your API key!"
+msgid "Here you are able to change your API key!"
 msgstr "Tässä voit muuttaa API-avaintasi!"
 
 #. mailerlite

@@ -8,7 +8,7 @@
         <?php include("sidebar.php"); ?>
         <div id="post-body">
             <div id="post-body-content">
-                <p><?php _e('Here you able to change your API key!', 'mailerlite'); ?></p>
+                <p><?php _e('Here you are able to change your API key!', 'mailerlite'); ?></p>
 
                 <div class="mailerlite-activate">
                     <div class="description-block">

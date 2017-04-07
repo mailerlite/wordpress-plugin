@@ -360,7 +360,7 @@ msgstr "Impostazioni plugin"
 
 #. mailerlite
 #: include/templates/admin/settings.php:10
-msgid "Here you able to change your API key!"
+msgid "Here you are able to change your API key!"
 msgstr "Qui puoi cambiare la tua API key!"
 
 #. mailerlite

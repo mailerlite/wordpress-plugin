@@ -186,7 +186,7 @@ msgstr "Ar tikrai norite ištrinti šią formą?"
 
 # @ mailerlite
 #: include/templates/admin/settings.php:10
-msgid "Here you able to change your API key!"
+msgid "Here you are able to change your API key!"
 msgstr "Čia jūs galite pasikeisti API raktą!"
 
 # @ mailerlite
