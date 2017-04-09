@@ -3,8 +3,8 @@ Contributors: mailerlite
 Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
-Tested up to: 4.7
-Stable tag: 1.1.22
+Tested up to: 4.7.3
+Stable tag: 1.1.23
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.1.23 =
+fixed translations, added english .po/.mo files, added "please wait" message translate option to custom forms
 = 1.1.22 =
 updated jquery validation script URL to use static.mailerlite.com
 = 1.1.21 =
@@ -214,6 +216,8 @@ translation errors for LT language, allowing only embed and button forms
 
 == Upgrade Notice ==
 
+= 1.1.23 =
+fixed translations, added english .po/.mo files, added "please wait" message translate option to custom forms
 = 1.1.22 =
 updated jquery validation script URL to use static.mailerlite.com
 = 1.1.21 =
