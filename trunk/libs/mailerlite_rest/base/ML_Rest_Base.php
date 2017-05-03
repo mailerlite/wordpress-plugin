@@ -150,7 +150,7 @@ class ML_Rest_Base
 
     protected function setCurlOpts(&$curlHandle)
     {
-        curl_setopt($curlHandle, CURLOPT_TIMEOUT, 10);
+        curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
         curl_setopt($curlHandle, CURLOPT_URL, $this->path);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, array('Accept: ' . $this->acceptType));
