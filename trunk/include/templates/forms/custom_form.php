@@ -6,15 +6,20 @@
             <div class="mailerlite-form-title"><h3><?php echo $form_data['title']; ?></h3></div>
             <div class="mailerlite-form-description"><?php echo stripslashes($form_data['description']); ?></div>
             <div class="mailerlite-form-inputs">
-                <?php foreach ($form_data['fields'] as $field => $title): ?>
+                <?php if ('placeholders' == $form_data['labels']) {
+					$labels = false;
+				} else {
+					$labels = true;
+				}
+				foreach ($form_data['fields'] as $field => $title): ?>
                     <?php if ($field == 'email') {
                         $input_type = 'email';
                     } else {
                         $input_type = 'text';
                     } ?>
                     <div class="mailerlite-form-field">
-                        <label for="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"><?php echo $title; ?></label>
-                        <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>" type="<?php echo $input_type; ?>" required="required" name="form_fields[<?php echo $field; ?>]"/>
+                       <?php if ($labels) { ?><label for="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"><?php echo $title; ?></label><?php }; ?>
+                        <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>" type="<?php echo $input_type; ?>" required="required" name="form_fields[<?php echo $field; ?>]"<?php if (!$labels) { ?> placeholder="<?php echo $title; ?>"<? } ?>/>
                     </div>
                 <?php endforeach; ?>
                 <div class="mailerlite-form-loader"><?php if (!empty($form_data['please_wait'])) echo $form_data['please_wait']; else _e('Please wait...', 'mailerlite'); ?></div>
