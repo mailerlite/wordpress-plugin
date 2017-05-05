@@ -101,6 +101,17 @@
                                                 class="description"><strong><?php _e('Example:'); ?></strong> <?php _e('Please wait...'); ?></span>
                                         </td>
                                     </tr>
+                                        
+                                    <tr>
+                                        <th><label for="labels"><?php _e('Labels format', 'mailerlite'); ?></label>
+                                        </th>
+                                        <td>
+                                            <select id="labels" name="labels">
+                                                <option data-code="labels" value="labels" <?php selected( $form->data['labels'], 'labels' ) ?>><?php _e('Labels', 'mailerlite') ?></option>
+                                                <option data-code="placholders" value="placeholders" <?php selected( $form->data['labels'], 'placeholder' ) ?>><?php _e('Placeholders', 'mailerlite') ?></option>
+                                            </select>
+                                        </td>
+                                    </tr>
 
                                     <tr>
                                         <th><label for="language"><?php _e('Validation messages', 'mailerlite'); ?></label>
