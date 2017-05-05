@@ -234,6 +234,10 @@ class MailerLite_Admin
                         && $_POST['please_wait'] != ''
                             ? sanitize_text_field($_POST['please_wait'])
                             : '';
+                        $labels = isset($_POST['labels'])
+                        && $_POST['labels'] != ''
+                            ? sanitize_text_field($_POST['labels'])
+                            : '';
 
                         $language = isset($_POST['language'])
                         && $_POST['language'] != ''
