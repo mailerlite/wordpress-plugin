@@ -3,27 +3,17 @@
 
 <div class="wrap columns-2 dd-wrap">
     <h2>Popup forms</h2>
-    <div class="popup-descriptipn"
-         style="background: #ffffff; margin: 10px 0px 10px 0px; padding: 15px; border: 1px solid #e1e1e1;">
-        <?php if (!get_option('mailerlite_popups_disabled')) { ?>
-            <p style="margin: 0px 0px 10px 0px;">
-                <strong>MailerLite tracking script is enabled.</strong> Want to <a
-                    style="color: #666666" href="<?php echo admin_url('admin.php?page=mailerlite_main&mailerlite_popups_disabled=1'); ?>">turn it off?</a>
-            </p>
-            <p></p>
-            <p style="margin: 0px 0px 0px 0px;">
-                Create popup forms in your MailerLite account and it will be displayed
-                in your blog.
-            </p>
-        <?php } else { ?>
-            <p style="margin: 0px 0px 10px 0px;">
-                <strong>MailerLite tracking script is disabled.</strong> Want to <a href="<?php echo admin_url('admin.php?page=mailerlite_main&mailerlite_popups_disabled=0'); ?>" style="color: #666666">turn it on?</a>
-            </p>
-            <p></p>
-            <p style="margin: 0px 0px 0px 0px;">Your popup forms won't be displayed while the tracking script is
-                disabled.
-            </p>
-        <?php } ?>
+    <div class="popup-description">
+        <p class="<?php if (!get_option('mailerlite_popups_disabled')) : ?>success<?php else: ?>info<?php endif; ?>">
+            <strong><?php echo __('MailerLite popup script is', 'mailerlite')?> <?php if (!get_option('mailerlite_popups_disabled', 'mailerlite')) : ?><?php echo __('enabled', 'mailerlite')?><?php else: ?><?php echo __('disabled', 'mailerlite')?><?php endif; ?>.</strong>
+            <?php echo __('Go to settings if you want to change it', 'mailerlite'); ?>.
+            <br/>
+            <?php if (!get_option('mailerlite_popups_disabled')): ?>
+                <strong><?php echo _e('Your popup forms will be displayed automatically while the popup script is enabled', 'mailerlite');?></strong>
+            <?php else: ?>
+                <strong><?php echo __('Your popup forms wont be displayed while the popup script is disabled', 'mailerlite');?></strong>
+            <?php endif; ?>
+        </p>
     </div>
 </div>
 

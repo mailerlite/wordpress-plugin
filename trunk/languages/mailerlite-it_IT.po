@@ -409,3 +409,58 @@ msgstr "Invia questo errore di info@mailerlite.com o la nostra chat"
 #: include/templates/admin/edit_custom.php:20
 msgid "Please wait message"
 msgstr "\"Aspetta\" nota"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:150
+msgid "Error happened"
+msgstr "Errore è accaduto"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:46
+msgid "Explanation about forms"
+msgstr "Si prega di notare che è possibile aggiungere <b>Embed</b> o <b>Button</b> solo i tipi di forme. <b>Popup</b> forme vengono visualizzate automaticamente sul tuo sito Wordpress. Si può spegnere <b>Popup</b> forme nelle <a href=\"admin.php?page=mailerlite_settings\">impostazioni</a>. Non puoi includere la pagina <b>Landing</b> nella tua pagina di Wordpress."
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "MailerLite popup script is"
+msgstr "MailerLite lo script di monitoraggio è"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "enabled"
+msgstr "abilitato"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "disabled"
+msgstr "disabilitato"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Enable"
+msgstr "Abilitare"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Disable"
+msgstr "Disattivare"
+
+# @ mailerlite
+#: include/templates/admin/main.php:9
+msgid "Go to settings if you want to change it"
+msgstr "Passare alle  <a href=\"admin.php?page=mailerlite_settings\">impostazioni</a> se si desidera modificarlo"
+
+# @ mailerlite
+#: include/templates/admin/main.php:12
+msgid "Your popup forms will be displayed automatically while the popup script is enabled"
+msgstr "I tuoi moduli popup verranno visualizzati automaticamente mentre lo script di monitoraggio è abilitato"
+
+# @ mailerlite
+#: include/templates/admin/main.php:14
+msgid "Your popup forms wont be displayed while the popup script is disabled"
+msgstr "I moduli popup non verranno visualizzati mentre lo script di monitoraggio è disabilitato"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:34
+msgid "Popup forms script"
+msgstr "Formato di popup script"

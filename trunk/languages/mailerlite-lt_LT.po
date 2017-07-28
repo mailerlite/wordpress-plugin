@@ -130,7 +130,7 @@ msgstr "Formos tipas"
 # @ mailerlite
 #: include/templates/admin/create.php:23
 msgid "Webforms created using MailerLite"
-msgstr "Formos sukurtos naudojantis MailerLite"
+msgstr "Formos sukurtos naudojantis MailerLite (embed ir button)"
 
 # @ mailerlite
 #: include/templates/admin/create.php:28
@@ -416,3 +416,63 @@ msgstr "Atsiųskite šį klaidos pranešimą info@mailerlite.com arba per chat"
 #: include/templates/admin/edit_custom.php:20
 msgid "Please wait message"
 msgstr "\"Palaukite\" žinutė"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:150
+msgid "Error happened"
+msgstr "Įvyko klaida"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:150
+msgid "Error happened"
+msgstr "Įvyko klaida"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:46
+msgid "Explanation about forms"
+msgstr "Atkreipiame dėmesį, kad galima pasirinkti tik <b>Embed</b> arba <b>Button</b> formas. <b>Popup</b> formos yra rodomos automatiškai jūsų Wordpress puslapyje. Galite išjungti <b>Popup</b> formas <a href=\"admin.php?page=mailerlite_settings\">Nustatymuose</a>.  Negalite įterpti <b>Landing</b> tipo formos savo Wordpress puslapyje."
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "MailerLite tracking script is"
+msgstr "MailerLite popup skriptas yra"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "enabled"
+msgstr "įjungtas"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "disabled"
+msgstr "išjungtas"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Enable"
+msgstr "Įjungti"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Disable"
+msgstr "Išjungti"
+
+# @ mailerlite
+#: include/templates/admin/main.php:9
+msgid "Go to settings if you want to change it"
+msgstr "Eikite į <a href=\"admin.php?page=mailerlite_settings\">Nustatymus</a> jei norite pakeisti"
+
+# @ mailerlite
+#: include/templates/admin/main.php:12
+msgid "Your popup forms will be displayed automatically while the popup script is enabled"
+msgstr "Jūsų popup formos bus rodomos automatiškai, kai skriptas yra įjungtas"
+
+# @ mailerlite
+#: include/templates/admin/main.php:14
+msgid "Your popup forms wont be displayed while the popup script is disabled"
+msgstr "Jūsų popup formos bus nerodomos, kai skriptas yra išjungtas"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:35
+msgid "Popup forms script"
+msgstr "Popup formų skriptas"

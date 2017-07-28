@@ -16,7 +16,7 @@
                         <div class="inside">
                             <p>
                                 <label for="form_type_custom" class="selectit">
-                                    <input id="form_type_custom" type="radio" name="form_type" value="1"
+                                    <input id="form_type_custom" type="radio" name="form_type" value="1" onclick="jQuery('#expl').addClass('hidden')"
                                            checked="checked">
                                     <?php echo __('Custom signup form', 'mailerlite'); ?>
                                 </label>
@@ -26,6 +26,7 @@
                                 <?php
                                     $embed_button_webforms = array();
 
+                                    if (isset($webforms->Results) && is_array($webforms->Results))
                                     foreach ($webforms->Results as $webform) {
                                         if (!in_array($webform->type, array('embed', 'button'))) { continue; }
 
@@ -34,10 +35,14 @@
                                 ?>
 
                                 <label for="form_type_webform" class="selectit">
-                                    <input id="form_type_webform" type="radio" name="form_type"
+                                    <input id="form_type_webform" type="radio" name="form_type" onclick="jQuery('#expl').removeClass('hidden')"
                                            value="2"<?php echo count($embed_button_webforms) == 0 ? ' disabled="disabled"' : ''; ?>>
                                     <?php echo __('Webforms created using MailerLite', 'mailerlite'); ?>
                                 </label>
+                            </p>
+
+                            <p id="expl" class="hidden info">
+                                <?php echo __('Explanation about forms', 'mailerlite'); ?>
                             </p>
 
                             <div class="submit">

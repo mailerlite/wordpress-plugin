@@ -37,6 +37,12 @@ class MailerLite_Admin
         ) {
             self::set_api_key();
         }
+
+        if (isset($_POST['action'])
+            && $_POST['action'] == 'enter-popup-forms'
+        ) {
+            self::set_popups();
+        }
     }
 
     /**
@@ -115,9 +121,7 @@ class MailerLite_Admin
      */
     public static function mailerlite_main()
     {
-        if (isset($_GET['mailerlite_popups_disabled'])) {
-            update_option('mailerlite_popups_disabled', !!$_GET['mailerlite_popups_disabled']);
-        }
+
 
         global $fields, $lists, $form, $forms_data, $webforms, $mailerlite_error, $result, $wpdb;
 
@@ -144,12 +148,16 @@ class MailerLite_Admin
             $ML_Webforms = new ML_Webforms($api_key);
             $webforms = $ML_Webforms->getAll();
 
+            $webforms = json_decode($webforms);
+
+            if (!empty($webforms->error) && !empty($webforms->error->message)) {
+                $mailerlite_error = '<u>'.__('Error happened', 'mailerlite').'</u>: '.$webforms->error->message;
+            }
+
             if ($ML_Webforms->hasCurlError()) {
                 $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Webforms->getResponseBody();
 
             }
-
-            $webforms = json_decode($webforms);
 
             include(MAILERLITE_PLUGIN_DIR
                 . 'include/templates/admin/create.php');
@@ -189,8 +197,9 @@ class MailerLite_Admin
                     $lists = json_decode($lists);
                     if (empty($lists->Results)) $lists->Results = array();
 
-                    $fields = $ML_Lists->setId($lists->Results[0]->id)
+                    if (isset($lists->Results[0])) $fields = $ML_Lists->setId($lists->Results[0]->id)
                         ->getFields();
+                    else $fields = $ML_Lists->getFields();
 
                     if ($ML_Lists->hasCurlError()) {
                         $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
@@ -308,13 +317,17 @@ class MailerLite_Admin
                 } else if ($form->type == 2) {
                     $ML_Webforms = new ML_Webforms($api_key);
                     $webforms = $ML_Webforms->getAll();
+                    $webforms = json_decode($webforms);
+
+                    if (!empty($webforms->error) && !empty($webforms->error->message)) {
+                        $mailerlite_error = '<u>'.__('Error happened', 'mailerlite').'</u>: '.$webforms->error->message;
+                    }
 
                     if ($ML_Webforms->hasCurlError()) {
                         $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Webforms->getResponseBody();
 
                     }
 
-                    $webforms = json_decode($webforms);
                     if (empty($webforms->Results)) $webforms->Results = array();
 
                     $parsed_webforms = array();
@@ -437,6 +450,24 @@ class MailerLite_Admin
         }
     }
 
+    /**
+     * Checks and sets popup tracker setting
+     */
+    private static function set_popups()
+    {
+        global $mailerlite_error;
+
+        if (function_exists('current_user_can')
+            && !current_user_can(
+                'manage_options'
+            )
+        ) {
+            die(__('You not allowed to do that', 'mailerlite'));
+        }
+
+        update_option('mailerlite_popups_disabled', !get_option('mailerlite_popups_disabled'));
+    }
+
     public static function update_account_info() {
         // request to mailerlite api
         $ch = curl_init();
@@ -483,7 +514,7 @@ class MailerLite_Admin
                 ),
                 'success_message' => '<span style="color: rgb(51, 153, 102);">' . __(
                         'Thank you for sign up!', 'mailerlite'
-                ) . '</span>',
+                    ) . '</span>',
                 'button' => __('Subscribe', 'mailerlite'),
                 'lists' => array(),
                 'fields' => array('email' => __('Email', 'mailerlite'))

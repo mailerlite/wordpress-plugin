@@ -4,7 +4,7 @@ Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 1.1.25
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,8 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.2 =
+some small php notice errors fixed. More clear tooltips about embed forms. Popup script settings moved to settings page. Added en_US locale translations (the same as en_EN)
 = 1.1.25 =
 short php open tag fix
 = 1.1.24 =
@@ -220,6 +222,8 @@ translation errors for LT language, allowing only embed and button forms
 
 == Upgrade Notice ==
 
+= 1.2 =
+some small php notice errors fixed. More clear tooltips about embed forms. Popup script settings moved to settings page. Added en_US locale translations (the same as en_EN)
 = 1.1.25 =
 short php open tag fix
 = 1.1.24 =

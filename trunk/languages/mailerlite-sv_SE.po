@@ -409,3 +409,58 @@ msgstr "Skicka detta fel att info@mailerlite.com eller vår chatt"
 #: include/templates/admin/edit_custom.php:20
 msgid "Please wait message"
 msgstr "\"Vänligen vänta\" meddelande"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:150
+msgid "Error happened"
+msgstr "Fel har hänt"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:46
+msgid "Explanation about forms"
+msgstr "Observera att du kan lägga till <b>Embed</b> eller <b>Button</b> bara skriva formulär. <b>Popup</b> formulär visas automatiskt på din Wordpress-webbplats. Du kan stänga av <b>Popup</b> formulär i <a href=\"admin.php?page=mailerlite_settings\">Inställningar</a>. Du kan inte inkludera sidan <b>Landing</b> på din Wordpress-sida."
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "MailerLite popup script is"
+msgstr "MailerLite spårningsskriptet är"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "enabled"
+msgstr "aktiverad"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "disabled"
+msgstr "inaktiverad"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Enable"
+msgstr "Gör det möjligt"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Disable"
+msgstr "inaktivera"
+
+# @ mailerlite
+#: include/templates/admin/main.php:9
+msgid "Go to settings if you want to change it"
+msgstr "Gå till <a href=\"admin.php?page=mailerlite_settings\">inställningar</a> om du vill ändra det"
+
+# @ mailerlite
+#: include/templates/admin/main.php:12
+msgid "Your popup forms will be displayed automatically while the popup script is enabled"
+msgstr "Dina popup-formulär visas automatiskt medan spårningsskriptet är aktiverat"
+
+# @ mailerlite
+#: include/templates/admin/main.php:14
+msgid "Your popup forms wont be displayed while the popup script is disabled"
+msgstr "Dina popup-formulär visas inte när spårningsskriptet är inaktiverat"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:34
+msgid "Popup forms script"
+msgstr "Popup former bildar spårningsskript"
