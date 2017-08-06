@@ -409,3 +409,58 @@ msgstr "Відправте цю помилку на info@mailerlite.com або �
 #: include/templates/admin/edit_custom.php:20
 msgid "Please wait message"
 msgstr "\"Будь ласка\" повідомлення"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:150
+msgid "Error happened"
+msgstr "Сталася помилка"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:46
+msgid "Explanation about forms"
+msgstr "Заметьте, пожалуйста, что возможно добавить только <b>Встраиваемые</b> формы и <b>Кнопки</b>. Всплывающие <b>Popup</b> формы на вашем сайте WordPress показываются автоматически. Отключить <b>Popup</b> формы можно в <a href=\"admin.php?page=mailerlite_settings\">настройках</a>. Добавлять <b>Посадочные страницы</b> на WordPress нельзя."
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "MailerLite popup script is"
+msgstr "MailerLite cценарий отслеживания"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "enabled"
+msgstr "включений"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "disabled"
+msgstr "Вимкнено"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Enable"
+msgstr "Увімкнути"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Disable"
+msgstr "Відключити"
+
+# @ mailerlite
+#: include/templates/admin/main.php:9
+msgid "Go to settings if you want to change it"
+msgstr "Перейдіть до <a href=\"admin.php?page=mailerlite_settings\">налаштувань</a>, якщо хочете його змінити"
+
+# @ mailerlite
+#: include/templates/admin/main.php:12
+msgid "Your popup forms will be displayed automatically while the popup script is enabled"
+msgstr "Ваші Popup спливаючі форми відображатимуться автоматично під час активації сценарію"
+
+# @ mailerlite
+#: include/templates/admin/main.php:14
+msgid "Your popup forms wont be displayed while the popup script is disabled"
+msgstr "Ваші Popup спливаючі форми не відображатимуться під час відключення сценарію"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:34
+msgid "Popup forms script"
+msgstr "Спливаючі Popup форми скрипт"

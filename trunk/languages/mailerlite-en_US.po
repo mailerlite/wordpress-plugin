@@ -463,4 +463,3 @@ msgstr "Your popup forms won\'t be displayed while the popup script is disabled"
 #: include/templates/admin/settings.php:34
 msgid "Popup forms script"
 msgstr "Popup forms script"
-

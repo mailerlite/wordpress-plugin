@@ -19,7 +19,7 @@
                         <h3><span><?php echo __('Webform details', 'mailerlite'); ?></span></h3>
 
                         <div class="inside">
-                            <table class="form-table">
+                            <table class="form-table mailerlite-table">
                                 <tbody>
                                 <tr>
                                     <th><label for="form_name"><?php echo __('Form title', 'mailerlite'); ?></label>
@@ -36,11 +36,20 @@
                                             <?php foreach ($webforms->Results as $webform): ?>
                                                 <?php if (!in_array($webform->type, array('embed', 'button'))) { continue; } ?>
                                                 <option data-code="<?php echo $webform->code; ?>"
-                                                        value="<?php echo $webform->id; ?>"<?php echo $webform->id == $form->data['id'] ? ' selected="selected"' : ''; ?>><?php echo $webform->name; ?></option>
+                                                        value="<?php echo $webform->id; ?>"<?php echo $webform->id == $form->data['id'] ? ' selected="selected"' : ''; ?>><?php echo $webform->name; ?> (<?php echo $webform->type;?>)</option>
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <td colspan="2">
+                                        <p class="info">
+                                            <?php echo __('Explanation about forms', 'mailerlite'); ?>
+                                        </p>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td colspan="2">
                                         <div id="webform_example">​</div>

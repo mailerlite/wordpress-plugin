@@ -409,3 +409,58 @@ msgstr "Lähetä tämä virhe info@mailerlite.com tai meidän chat"
 #: include/templates/admin/edit_custom.php:20
 msgid "Please wait message"
 msgstr "\"Ole hyvä ja odota\" viesti"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:150
+msgid "Error happened"
+msgstr "Virhe tapahtui"
+
+# @ mailerlite
+#: include/mailerlite/admin.php:46
+msgid "Explanation about forms"
+msgstr "Huomaa, että voit lisätä <b>Embed</b> tai <b>Button</b> tyyppi muodostaa vain. <b>Popup</b> muodot näkyvät automaattisesti Wordpress sivuston. Voit sammuttaa <b>Popup</b> lomakkeet <a href=\"admin.php?page=mailerlite_settings\">Asetuksissa</a>. Et voi sisällyttää sivua <b>Landing</b> sivu sinun Wordpress sivullesi."
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "MailerLite popup script is"
+msgstr "MailerLite seurantakoodi on"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "enabled"
+msgstr "käytössä"
+
+# @ mailerlite
+#: include/templates/admin/main.php:8
+msgid "disabled"
+msgstr "vammaiset"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Enable"
+msgstr "Mahdollistaa"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:46
+msgid "Disable"
+msgstr "Vammauttaa"
+
+# @ mailerlite
+#: include/templates/admin/main.php:9
+msgid "Go to settings if you want to change it"
+msgstr "Siirry <a href=\"admin.php?page=mailerlite_settings\">asetuksiin</a>, jos haluat muuttaa sen"
+
+# @ mailerlite
+#: include/templates/admin/main.php:12
+msgid "Your popup forms will be displayed automatically while the popup script is enabled"
+msgstr "Popup lomakkeet näkyvät automaattisesti, kun seurantakoodi on käytössä"
+
+# @ mailerlite
+#: include/templates/admin/main.php:14
+msgid "Your popup forms wont be displayed while the popup script is disabled"
+msgstr "Popup lomakkeet eivät tule näkyviin, kun seurantakoodi on poistettu käytöstä"
+
+# @ mailerlite
+#: include/templates/admin/settings.php:34
+msgid "Popup forms script"
+msgstr "Popup-lomakkeiden seurantakoodi"

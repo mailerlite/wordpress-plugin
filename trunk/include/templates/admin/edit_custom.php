@@ -97,7 +97,7 @@
                                         <th><label for="button_name"><?php _e('Please wait message', 'mailerlite'); ?></label>
                                         </th>
                                         <td><input type="text" name="please_wait" size="30" maxlength="255"
-                                                   value="<?php echo $form->data['please_wait']; ?>" id="please_wait_name"> <span
+                                                   value="<?php if (isset($form->data['please_wait'])) echo $form->data['please_wait']; ?>" id="please_wait_name"> <span
                                                 class="description"><strong><?php _e('Example:'); ?></strong> <?php _e('Please wait...'); ?></span>
                                         </td>
                                     </tr>
