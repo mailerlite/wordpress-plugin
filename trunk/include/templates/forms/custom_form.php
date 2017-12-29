@@ -48,6 +48,8 @@
 <script type="text/javascript">
     (function() {
         var jQuery = window.jQueryWP || window.jQuery;
+		
+		if (typeof jQuery.fn.validate == 'undefined') return;
 
         jQuery(document).ready(function () {
             var form_container = jQuery("#mailerlite-form_<?php echo $form_id; ?>[data-temp-id=<?php echo $unique_id; ?>] form");
