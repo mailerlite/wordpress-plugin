@@ -28,7 +28,7 @@
 
                                     if (isset($webforms->Results) && is_array($webforms->Results))
                                     foreach ($webforms->Results as $webform) {
-                                        if (!in_array($webform->type, array('embed', 'button'))) { continue; }
+                                        if (!in_array($webform->type, array('embed', 'embedded', 'button'))) { continue; }
 
                                         $embed_button_webforms[] = $webform;
                                     }

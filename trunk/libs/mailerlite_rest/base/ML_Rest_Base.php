@@ -17,7 +17,7 @@ class ML_Rest_Base
 
     private $curlError = false;
 
-    public function __construct($url = 'https://app.mailerlite.com/api/v1/', $verb = 'GET')
+    public function __construct($url = 'https://api.mailerlite.com/api/v1/', $verb = 'GET')
     {
         $this->url = $url;
         $this->verb = $verb;
