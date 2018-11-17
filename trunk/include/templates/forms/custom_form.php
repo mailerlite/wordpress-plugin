@@ -2,7 +2,7 @@
 
 <div id="mailerlite-form_<?php echo $form_id; ?>" data-temp-id="<?php echo $unique_id; ?>">
     <div class="mailerlite-form">
-        <form action="" method="post">
+        <form method="post">
             <div class="mailerlite-form-title"><h3><?php echo $form_data['title']; ?></h3></div>
             <div class="mailerlite-form-description"><?php echo stripslashes($form_data['description']); ?></div>
             <div class="mailerlite-form-inputs">
@@ -32,9 +32,9 @@
             </div>
             <div class="mailerlite-form-response">
                 <?php if (!empty($form_data['success_message'])) { ?>
-                    <h4><?php echo $form_data['success_message'] ?></h4>
+                    <div class="answer-success"><?php echo $form_data['success_message'] ?></div>
                 <?php } else { ?>
-                    <h4><?php _e('Thank you for signing up!', 'mailerlite'); ?></h4>
+                    <div class="answer-success"><?php _e('Thank you for signing up!', 'mailerlite'); ?></div>
                 <?php } ?>
             </div>
         </form>

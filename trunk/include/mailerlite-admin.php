@@ -292,6 +292,7 @@ class MailerLite_Admin
                             'button' => $button_name,
                             'please_wait' => $please_wait,
                             'language' => $language,
+							'labels' => $labels,
                             'lists' => $form_lists,
                             'fields' => $prepared_fields
                         );
