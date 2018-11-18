@@ -19,7 +19,7 @@
                     } ?>
                     <div class="mailerlite-form-field">
                        <?php if ($labels) { ?><label for="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"><?php echo $title; ?></label><?php }; ?>
-                        <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>" type="<?php echo $input_type; ?>" required="required" name="form_fields[<?php echo $field; ?>]"<?php if (!$labels) { ?> placeholder="<?php echo $title; ?>"<? } ?>/>
+                        <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>" type="<?php echo $input_type; ?>" required="required" name="form_fields[<?php echo $field; ?>]"<?php if (!$labels) { ?> placeholder="<?php echo $title; ?>"<?php } ?>/>
                     </div>
                 <?php endforeach; ?>
                 <div class="mailerlite-form-loader"><?php if (!empty($form_data['please_wait'])) echo $form_data['please_wait']; else _e('Please wait...', 'mailerlite'); ?></div>
