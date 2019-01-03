@@ -3,7 +3,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 2.2\n"
 "Project-Id-Version: MailerLite wordpress plugin\n"
 "Language: uk\n"
 "POT-Creation-Date: \n"
@@ -43,8 +43,7 @@ msgstr "Проста форма підписки MailerLite!"
 
 #. mailerlite
 #. default
-#: include/mailerlite-admin.php:136 include/mailerlite-admin.php:303
-#: include/templates/admin/edit_custom.php:55
+#: include/mailerlite-admin.php:136 include/mailerlite-admin.php:303 include/templates/admin/edit_custom.php:55
 msgid "Subscribe"
 msgstr "Підписатися"
 
@@ -110,46 +109,36 @@ msgstr "Виберіть форму:"
 
 #. mailerlite
 #: include/templates/admin/api_key.php:8
-msgid ""
-"Hi there! You will be able to create awesome signup forms, but first we need "
-"your MailerLite API key!"
-msgstr ""
-"Вітаємо! Ви зможете створювати красиві форми підписки, але спочатку просимо "
-"надати ваш MailerLite API ключ!"
+msgid "Hi there! You will be able to create awesome signup forms, but first we need your MailerLite API key!"
+msgstr "Вітаємо! Ви зможете створювати красиві форми підписки, але спочатку просимо надати ваш MailerLite API ключ!"
 
 #. mailerlite
-#: include/templates/admin/api_key.php:17
-#: include/templates/admin/settings.php:19
+#: include/templates/admin/api_key.php:17 include/templates/admin/settings.php:19
 msgid "Enter an API key"
 msgstr "Введіть ключ API"
 
 #. mailerlite
-#: include/templates/admin/api_key.php:18
-#: include/templates/admin/settings.php:20
+#: include/templates/admin/api_key.php:18 include/templates/admin/settings.php:20
 msgid "Don't know where to find it?"
 msgstr "Не знаєте, де його знайти?"
 
 #. mailerlite
-#: include/templates/admin/api_key.php:18
-#: include/templates/admin/settings.php:20
+#: include/templates/admin/api_key.php:18 include/templates/admin/settings.php:20
 msgid "Check it here!"
 msgstr "Перевірте тут!"
 
 #. mailerlite
-#: include/templates/admin/api_key.php:23
-#: include/templates/admin/settings.php:25
+#: include/templates/admin/api_key.php:23 include/templates/admin/settings.php:25
 msgid "Save this key"
 msgstr "Зберегти ключ"
 
 #. mailerlite
-#: include/templates/admin/api_key.php:29
-#: include/templates/admin/settings.php:31
+#: include/templates/admin/api_key.php:29 include/templates/admin/settings.php:31
 msgid "Don't have an account?"
 msgstr "У вас немає аккаунта?"
 
 #. mailerlite
-#: include/templates/admin/api_key.php:30
-#: include/templates/admin/settings.php:32
+#: include/templates/admin/api_key.php:30 include/templates/admin/settings.php:32
 msgid "Register!"
 msgstr "Зареєструватися!"
 
@@ -179,9 +168,7 @@ msgid "Create form"
 msgstr "Створити форму"
 
 #. mailerlite
-#: include/templates/admin/create.php:29
-#: include/templates/admin/edit_custom.php:96
-#: include/templates/admin/edit_embedded.php:42
+#: include/templates/admin/create.php:29 include/templates/admin/edit_custom.php:96 include/templates/admin/edit_embedded.php:42
 msgid "Back"
 msgstr "Назад"
 
@@ -191,14 +178,12 @@ msgid "Edit custom signup form"
 msgstr "Редагувати форму підписки користувача"
 
 #. mailerlite
-#: include/templates/admin/edit_custom.php:7
-#: include/templates/admin/edit_embedded.php:7
+#: include/templates/admin/edit_custom.php:7 include/templates/admin/edit_embedded.php:7
 msgid "Form saved."
 msgstr "Форма збережена."
 
 #. mailerlite
-#: include/templates/admin/edit_custom.php:7
-#: include/templates/admin/edit_embedded.php:7
+#: include/templates/admin/edit_custom.php:7 include/templates/admin/edit_embedded.php:7
 msgid "Back to forms list"
 msgstr "Повернутися до списку форм"
 
@@ -213,14 +198,12 @@ msgid "Form name"
 msgstr "Назва форми"
 
 #. mailerlite
-#: include/templates/admin/edit_custom.php:21
-#: include/templates/admin/edit_embedded.php:21
+#: include/templates/admin/edit_custom.php:21 include/templates/admin/edit_embedded.php:21
 msgid "Tip:"
 msgstr "Підказка:"
 
 #. mailerlite
-#: include/templates/admin/edit_custom.php:21
-#: include/templates/admin/edit_embedded.php:21
+#: include/templates/admin/edit_custom.php:21 include/templates/admin/edit_embedded.php:21
 msgid "This title won't be displayed in public!"
 msgstr "Ця назва не буде відображатися публічно!"
 
@@ -230,15 +213,13 @@ msgid "Form details"
 msgstr "Деталі форми"
 
 #. mailerlite
-#: include/templates/admin/edit_custom.php:33
-#: include/templates/admin/edit_embedded.php:20
+#: include/templates/admin/edit_custom.php:33 include/templates/admin/edit_embedded.php:20
 msgid "Form title"
 msgstr "Назва форми"
 
 #. mailerlite
 #. default
-#: include/templates/admin/edit_custom.php:34
-#: include/templates/admin/edit_custom.php:55
+#: include/templates/admin/edit_custom.php:34 include/templates/admin/edit_custom.php:55
 msgid "Example:"
 msgstr "Приклад"
 
@@ -273,8 +254,7 @@ msgid "Lists"
 msgstr "Списки"
 
 #. mailerlite
-#: include/templates/admin/edit_custom.php:95
-#: include/templates/admin/edit_embedded.php:41
+#: include/templates/admin/edit_custom.php:95 include/templates/admin/edit_embedded.php:41
 msgid "Save form"
 msgstr "Зберегти форму"
 
@@ -370,20 +350,13 @@ msgstr "Потрібна допомога?"
 
 #. mailerlite
 #: include/templates/admin/sidebar.php:6
-msgid ""
-"Have any questions? Stuck on something or found bug? Feel free to contact us!"
-msgstr ""
-"З'явилися питання? Застрягли на якомусь моменті або знайшли помилку? Не "
-"соромтеся звернутися до нас!"
+msgid "Have any questions? Stuck on something or found bug? Feel free to contact us!"
+msgstr "З'явилися питання? Застрягли на якомусь моменті або знайшли помилку? Не соромтеся звернутися до нас!"
 
 #. mailerlite
 #: include/templates/common/tiny_mce.php:13
-msgid ""
-"Select form from list below, and hit \"Add Shortcode\" to add the shortcode "
-"to your post!"
-msgstr ""
-"Виберіть форму зі списку і натисніть «Додати короткий код\", щоб додати його "
-"до свого посту!"
+msgid "Select form from list below, and hit \"Add Shortcode\" to add the shortcode to your post!"
+msgstr "Виберіть форму зі списку і натисніть «Додати короткий код\", щоб додати його до свого посту!"
 
 #. mailerlite
 #: include/templates/common/tiny_mce.php:24
@@ -464,3 +437,48 @@ msgstr "Ваші Popup спливаючі форми не відображати
 #: include/templates/admin/settings.php:34
 msgid "Popup forms script"
 msgstr "Спливаючі Popup форми скрипт"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:19
+msgid "Use the shortcode"
+msgstr "Use the shortcode\""
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:21
+msgid "to display this form inside a post, page or text widget."
+msgstr "to display this form inside a post, page or text widget."
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:101
+msgid "Double opt-in"
+msgstr "Double opt-in"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:109
+msgid "Are you sure you want to disable double opt-in?"
+msgstr "Are you sure you want to disable double opt-in?"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:112
+msgid "Double opt-in will send a confirmation email"
+msgstr "Double opt-in will send a confirmation email"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:140
+msgid "Select fields which will be displayed in the form."
+msgstr "Select fields which will be displayed in the form."
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:167
+msgid "Select the list(s) to which people who submit this form should be subscribed."
+msgstr "Select the list(s) to which people who submit this form should be subscribed."
+
+# @ mailerlite
+#: include/templates/admin/create.php:30
+msgid "Create a custom signup form using MailerLite API."
+msgstr "Create a custom signup form using MailerLite API."
+
+# @ mailerlite
+#: include/templates/admin/create.php:58
+msgid "Add signup form directly from the MailerLite account."
+msgstr "Add signup form directly from the MailerLite account."

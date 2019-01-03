@@ -2,27 +2,27 @@
 <?php include_once('header.php'); ?>
 
 <div class="wrap columns-2 dd-wrap">
-    <h2>Popup forms</h2>
-    <div class="popup-description">
-        <p class="<?php if (!get_option('mailerlite_popups_disabled')) : ?>success<?php else: ?>info<?php endif; ?>">
+
+    <?php if (!get_option('mailerlite_popups_disabled')) : else: ?>
+    <div class="notice notice-error">
+        <p>
             <strong><?php echo __('MailerLite popup script is', 'mailerlite')?> <?php if (!get_option('mailerlite_popups_disabled', 'mailerlite')) : ?><?php echo __('enabled', 'mailerlite')?><?php else: ?><?php echo __('disabled', 'mailerlite')?><?php endif; ?>.</strong>
             <?php echo __('Go to settings if you want to change it', 'mailerlite'); ?>.
             <br/>
             <?php if (!get_option('mailerlite_popups_disabled')): ?>
-                <strong><?php echo _e('Your popup forms will be displayed automatically while the popup script is enabled', 'mailerlite');?></strong>
+            <strong><?php echo _e('Your popup forms will be displayed automatically while the popup script is enabled', 'mailerlite');?></strong>
             <?php else: ?>
-                <strong><?php echo __('Your popup forms wont be displayed while the popup script is disabled', 'mailerlite');?></strong>
+            <strong><?php echo __('Your popup forms wont be displayed while the popup script is disabled', 'mailerlite');?></strong>
             <?php endif; ?>
         </p>
     </div>
-</div>
+    <?php endif; ?>
 
-<div class="wrap columns-2 dd-wrap">
-    <h2><?php echo __('Signup forms', 'mailerlite'); ?> <a
+    <h1><?php echo __('Signup forms', 'mailerlite'); ?> <a
             href="<?php echo admin_url('admin.php?page=mailerlite_main&view=create'); ?>"
-            class="add-new-h2"><?php _e('Add New', 'mailerlite'); ?></a></h2>
+            class="add-new-h2"><?php _e('Add New', 'mailerlite'); ?></a></h1>
 
-    <div id="poststuff" class="metabox-holder has-right-sidebar">
+    <div class="metabox-holder has-right-sidebar">
         <?php include("sidebar.php"); ?>
         <div id="post-body">
             <div id="post-body-content">
@@ -32,8 +32,8 @@
                         <tr>
                             <th class="column-posts num"><?php _e('ID', 'mailerlite'); ?></th>
                             <th><?php _e('Name', 'mailerlite'); ?></th>
-                            <th class="column-author"><?php _e('Type', 'mailerlite'); ?></th>
-                            <th class="column-date"><?php _e('Date', 'mailerlite'); ?></th>
+                            <th><?php _e('Type', 'mailerlite'); ?></th>
+                            <th><?php _e('Date', 'mailerlite'); ?></th>
                         </tr>
                         </thead>
                         <tbody id="the-list">
@@ -62,9 +62,21 @@
                     </table>
                 <?php else: ?>
                     <div class="postbox mailerlite-empty-list">
-                        <div class="inside mailerlite-text-center">
-                            <a href="<?php echo admin_url('admin.php?page=mailerlite_main&view=create'); ?>"
-                               class="button-large button-primary"><?php _e('Add signup form', 'mailerlite'); ?></a>
+                        <div class="mailerlite-row">
+                            <div class="mailerlite-col">
+                                <p><img class="mailerlite-icon" src="<?php echo MAILERLITE_PLUGIN_URL ?>/assets/image/custom_form.png" style="max-width: 240px;"></p>
+                            </div>
+                            <div class="mailerlite-col">
+
+                                <h3>Create first signup form</h3>
+
+                                <p>Create good-looking signup form or add form created using MailerLite.</p>
+
+                                <p><a href="<?php echo admin_url('admin.php?page=mailerlite_main&view=create'); ?>"
+                                      class="button button-hero button-primary"><?php _e('Add signup form', 'mailerlite'); ?></a></p>
+                            </div>
+                            <div class="clear"></div>
+
                         </div>
                     </div>
                 <?php endif; ?>

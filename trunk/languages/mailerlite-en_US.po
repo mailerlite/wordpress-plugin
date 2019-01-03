@@ -3,7 +3,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 2.2\n"
 "Project-Id-Version: MailerLite wordpress plugin\n"
 "Language: en\n"
 "POT-Creation-Date: \n"
@@ -122,7 +122,7 @@ msgstr "Form type"
 # @ mailerlite
 #: include/templates/admin/create.php:40
 msgid "Webforms created using MailerLite"
-msgstr "Forms created using MailerLite (Embed and button)"
+msgstr "Forms created using MailerLite"
 
 # @ mailerlite
 #: include/templates/admin/create.php:28
@@ -188,19 +188,13 @@ msgstr "Need help?"
 
 # @ mailerlite
 #: include/templates/admin/sidebar.php:6
-msgid ""
-"Have any questions? Stuck on something or found bug? Feel free to contact us!"
-msgstr ""
-"Have any questions? Stuck on something or found bug? Feel free to contact us!"
+msgid "Have any questions? Stuck on something or found bug? Feel free to contact us!"
+msgstr "Have any questions? Stuck on something or found bug? Feel free to contact us!"
 
 # @ mailerlite
 #: include/templates/admin/api_key.php:10
-msgid ""
-"Hi there! You will be able to create awesome signup forms, but first we need "
-"your MailerLite API key!"
-msgstr ""
-"Hi there! You will be able to create awesome signup forms, but first we need "
-"your MailerLite API key!"
+msgid "Hi there! You will be able to create awesome signup forms, but first we need your MailerLite API key!"
+msgstr "Hi there! You will be able to create awesome signup forms, but first we need your MailerLite API key!"
 
 # @ mailerlite
 #: include/templates/admin/create.php:17
@@ -282,7 +276,7 @@ msgstr "Button title"
 # @ mailerlite
 #: include/templates/admin/edit_custom.php:62
 msgid "Form fields and lists"
-msgstr "Form fields and lists"
+msgstr "Form Fields and Interest groups"
 
 # @ mailerlite
 #: include/templates/admin/edit_custom.php:67
@@ -292,7 +286,7 @@ msgstr "Fields"
 # @ mailerlite
 #: include/templates/admin/edit_custom.php:80
 msgid "Lists"
-msgstr "Lists"
+msgstr "Interest Groups (tags)"
 
 # @ mailerlite
 #: include/templates/admin/edit_custom.php:95
@@ -377,12 +371,8 @@ msgstr "Plugin settings"
 
 # @ mailerlite
 #: include/templates/common/tiny_mce.php:13
-msgid ""
-"Select form from list below, and hit \"Add Shortcode\" to add the shortcode "
-"to your post!"
-msgstr ""
-"Select form from list below, and hit \"Add Shortcode\" to add the shortcode "
-"to your post!"
+msgid "Select form from list below, and hit \"Add Shortcode\" to add the shortcode to your post!"
+msgstr "Select form from list below, and hit \"Add Shortcode\" to add the shortcode to your post!"
 
 # @ mailerlite
 #: include/templates/forms/custom_form.php:20
@@ -417,7 +407,7 @@ msgstr "Error happened"
 # @ mailerlite
 #: include/mailerlite/admin.php:46
 msgid "Explanation about forms"
-msgstr "Please note, that you can add <b>Embed</b> or <b>Button</b> type forms only. <b>Popup</b> forms are shown automatically on your Wordpress site. You can switch off <b>Popup</b> forms in the <a href=\"admin.php?page=mailerlite_settings\">Settings</a>. You cannot include <b>Landing</b> page in your Wordpress page."
+msgstr "Please note, that you can add <b>Embed</b> type forms only. <b>Popup</b> forms are shown automatically on your Wordpress site. You can switch off <b>Popup</b> forms in the <a href=“admin.php?page=mailerlite_settings”>Settings</a>. You cannot include <b>Landing</b> page in your Wordpress page."
 
 # @ mailerlite
 #: include/templates/admin/main.php:8
@@ -457,9 +447,54 @@ msgstr "Your popup forms will be displayed automatically while the popup script 
 # @ mailerlite
 #: include/templates/admin/main.php:14
 msgid "Your popup forms wont be displayed while the popup script is disabled"
-msgstr "Your popup forms won\'t be displayed while the popup script is disabled"
+msgstr "Your popup forms won't be displayed while the popup script is disabled"
 
 # @ mailerlite
 #: include/templates/admin/settings.php:34
 msgid "Popup forms script"
 msgstr "Popup forms script"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:19
+msgid "Use the shortcode"
+msgstr "Use the shortcode"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:21
+msgid "to display this form inside a post, page or text widget."
+msgstr "to display this form inside a post, page or text widget."
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:101
+msgid "Double opt-in"
+msgstr "Double opt-in"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:109
+msgid "Are you sure you want to disable double opt-in?"
+msgstr "Are you sure you want to disable double opt-in?"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:112
+msgid "Double opt-in will send a confirmation email"
+msgstr "Double opt-in will send a confirmation email"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:140
+msgid "Select fields which will be displayed in the form."
+msgstr "Select fields which will be displayed in the form."
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:167
+msgid "Select the list(s) to which people who submit this form should be subscribed."
+msgstr "Select the Interest Groups (tags) to which people who submit this form should be subscribed."
+
+# @ mailerlite
+#: include/templates/admin/create.php:30
+msgid "Create a custom signup form using MailerLite API."
+msgstr "Create a custom signup form using MailerLite API."
+
+# @ mailerlite
+#: include/templates/admin/create.php:58
+msgid "Add signup form directly from the MailerLite account."
+msgstr "Add signup form directly from the MailerLite account."

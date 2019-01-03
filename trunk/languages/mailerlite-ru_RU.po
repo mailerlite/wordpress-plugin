@@ -3,7 +3,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 2.2\n"
 "Project-Id-Version: MailerLite wordpress plugin\n"
 "Language: ru\n"
 "POT-Creation-Date: \n"
@@ -110,12 +110,8 @@ msgstr "Выберите форму:"
 
 #. mailerlite
 #: include/templates/admin/api_key.php:8
-msgid ""
-"Hi there! You will be able to create awesome signup forms, but first we need "
-"your MailerLite API key!"
-msgstr ""
-"Приветствуем! Вы сможете создавать красивые формы подписки, но сначала "
-"просим предоставить ваш ​​MailerLite API ключ!"
+msgid "Hi there! You will be able to create awesome signup forms, but first we need your MailerLite API key!"
+msgstr "Приветствуем! Вы сможете создавать красивые формы подписки, но сначала просим предоставить ваш ​​MailerLite API ключ!"
 
 #. mailerlite
 #: include/templates/admin/api_key.php:17
@@ -370,20 +366,13 @@ msgstr "Нужна помощь?"
 
 #. mailerlite
 #: include/templates/admin/sidebar.php:6
-msgid ""
-"Have any questions? Stuck on something or found bug? Feel free to contact us!"
-msgstr ""
-"Есть вопросы? Застряли на каком-то моменте или нашли ошибку? Не стесняйтесь "
-"обратиться к нам!"
+msgid "Have any questions? Stuck on something or found bug? Feel free to contact us!"
+msgstr "Есть вопросы? Застряли на каком-то моменте или нашли ошибку? Не стесняйтесь обратиться к нам!"
 
 #. mailerlite
 #: include/templates/common/tiny_mce.php:13
-msgid ""
-"Select form from list below, and hit \"Add Shortcode\" to add the shortcode "
-"to your post!"
-msgstr ""
-"Выберите форму из списка и нажмите \"Добавить короткий код\" для его "
-"добавления в свой пост!"
+msgid "Select form from list below, and hit \"Add Shortcode\" to add the shortcode to your post!"
+msgstr "Выберите форму из списка и нажмите \"Добавить короткий код\" для его добавления в свой пост!"
 
 #. mailerlite
 #: include/templates/common/tiny_mce.php:24
@@ -464,3 +453,48 @@ msgstr "Ваши всплывающие Popup формы не будут ото�
 #: include/templates/admin/settings.php:34
 msgid "Popup forms script"
 msgstr "Скрипт Popup форм"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:19
+msgid "Use the shortcode"
+msgstr "Use the shortcode"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:21
+msgid "to display this form inside a post, page or text widget."
+msgstr "to display this form inside a post, page or text widget."
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:101
+msgid "Double opt-in"
+msgstr "Double opt-in"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:109
+msgid "Are you sure you want to disable double opt-in?"
+msgstr "Are you sure you want to disable double opt-in?"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:112
+msgid "Double opt-in will send a confirmation email"
+msgstr "Double opt-in will send a confirmation email"
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:140
+msgid "Select fields which will be displayed in the form."
+msgstr "Select fields which will be displayed in the form."
+
+# @ mailerlite
+#: include/templates/admin/edit_custom.php:167
+msgid "Select the list(s) to which people who submit this form should be subscribed."
+msgstr "Select the list(s) to which people who submit this form should be subscribed."
+
+# @ mailerlite
+#: include/templates/admin/create.php:30
+msgid "Create a custom signup form using MailerLite API."
+msgstr "Create a custom signup form using MailerLite API."
+
+# @ mailerlite
+#: include/templates/admin/create.php:58
+msgid "Add signup form directly from the MailerLite account."
+msgstr "Add signup form directly from the MailerLite account."

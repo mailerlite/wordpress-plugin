@@ -11,7 +11,7 @@
 
 <form id="mailerlite_tinymce_form" action="" method="post">
 
-    <p><?php _e('Select form from list below, and hit "Add Shortcode" to add the shortcode to your post!', 'mailerlite'); ?></p>
+    <p><?php _e("Select form from list below, and hit \"Add Shortcode\" to add the shortcode to your post!", 'mailerlite'); ?></p>
 
     <p>
         <label for="mailerlite_form_id">Form</label><br/>
