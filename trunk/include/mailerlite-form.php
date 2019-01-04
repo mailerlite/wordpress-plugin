@@ -4,6 +4,9 @@ require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Subscribers.php";
 
 class MailerLite_Form
 {
+    const TYPE_CUSTOM = 1;
+    const TYPE_EMBEDDED = 2;
+
     public $form_id;
     public $form_type;
     public $form_name;
@@ -38,7 +41,7 @@ class MailerLite_Form
         $this->form_name = $form_name;
         $this->form_data = $form_data;
 
-        if ($this->form_type == 1) {
+        if ($this->form_type == self::TYPE_CUSTOM) {
             $this->generate_custom_form();
         } else {
             $this->generate_embedded_form();

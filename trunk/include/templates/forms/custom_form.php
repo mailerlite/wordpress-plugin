@@ -55,14 +55,14 @@
 
                         form_container.find('.mailerlite-subscribe-button-container').fadeOut(function () {
                             form_container.find('.mailerlite-form-loader').fadeIn()
-                                        });
+                        });
 
                         var data = jQuery(form).serialize();
 
                         jQuery.post('<?php echo admin_url( 'admin-ajax.php' ); ?>', data, function (response) {
                             form_container.find('.mailerlite-form-inputs').fadeOut(function () {
                                 form_container.find('.mailerlite-form-response').fadeIn()
-                                            });
+                            });
                         });
                     }
             });

@@ -54,7 +54,7 @@
                                                 href="<?php echo admin_url('admin.php?page=mailerlite_main&view=delete&noheader=true&id=' . $form->id); ?>"><?php _e('Delete', 'mailerlite'); ?></a></span>
                                     </div>
                                 </td>
-                                <td><?php echo $form->type == 1 ? __('Custom form', 'mailerlite') : __('Embedded form', 'mailerlite'); ?></td>
+                                <td><?php echo $form->type == MailerLite_Form::TYPE_CUSTOM ? __('Custom form', 'mailerlite') : __('Embedded form', 'mailerlite'); ?></td>
                                 <td><?php echo $form->time; ?></td>
                             </tr>
                         <?php endforeach; ?>

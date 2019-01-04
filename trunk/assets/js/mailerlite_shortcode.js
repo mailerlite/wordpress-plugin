@@ -15,7 +15,7 @@
             );
             ed.addButton('mailerlite_shortcode', {
                     title : 'Add a MailerLite sign-up form',
-                    image : url+'/../image/shortcode.png',
+                    image : url+'/../image/widget_logo.svg',
                     cmd :  'mailerlite_shortcode_popup'
                 }
             );

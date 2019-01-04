@@ -121,8 +121,6 @@ class MailerLite_Admin
      */
     public static function mailerlite_main()
     {
-
-
         global $fields, $lists, $form, $forms_data, $webforms, $mailerlite_error, $result, $wpdb;
 
         //Check for api key
@@ -180,7 +178,7 @@ class MailerLite_Admin
             if (isset($form->data)) {
                 $form->data = unserialize($form->data);
 
-                if ($form->type == 1) {
+                if ($form->type == MailerLite_Form::TYPE_CUSTOM) {
                     add_filter(
                         'wp_default_editor',
                         create_function('', 'return "tinymce";')
@@ -314,7 +312,7 @@ class MailerLite_Admin
 
                     include(MAILERLITE_PLUGIN_DIR
                         . 'include/templates/admin/edit_custom.php');
-                } else if ($form->type == 2) {
+                } else if ($form->type == MailerLite_Form::TYPE_EMBEDDED) {
                     $ML_Webforms = new ML_Webforms($api_key);
                     $webforms = $ML_Webforms->getAll();
                     $webforms = json_decode($webforms);
@@ -432,21 +430,32 @@ class MailerLite_Admin
 
         $key = preg_replace('/[^a-z0-9]/i', '', $_POST['mailerlite_key']);
 
-        $ML_Lists = new ML_Lists($key);
-        $ML_Lists->getAll();
-        $response = $ML_Lists->getResponseInfo();
+	    if ( $key == '' ) {
+	    	// Allow to the remove the key
+		    update_option('mailerlite_api_key', $key);
+		    update_option('mailerlite_enabled', false);
+		    update_option( 'account_id', '' );
+		    update_option( 'account_subdomain', '' );
+		    update_option( 'mailerlite_popups_disabled', false );
+		    self::$api_key = $key;
+	    } else {
+	        $ML_Lists = new ML_Lists($key);
+	        $ML_Lists->getAll();
+	        $response = $ML_Lists->getResponseInfo();
 
-        if ($response['http_code'] == 401) {
-            $mailerlite_error = __('Wrong MailerLite API key', 'mailerlite');
-        } elseif ($ML_Lists->hasCurlError()) {
-            $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
 
-        } else {
-            update_option('mailerlite_api_key', $key);
-            update_option('mailerlite_enabled', true);
-            self::$api_key = $key;
+	        if ($response['http_code'] == 401) {
+	            $mailerlite_error = __('Wrong MailerLite API key', 'mailerlite');
+	        } elseif ($ML_Lists->hasCurlError()) {
+	            $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
 
-            self::update_account_info();
+	        } else {
+	            update_option('mailerlite_api_key', $key);
+	            update_option('mailerlite_enabled', true);
+	            self::$api_key = $key;
+
+	            self::update_account_info();
+	        }
         }
     }
 
@@ -500,12 +509,12 @@ class MailerLite_Admin
      */
     private static function create_new_form($data)
     {
-        global $wpdb;
+        global $wpdb, $mailerlite_error;
 
-        $form_type = in_array($data['form_type'], array(1, 2))
-            ? $data['form_type'] : 1;
+        $form_type = in_array($data['form_type'], array(MailerLite_Form::TYPE_CUSTOM, MailerLite_Form::TYPE_EMBEDDED))
+            ? $data['form_type'] : MailerLite_Form::TYPE_CUSTOM;
 
-        if ($form_type == 1) {
+        if ($form_type == MailerLite_Form::TYPE_CUSTOM) {
             $form_name = __('New custom signup form', 'mailerlite');
             $form_data = array(
                 'title' => __('Newsletter signup', 'mailerlite'),
@@ -519,6 +528,23 @@ class MailerLite_Admin
                 'lists' => array(),
                 'fields' => array('email' => __('Email', 'mailerlite'))
             );
+
+	        if ( array_key_exists( 'create_signup_form_now', $_POST ) ) {
+		        $form_name          = $_POST['form_name'];
+		        $form_data['lists'] = $_POST['form_lists'];
+	        } else {
+	            $ML_Lists = new ML_Lists( self::$api_key );
+	            $lists    = $ML_Lists->getAll();
+
+	            $lists = json_decode( $lists );
+	            if ( empty( $lists->Results ) ) {
+		            $lists->Results = [];
+	            }
+
+	            require_once( ABSPATH . 'wp-admin/admin-header.php' );
+	            include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/create_custom.php' );
+	            exit;
+            }
         } else {
             $form_name = __('New embedded signup form', 'mailerlite');
             $form_data = array(
@@ -527,14 +553,11 @@ class MailerLite_Admin
             );
         }
 
-        $wpdb->insert(
-            $wpdb->base_prefix . 'mailerlite_forms',
-            array(
-                'name' => $form_name,
-                'time' => date('Y-m-d h:i:s'),
-                'type' => $form_type,
-                'data' => serialize($form_data)
-            )
-        );
+	    $wpdb->insert( $wpdb->base_prefix . 'mailerlite_forms', [
+		    'name' => $form_name,
+		    'time' => date( 'Y-m-d h:i:s' ),
+		    'type' => $form_type,
+		    'data' => serialize( $form_data ),
+	    ] );
     }
 }

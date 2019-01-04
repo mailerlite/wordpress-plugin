@@ -7,6 +7,8 @@
  * Author: MailerGroup
  * Author URI: https://www.mailerlite.com
  * License: GPLv2 or later
+ * Text Domain: mailerlite
+ * Domain Path: /languages/
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
