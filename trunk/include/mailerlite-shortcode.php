@@ -15,6 +15,14 @@ class MailerLite_Shortcode
         );
 
         add_action(
+            'wp_ajax_nopriv_mailerlite_gutenberg_forms',
+            array('MailerLite_Shortcode', 'mailerlite_gutenberg_forms')
+        );
+        add_action(
+            'wp_ajax_mailerlite_gutenberg_forms',
+            array('MailerLite_Shortcode', 'mailerlite_gutenberg_forms')
+        );
+        add_action(
             'wp_ajax_nopriv_mailerlite_tinymce_window',
             array('MailerLite_Shortcode', 'mailerlite_tinymce_window')
         );
@@ -85,6 +93,14 @@ class MailerLite_Shortcode
 
         exit;
     }
+
+	public static function mailerlite_gutenberg_forms() {
+		global $wpdb;
+		$forms_data = $wpdb->get_results(
+			"SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms ORDER BY time DESC"
+		);
+		echo wp_send_json_success( $forms_data );
+	}
 
     /**
      *
