@@ -2,19 +2,29 @@
 
 require_once dirname(__FILE__) . '/ML_Rest_Base.php';
 
+/**
+ * Class ML_Rest
+ */
 class ML_Rest extends ML_Rest_Base
 {
-    var $name = '';
+	/** @var string */
+    var $endpoint = '';
 
+    /** @var int|null */
     var $id = null;
 
+	/**
+	 * ML_Rest constructor.
+	 *
+	 * @param $api_key
+	 */
     function __construct($api_key)
     {
         parent::__construct();
 
         $this->apiKey = $api_key;
 
-        $this->path = $this->url . $this->name . '/';
+        $this->path = $this->url . $this->endpoint . '/';
     }
 
     function setId($id)
@@ -22,9 +32,9 @@ class ML_Rest extends ML_Rest_Base
         $this->id = $id;
 
         if ($this->id)
-            $this->path = $this->url . $this->name . '/' . $id . '/';
+            $this->path = $this->url . $this->endpoint . '/' . $id . '/';
         else
-            $this->path = $this->url . $this->name . '/';
+            $this->path = $this->url . $this->endpoint . '/';
 
         return $this;
     }
@@ -32,6 +42,11 @@ class ML_Rest extends ML_Rest_Base
     function getAll()
     {
         return $this->execute('GET');
+    }
+
+    function getAllJson()
+    {
+        return json_decode($this->execute('GET'));
     }
 
     function get($data = null)

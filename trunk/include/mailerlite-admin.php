@@ -1,7 +1,9 @@
 <?php defined('ABSPATH') or die("No direct access allowed!");
 
-require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Lists.php";
+require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Groups.php";
+require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Fields.php";
 require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Webforms.php";
+require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Settings_Double_OptIn.php";
 
 class MailerLite_Admin
 {
@@ -14,7 +16,6 @@ class MailerLite_Admin
      */
     public static function init()
     {
-
         global $mailerlite_error;
 
         $mailerlite_error = false;
@@ -43,6 +44,12 @@ class MailerLite_Admin
         ) {
             self::set_popups();
         }
+
+        if (isset($_POST['action'])
+            && $_POST['action'] == 'toggle-double-opt-in'
+        ) {
+            self::toggle_double_opt_in();
+        }
     }
 
     /**
@@ -50,7 +57,6 @@ class MailerLite_Admin
      */
     private static function init_hooks()
     {
-
         self::$initiated = true;
 
         add_action(
@@ -77,7 +83,6 @@ class MailerLite_Admin
      */
     public static function mailerlite_admin_generate_menu_link()
     {
-
         add_menu_page(
             'MailerLite', 'MailerLite', 'manage_options', 'mailerlite_main',
             null, MAILERLITE_PLUGIN_URL . '/assets/image/icon.png'
@@ -121,15 +126,15 @@ class MailerLite_Admin
      */
     public static function mailerlite_main()
     {
-        global $fields, $lists, $form, $forms_data, $webforms, $mailerlite_error, $result, $wpdb;
+        global $form, $forms_data, $mailerlite_error, $result, $wpdb;
 
-        //Check for api key
+        // Check for api key
         self::mailerlite_api_key_require();
 
         $api_key = self::$api_key;
         $result = '';
 
-        //Create new signup form view
+        // Create new signup form view
         if (isset($_GET['view']) && $_GET['view'] == 'create') {
             if (isset($_POST['create_signup_form'])) {
                 self::create_new_form($_POST);
@@ -144,9 +149,7 @@ class MailerLite_Admin
             }
 
             $ML_Webforms = new ML_Webforms($api_key);
-            $webforms = $ML_Webforms->getAll();
-
-            $webforms = json_decode($webforms);
+            $webforms = $ML_Webforms->getAllJson();
 
             if (!empty($webforms->error) && !empty($webforms->error->message)) {
                 $mailerlite_error = '<u>'.__('Error happened', 'mailerlite').'</u>: '.$webforms->error->message;
@@ -154,14 +157,10 @@ class MailerLite_Admin
 
             if ($ML_Webforms->hasCurlError()) {
                 $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Webforms->getResponseBody();
-
             }
 
-            include(MAILERLITE_PLUGIN_DIR
-                . 'include/templates/admin/create.php');
-
-
-        } //Edit signup form view
+            include(MAILERLITE_PLUGIN_DIR . 'include/templates/admin/create.php');
+        } // Edit signup form view
         else if (isset($_GET['view']) && isset($_GET['id'])
             && $_GET['view'] == 'edit'
             && absint($_GET['id'])
@@ -184,68 +183,25 @@ class MailerLite_Admin
                         create_function('', 'return "tinymce";')
                     );
 
-                    $ML_Lists = new ML_Lists($api_key);
-                    $lists = $ML_Lists->getAll();
+	                $ML_Groups = new ML_Groups( $api_key );
+	                $groups    = $ML_Groups->getAllJson();
 
-                    if ($ML_Lists->hasCurlError()) {
-                        $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
-
-                    }
-
-                    $lists = json_decode($lists);
-                    if (empty($lists->Results)) $lists->Results = array();
-
-                    if (isset($lists->Results[0])) $fields = $ML_Lists->setId($lists->Results[0]->id)
-                        ->getFields();
-                    else $fields = $ML_Lists->getFields();
-
-                    if ($ML_Lists->hasCurlError()) {
-                        $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
+                    if ($ML_Groups->hasCurlError()) {
+                        $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Groups->getResponseBody();
 
                     }
 
-                    $fields = json_decode($fields);
-
-                    if (empty($fields->Fields)) $fields->Fields = array();
+					$ML_Fields = new ML_Fields( $api_key );
+	                $fields    = $ML_Fields->getAllJson();
 
                     if (isset($_POST['save_custom_signup_form'])) {
-                        $form_name = isset($_POST['form_name'])
-                        && $_POST['form_name'] != ''
-                            ? sanitize_text_field($_POST['form_name'])
-                            : __(
-                                'Subscribe for newsletter!', 'mailerlite'
-                            );
-                        $form_title = isset($_POST['form_title'])
-                        && $_POST['form_title'] != ''
-                            ? sanitize_text_field($_POST['form_title'])
-                            : __(
-                                'Newsletter signup', 'mailerlite'
-                            );
-                        $form_description = isset($_POST['form_description'])
-                            ? $_POST['form_description']
-                            : __(
-                                'Just simple MailerLite form!', 'mailerlite'
-                            );
-                        $success_message = isset($_POST['success_message'])
-                            ? $_POST['success_message']
-                            : '<span style="color: rgb(51, 153, 102);">' . __(
-                                'Thank you for sign up!', 'mailerlite'
-                            ) . '</span>';
-                        $button_name = isset($_POST['button_name'])
-                        && $_POST['button_name'] != ''
-                            ? sanitize_text_field($_POST['button_name'])
-                            : __(
-                                'Subscribe', 'mailerlite'
-                            );
-                        $please_wait = isset($_POST['please_wait'])
-                        && $_POST['please_wait'] != ''
-                            ? sanitize_text_field($_POST['please_wait'])
-                            : '';
-
-                        $language = isset($_POST['language'])
-                        && $_POST['language'] != ''
-                            ? sanitize_text_field($_POST['language'])
-                            : '';
+                        $form_name = self::issetWithDefault( 'form_name', __('Subscribe for newsletter!', 'mailerlite'));
+	                    $form_title = self::issetWithDefault('form_title', __('Newsletter signup', 'mailerlite'));
+	                    $form_description = self::issetWithDefault('form_description', __('Just simple MailerLite form!', 'mailerlite'));
+	                    $success_message = self::issetWithDefault('success_message', '<span style="color: rgb(51, 153, 102);">' . __('Thank you for sign up!', 'mailerlite') . '</span>', false);
+	                    $button_name = self::issetWithDefault('button_name', __('Subscribe', 'mailerlite'));
+	                    $please_wait=self::issetWithDefault('please_wait');
+	                    $language=self::issetWithDefault('language');
 
                         $selected_fields = isset($_POST['form_selected_field'])
                         && is_array(
@@ -256,27 +212,21 @@ class MailerLite_Admin
                             $_POST['form_field']
                         ) ? $_POST['form_field'] : array();
 
-                        if (!isset($field_titles['email'])
-                            || $field_titles['email'] == ''
-                        ) {
-                            $field_titles['email'] = __('Email', 'mailerlite');
+                        if ( ! isset( $field_titles['email'] ) || $field_titles['email'] == '' ) {
+	                        $field_titles['email'] = __( 'Email', 'mailerlite' );
                         }
 
-                        $form_lists = isset($_POST['form_lists'])
-                        && is_array(
-                            $_POST['form_lists']
-                        ) ? $_POST['form_lists'] : array();
+	                    $form_lists = isset( $_POST['form_lists'] ) && is_array( $_POST['form_lists'] ) ? $_POST['form_lists'] : array();
 
-                        $prepared_fields = array();
+	                    $prepared_fields = array();
 
-                        //Force to use email
+                        // Force to use email
                         $prepared_fields['email'] = $field_titles['email'];
 
-                        foreach ($selected_fields as $field) {
-                            if (isset($field_titles[$field])) {
-                                $prepared_fields[$field]
-                                    = $field_titles[$field];
-                            }
+                        foreach ($selected_fields as $field ) {
+	                        if ( isset( $field_titles[ $field ] ) ) {
+		                        $prepared_fields[ $field ] = $field_titles[ $field ];
+	                        }
                         }
 
                         $form_data = array(
@@ -307,15 +257,12 @@ class MailerLite_Admin
                         $result = 'success';
                     }
 
-                    include(MAILERLITE_PLUGIN_DIR
-                        . 'include/settings/languages.php');
+                    include(MAILERLITE_PLUGIN_DIR . 'include/settings/languages.php');
 
-                    include(MAILERLITE_PLUGIN_DIR
-                        . 'include/templates/admin/edit_custom.php');
+                    include(MAILERLITE_PLUGIN_DIR . 'include/templates/admin/edit_custom.php');
                 } else if ($form->type == MailerLite_Form::TYPE_EMBEDDED) {
                     $ML_Webforms = new ML_Webforms($api_key);
-                    $webforms = $ML_Webforms->getAll();
-                    $webforms = json_decode($webforms);
+                    $webforms = $ML_Webforms->getAllJson();
 
                     if (!empty($webforms->error) && !empty($webforms->error->message)) {
                         $mailerlite_error = '<u>'.__('Error happened', 'mailerlite').'</u>: '.$webforms->error->message;
@@ -323,24 +270,17 @@ class MailerLite_Admin
 
                     if ($ML_Webforms->hasCurlError()) {
                         $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Webforms->getResponseBody();
-
                     }
-
-                    if (empty($webforms->Results)) $webforms->Results = array();
 
                     $parsed_webforms = array();
 
-                    foreach ($webforms->Results as $webform) {
+                    foreach ($webforms as $webform) {
                         $parsed_webforms[$webform->id] = $webform->code;
                     }
 
                     if (isset($_POST['save_embedded_signup_form'])) {
-                        $form_name = isset($_POST['form_name'])
-                        && $_POST['form_name'] != ''
-                            ? sanitize_text_field($_POST['form_name'])
-                            : __(
-                                'Embedded webform', 'mailerlite'
-                            );
+                    	$form_name = self::issetWithDefault('form_name', __('Embedded webform', 'mailerlite'));
+
                         $form_webform_id = isset($_POST['form_webform_id'])
                         && isset($parsed_webforms[$_POST['form_webform_id']])
                             ? $_POST['form_webform_id'] : 0;
@@ -367,19 +307,16 @@ class MailerLite_Admin
                         $result = 'success';
                     }
 
-                    include(MAILERLITE_PLUGIN_DIR
-                        . 'include/templates/admin/edit_embedded.php');
+                    include(MAILERLITE_PLUGIN_DIR . 'include/templates/admin/edit_embedded.php');
                 }
             } else {
                 $forms_data = $wpdb->get_results(
-                    "SELECT * FROM " . $wpdb->base_prefix
-                    . "mailerlite_forms ORDER BY time DESC"
+                    "SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms ORDER BY time DESC"
                 );
 
-                include(MAILERLITE_PLUGIN_DIR
-                    . 'include/templates/admin/main.php');
+                include(MAILERLITE_PLUGIN_DIR . 'include/templates/admin/main.php');
             }
-        } //Delete signup form view
+        } // Delete signup form view
         else if (isset($_GET['view']) && isset($_GET['id'])
             && $_GET['view'] == 'delete'
             && absint($_GET['id'])
@@ -388,7 +325,7 @@ class MailerLite_Admin
                 $wpdb->base_prefix . 'mailerlite_forms', array('id' => $_GET['id'])
             );
             wp_redirect('admin.php?page=mailerlite_main');
-        } //Signup forms list
+        } // Signup forms list
         else {
             $forms_data = $wpdb->get_results(
                 "SELECT * FROM " . $wpdb->base_prefix
@@ -420,11 +357,7 @@ class MailerLite_Admin
     {
         global $mailerlite_error;
 
-        if (function_exists('current_user_can')
-            && !current_user_can(
-                'manage_options'
-            )
-        ) {
+        if (function_exists('current_user_can') && !current_user_can('manage_options')) {
             die(__('You not allowed to do that', 'mailerlite'));
         }
 
@@ -439,24 +372,23 @@ class MailerLite_Admin
 		    update_option( 'mailerlite_popups_disabled', false );
 		    self::$api_key = $key;
 	    } else {
-	        $ML_Lists = new ML_Lists($key);
+	        $ML_Lists = new ML_Groups($key);
 	        $ML_Lists->getAll();
 	        $response = $ML_Lists->getResponseInfo();
 
+		    if ( $response['http_code'] == 401 ) {
+			    $mailerlite_error = __( 'Wrong MailerLite API key', 'mailerlite' );
+		    } elseif ( $ML_Lists->hasCurlError() ) {
+			    $mailerlite_error = '<u>' . __( 'Send this error to info@mailerlite.com or our chat',
+					    'mailerlite' ) . '</u>: ' . $ML_Lists->getResponseBody();
+		    } else {
+			    update_option( 'mailerlite_api_key', $key );
+			    update_option( 'mailerlite_enabled', true );
+			    self::$api_key = $key;
 
-	        if ($response['http_code'] == 401) {
-	            $mailerlite_error = __('Wrong MailerLite API key', 'mailerlite');
-	        } elseif ($ML_Lists->hasCurlError()) {
-	            $mailerlite_error = '<u>'.__('Send this error to info@mailerlite.com or our chat', 'mailerlite').'</u>: '.$ML_Lists->getResponseBody();
-
-	        } else {
-	            update_option('mailerlite_api_key', $key);
-	            update_option('mailerlite_enabled', true);
-	            self::$api_key = $key;
-
-	            self::update_account_info();
-	        }
-        }
+			    self::update_account_info();
+		    }
+	    }
     }
 
     /**
@@ -466,15 +398,36 @@ class MailerLite_Admin
     {
         global $mailerlite_error;
 
-        if (function_exists('current_user_can')
-            && !current_user_can(
-                'manage_options'
-            )
-        ) {
-            die(__('You not allowed to do that', 'mailerlite'));
-        }
+	    if ( function_exists( 'current_user_can' ) && ! current_user_can( 'manage_options' ) ) {
+		    die( __( 'You not allowed to do that', 'mailerlite' ) );
+	    }
 
         update_option('mailerlite_popups_disabled', !get_option('mailerlite_popups_disabled'));
+    }
+
+    /**
+     * Checks and sets the double opt-in
+     */
+    private static function toggle_double_opt_in() {
+	    global $mailerlite_error;
+
+	    if ( function_exists( 'current_user_can' ) && ! current_user_can( 'manage_options' ) ) {
+		    die( __( 'You not allowed to do that', 'mailerlite' ) );
+	    }
+
+	    self::mailerlite_api_key_require();
+
+	    $api_key = self::$api_key;
+
+	    $ML_Settings_Double_OptIn = new ML_Settings_Double_OptIn( $api_key );
+
+	    if(get_option( 'mailerlite_double_optin_disabled' ) ) {
+		    $ML_Settings_Double_OptIn->enable();
+	    } else {
+		    $ML_Settings_Double_OptIn->disable();
+	    }
+
+	    update_option( 'mailerlite_double_optin_disabled', ! get_option( 'mailerlite_double_optin_disabled' ) );
     }
 
     public static function update_account_info() {
@@ -533,13 +486,9 @@ class MailerLite_Admin
 		        $form_name          = $_POST['form_name'];
 		        $form_data['lists'] = $_POST['form_lists'];
 	        } else {
-	            $ML_Lists = new ML_Lists( self::$api_key );
-	            $lists    = $ML_Lists->getAll();
-
-	            $lists = json_decode( $lists );
-	            if ( empty( $lists->Results ) ) {
-		            $lists->Results = [];
-	            }
+		        $ML_Groups = new ML_Groups( self::$api_key );
+		        $groups    = $ML_Groups->getAll();
+		        $groups    = json_decode( $groups );
 
 	            require_once( ABSPATH . 'wp-admin/admin-header.php' );
 	            include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/create_custom.php' );
@@ -560,4 +509,25 @@ class MailerLite_Admin
 		    'data' => serialize( $form_data ),
 	    ] );
     }
+
+	/**
+	 * Helper to reuse code
+	 *
+	 * @param string $post_key
+	 * @param string $default
+	 * @param bool   $sanitize
+	 *
+	 * @return string
+	 */
+	private static function issetWithDefault( $post_key, $default = '', $sanitize = true ) {
+		if ( isset( $_POST[ $post_key ] ) ) {
+			if ( $sanitize ) {
+				return sanitize_text_field( $_POST[ $post_key ] );
+			}
+
+			return $_POST[ $post_key ];
+		}
+
+		return $default;
+	}
 }

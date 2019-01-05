@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class ML_Rest_Base
+ */
 class ML_Rest_Base
 {
     protected $url;
@@ -17,7 +20,13 @@ class ML_Rest_Base
 
     private $curlError = false;
 
-    public function __construct($url = 'https://api.mailerlite.com/api/v1/', $verb = 'GET')
+	/**
+	 * ML_Rest_Base constructor.
+	 *
+	 * @param string $url
+	 * @param string $verb
+	 */
+    public function __construct($url = 'https://api.mailerlite.com/api/v2/', $verb = 'GET')
     {
         $this->url = $url;
         $this->verb = $verb;
@@ -95,7 +104,6 @@ class ML_Rest_Base
     protected function executeGet($ch)
     {
         $this->path .= (strpos($this->path, '?') === false ? '?' : '&') . $this->requestBody;
-
         $this->doExecute($ch);
     }
 

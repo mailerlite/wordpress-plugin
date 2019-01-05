@@ -40,14 +40,17 @@
                                     <?php
                                     $embed_button_webforms = array();
 
-                                    if (isset($webforms->Results) && is_array($webforms->Results))
-                                    foreach ($webforms->Results as $webform) {
-                                    if (!in_array($webform->type, array('embed', 'embedded', 'button'))) { continue; }
+                                    /** @var ML_Webform_Entity[] $webforms */
+                                    if ( count( $webforms ) ) {
+	                                    foreach ( $webforms as $webform ) {
+		                                    if ( ! in_array( $webform->type, [ 'embed', 'embedded', 'button' ] ) ) {
+			                                    continue;
+		                                    }
 
-                                    $embed_button_webforms[] = $webform;
+		                                    $embed_button_webforms[] = $webform;
+	                                    }
                                     }
                                     ?>
-
                                     <label for="form_type_webform" class="selectit">
                                         <input id="form_type_webform" type="radio" name="form_type" onclick="jQuery('#expl').removeClass('hidden')"
                                                value="2"<?php echo count($embed_button_webforms) == 0 ? ' disabled="disabled"' : ''; ?>>

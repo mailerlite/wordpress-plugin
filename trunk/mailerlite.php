@@ -124,6 +124,8 @@ if (is_admin()) {
 
 require_once(MAILERLITE_PLUGIN_DIR . 'include/mailerlite-widget.php');
 require_once(MAILERLITE_PLUGIN_DIR . 'include/mailerlite-shortcode.php');
+require_once(MAILERLITE_PLUGIN_DIR . 'include/mailerlite-gutenberg.php');
 
 add_action('init', array('MailerLite_Shortcode', 'init'));
 add_action('init', array('MailerLite_Form', 'init'));
+add_action('init', array('MailerLite_Gutenberg', 'init'));

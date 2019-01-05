@@ -6,7 +6,7 @@ class ML_Lists extends ML_Rest
 {
     function __construct($api_key)
     {
-        $this->name = 'lists';
+        $this->endpoint = 'groups';
 
         parent::__construct($api_key);
     }

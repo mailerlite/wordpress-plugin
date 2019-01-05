@@ -2,11 +2,14 @@
 
 require_once dirname(__FILE__) . '/base/ML_Rest.php';
 
+/**
+ * Class ML_Campaigns
+ */
 class ML_Campaigns extends ML_Rest
 {
     function __construct($api_key)
     {
-        $this->name = 'campaigns';
+        $this->endpoint = 'campaigns';
 
         parent::__construct($api_key);
     }

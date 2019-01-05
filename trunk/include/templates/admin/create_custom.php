@@ -19,29 +19,36 @@
                         <p class="description"><?php _e('Select the list(s) to which people who submit this form should be subscribed.', 'mailerlite'); ?></p>
                         <table id="list-table" class="form-table">
                             <tbody>
-		                    <?php foreach ($lists->Results as $list): ?>
+		                    <?php foreach ($groups as $group): ?>
                                 <tr>
-                                    <th style="width:1%;"><input id="list_<?php echo $list->id; ?>"
+                                    <th style="width:1%;"><input id="list_<?php echo $group->id; ?>"
                                                                  type="checkbox"
                                                                  class="input_control"
                                                                  name="form_lists[]"
-                                                                 value="<?php echo $list->id; ?>">
+                                                                 value="<?php echo $group->id; ?>">
                                     </th>
                                     <td><label
-                                                for="list_<?php echo $list->id; ?>"><?php echo $list->name; ?></label>
+                                                for="list_<?php echo $group->id; ?>"><?php echo $group->name; ?></label>
                                     </td>
                                 </tr>
 		                    <?php endforeach; ?>
-
-		                    <?php if ( count( $lists->Results ) === 0 ) {
-			                   ?>
-                                <p style="color: red;">
-                                    <?php _e( 'Please create a group first', 'mailerlite' ); ?>
-                                </p>
-                            <?php
-		                    } ?>
                             </tbody>
                         </table>
+                        <?php if ( count( $groups ) === 0 ) {
+		                    ?>
+                            <div class="notice notice-error">
+                                <p>
+				                    <?php _e( 'Please create an Interest Group first.', 'mailerlite' ); ?>
+                                </p>
+                            </div>
+		                    <?php
+	                    } ?>
+
+                        <div id="no-selections-error" class="notice notice-error" style="display: none">
+                            <p>
+	                            <?php _e( 'Please select at least one Interest Group (tag) from the list.', 'mailerlite' ); ?>
+                            </p>
+                        </div>
 
                         <div class="submit">
                             <input class="button-primary"
@@ -66,7 +73,7 @@
                 var checkedLists = $("[name='form_lists[]']:checked").length;
 
                 if (checkedLists === 0) {
-                    $("#list-table").css('color', 'red');
+                    $("#no-selections-error").show();
                     e.preventDefault();
                     return false;
                 }

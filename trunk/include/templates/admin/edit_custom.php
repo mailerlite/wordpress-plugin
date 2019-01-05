@@ -12,7 +12,7 @@
         <?php include("sidebar.php"); ?>
         <div id="post-body">
             <div id="post-body-content">
-                <form action="<?php echo admin_url('admin.php?page=mailerlite_main&view=edit&id=' . (isset($_GET['id']) ? $_GET['id'] : 0)); ?>" method="post">
+                <form id="edit_custom" action="<?php echo admin_url('admin.php?page=mailerlite_main&view=edit&id=' . (isset($_GET['id']) ? $_GET['id'] : 0)); ?>" method="post">
 
                     <input type="text" name="form_name" class="form-large" size="30" maxlength="255" value="<?php echo $form->name; ?>" id="form_name" placeholder="<?php _e('Form name', 'mailerlite'); ?>">
                     <div>
@@ -53,8 +53,8 @@
                                             'tinymce' => array(
                                             'toolbar1' =>
                                             'bold,italic,underline,bullist,numlist,link,unlink,forecolor,alignleft,aligncenter,alignright,undo,redo',
-                                            'toolbar2' => ''
-                                            )
+                                            'toolbar2' => '',
+                                            ),
                                             );
 
                                             wp_editor(stripslashes($form->data['description']), 'form_description', $settings);
@@ -71,8 +71,8 @@
                                             'tinymce' => array(
                                             'toolbar1' =>
                                             'bold,italic,underline,bullist,numlist,link,unlink,forecolor,alignleft,aligncenter,alignright,undo,redo',
-                                            'toolbar2' => ''
-                                            )
+                                            'toolbar2' => '',
+                                            ),
                                             );
 
                                             wp_editor(stripslashes($form->data['success_message']), 'success_message', $settings);
@@ -90,23 +90,6 @@
                                         <th><label for="button_name"><?php _e('Please wait message', 'mailerlite'); ?></label>
                                         </th>
                                         <td><input type="text" class="regular-text" name="please_wait" size="30" maxlength="255" value="<?php if (isset($form->data['please_wait'])) echo $form->data['please_wait']; ?>" id="please_wait_name">
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>
-                                            <?php _e('Double opt-in', 'mailerlite'); ?>
-                                        </th>
-                                        <td>
-                                            <label>
-                                                <input type="radio" name="xxx" value="1" checked="checked">&rlm;
-                                                Yes
-                                            </label>
-                                            <label style="padding-left: 10px;">
-                                                <input type="radio" name="xxx" value="0" onclick="return confirm('<?php _e('Are you sure you want to disable double opt-in?', 'mailerlite'); ?>');">&rlm;
-                                                No
-                                            </label>
-                                            <p class="description"><?php _e('Double opt-in will send a confirmation email', 'mailerlite'); ?></p>
                                         </td>
                                     </tr>
 
@@ -140,21 +123,24 @@
                                             <p class="description"><?php _e('Select fields which will be displayed in the form.', 'mailerlite'); ?></p>
                                             <table class="form-table">
                                                 <tbody>
-                                                <?php foreach ($fields->Fields as $field): ?>
+
+                                                <?php
+                                                /** @var ML_Field_Entity $field */
+                                                foreach ($fields as $field): ?>
                                                 <tr>
                                                     <th style="width:1%;"><input type="checkbox"
                                                                                  class="input_control"
                                                                                  name="form_selected_field[]"
-                                                                                 value="<?php echo $field->field; ?>"<?php echo $field->
-                                                        field == 'email' || array_key_exists($field->field, $form->data['fields']) ?
+                                                                                 value="<?php echo $field->key; ?>"<?php echo $field->
+                                                        key == 'email' || array_key_exists($field->key, $form->data['fields']) ?
                                                         ' checked="checked"' : '';
-                                                        echo $field->field == 'email' ? ' disabled="disabled"' : ''; ?>>
+                                                        echo $field->key == 'email' ? ' disabled="disabled"' : ''; ?>>
                                                     </th>
-                                                    <td><input type="text" id="field_<?php echo $field->field; ?>"
-                                                               name="form_field[<?php echo $field->field; ?>]"
+                                                    <td><input type="text" id="field_<?php echo $field->key; ?>"
+                                                               name="form_field[<?php echo $field->key; ?>]"
                                                                size="30" maxlength="255"
-                                                               value="<?php echo array_key_exists($field->field, $form->data['fields']) ? $form->data['fields'][$field->field] : $field->title; ?>"<?php echo $field->
-                                                        field == 'email' || array_key_exists($field->field, $form->data['fields']) ?
+                                                               value="<?php echo array_key_exists($field->key, $form->data['fields']) ? $form->data['fields'][$field->key] : $field->title; ?>"<?php echo $field->
+                                                        key == 'email' || array_key_exists($field->key, $form->data['fields']) ?
                                                         '' : ' disabled="disabled"'; ?>>
                                                     </td>
                                                 </tr>
@@ -167,20 +153,22 @@
                                             <p class="description"><?php _e('Select the list(s) to which people who submit this form should be subscribed.', 'mailerlite'); ?></p>
                                             <table class="form-table">
                                                 <tbody>
-                                                <?php foreach ($lists->Results as $list): ?>
+                                                <?php
+                                                /** @var ML_Group_Entity $group */
+                                                foreach ($groups as $group) { ?>
                                                 <tr>
-                                                    <th style="width:1%;"><input id="list_<?php echo $list->id; ?>"
+                                                    <th style="width:1%;"><input id="list_<?php echo $group->id; ?>"
                                                                                  type="checkbox"
                                                                                  class="input_control"
                                                                                  name="form_lists[]"
-                                                                                 value="<?php echo $list->id; ?>"<?php echo in_array($list->
+                                                                                 value="<?php echo $group->id; ?>"<?php echo in_array($group->
                                                         id, $form->data['lists']) ? ' checked="checked"' : ''; ?>>
                                                     </th>
-                                                    <td><label
-                                                            for="list_<?php echo $list->id; ?>"><?php echo $list->name; ?></label>
+                                                    <td>
+                                                        <label for="list_<?php echo $group->id; ?>"><?php echo $group->name; ?></label>
                                                     </td>
                                                 </tr>
-                                                <?php endforeach; ?>
+                                                <?php } ?>
                                                 </tbody>
                                             </table>
                                         </td>
@@ -192,6 +180,11 @@
 
                     </div>
 
+                    <div id="no-selections-error" class="notice-error" style="display: none;">
+                        <p>
+			                <?php _e( 'Please select at least one Interest Group (tag) from the list.', 'mailerlite' ); ?>
+                        </p>
+                    </div>
 
                     <div class="submit">
                         <input class="button-primary"
@@ -223,9 +216,7 @@
                 input.attr('disabled', false);
             }
         });
-    });
 
-    jQuery(function ($) {
 
         var $tabs = $('h2#wpt-tabs'),
             $sections = $('section.tab-content');
@@ -241,7 +232,19 @@
             $(this).addClass('nav-tab-active');
         }));
 
-    });
+        $(document).ready(function ($) {
+            $('#edit_custom').on('submit', function (e) {
+                var checkedLists = $("[name='form_lists[]']:checked").length;
+
+                if (checkedLists === 0) {
+                    $("#no-selections-error").show().addClass('notice');
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    })();
 </script>
+
 
 <?php /**/

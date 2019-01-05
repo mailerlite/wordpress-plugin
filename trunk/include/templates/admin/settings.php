@@ -62,6 +62,32 @@
                             </p>
                         </td>
                     </tr>
+
+                    <tr>
+                        <th valign="middle">
+                            <label><?php echo __('Double opt-in', 'mailerlite'); ?></label>
+                        </th>
+                        <td>
+                            <form action="" method="post" id="mailerlite-popups">
+
+                                <p class="<?php if (get_option('mailerlite_double_optin_disabled')) : ?>gray<?php else: ?>success<?php endif; ?> popups">
+                                    <?php if (!get_option('mailerlite_double_optin_disabled')) : ?> <?php echo __('enabled', 'mailerlite'); ?><?php else: ?><?php echo __('disabled', 'mailerlite');?><?php endif; ?>
+                                </p>
+
+                                <input type="submit" name="submit" id="submit" class="button button-primary"
+                                       value="<?php if (!get_option('mailerlite_double_optin_disabled')) : ?><?php echo __('Disable', 'mailerlite'); ?><?php else: ?><?php echo __('Enable', 'mailerlite');?><?php endif; ?>" <?php if (!get_option('mailerlite_double_optin_disabled')) { ?>onclick="return confirm('<?php _e('Are you sure you want to disable double opt-in?', 'mailerlite'); ?>');"<?php } ?>>
+                                <input type="hidden" name="action" value="toggle-double-opt-in">
+                            </form>
+
+                            <p class="description">
+                                <?php if (!get_option('mailerlite_double_optin_disabled')): ?>
+                                <?php echo __('Double opt-in will send a confirmation email', 'mailerlite');?>
+                                <?php else: ?>
+                                <?php echo __('Double opt-in will not send a confirmation email', 'mailerlite');?>
+                                <?php endif; ?>
+                            </p>
+                        </td>
+                    </tr>
                 </table>
 
                 <br>

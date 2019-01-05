@@ -27,7 +27,9 @@
                             <th><label for="form_webform_id"><?php _e('Webform', 'mailerlite'); ?></label></th>
                             <td>
                                 <select id="form_webform_id" name="form_webform_id">
-                                    <?php foreach ($webforms->Results as $webform): ?>
+                                    <?php
+                                    /** @var ML_Webform_Entity[] $webforms */
+                                    foreach ($webforms as $webform): ?>
 <?php if (!in_array($webform->type, array('embed', 'embedded', 'button'))) { continue; } ?>
                                     <option data-code="<?php echo $webform->code; ?>"
                                                 value="<?php echo $webform->id; ?>"<?php echo $webform->id == $form->data['id'] ? ' selected="selected"' : ''; ?>><?php echo $webform->name; ?> (<?php echo $webform->type;?>)</option>

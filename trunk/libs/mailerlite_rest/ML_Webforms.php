@@ -1,13 +1,21 @@
 <?php
 
-require_once dirname(__FILE__) . '/base/ML_Rest.php';
+require_once dirname( __FILE__ ) . '/base/ML_Rest.php';
 
-class ML_Webforms extends ML_Rest
-{
-    function __construct($api_key)
-    {
-        $this->name = 'webforms';
+/**
+ * Class ML_Webforms
+ */
+class ML_Webforms extends ML_Rest {
+	function __construct( $api_key ) {
+		$this->endpoint = 'webforms';
 
-        parent::__construct($api_key);
-    }
+		parent::__construct( $api_key );
+	}
+
+	/**
+	 * @return ML_Webform_Entity[]
+	 */
+	public function getAllJson() {
+		return parent::getAllJson();
+	}
 }
