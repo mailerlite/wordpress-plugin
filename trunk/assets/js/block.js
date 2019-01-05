@@ -1,34 +1,16 @@
-/**
- * BLOCK: Basic with ESNext
- *
- * Registering a basic block with Gutenberg.
- * Simple block, renders and saves the same content without any interactivity.
- *
- * Using inline styles - no external stylesheet needed.  Not recommended!
- * because all of these styles will appear in `post_content`.
- */
-
 import {
     Button,
-    PanelBody,
     Placeholder,
-    RangeControl,
     SelectControl,
-    Spinner,
-    Toolbar,
-    withSpokenMessages,
 } from '@wordpress/components';
 
-import apiFetch from '@wordpress/api-fetch';
-import getQuery from "../../../woo-gutenberg-products-block/assets/js/utils/get-query";
-
 const {
-    InspectorControls // New component!
+    InspectorControls
 } = wp.editor;
 
 
-const {__} = wp.i18n; // Import __() from wp.i18n
-const {registerBlockType} = wp.blocks; // Import registerBlockType() from wp.blocks
+const {__} = wp.i18n;
+const {registerBlockType} = wp.blocks;
 
 registerBlockType('mailerlite/form-block', {
     title: 'Mailerlite sign-up form',
@@ -78,7 +60,7 @@ registerBlockType('mailerlite/form-block', {
 
     save: props => {
         return (
-            <p className={props.className}>Hello World! — from the frontend (02 Basic Block ESNext).</p>
+            <p className={props.className}>Done</p>
         );
     },
 });
