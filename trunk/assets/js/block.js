@@ -1,16 +1,106 @@
 import {
     Button,
     Placeholder,
-    SelectControl,
+    SelectControl, Spinner, Toolbar, withSpokenMessages,
 } from '@wordpress/components';
 
 const {
     InspectorControls
 } = wp.editor;
 
+import {Component, Fragment, RawHTML} from '@wordpress/element';
+import {BlockAlignmentToolbar, BlockControls} from "@wordpress/editor";
 
 const {__} = wp.i18n;
 const {registerBlockType} = wp.blocks;
+const validAlignments = [ 'center', 'wide', 'full' ];
+
+/**
+ * Component to handle edit mode of "Products by Category".
+ */
+export default class MailerLiteFormBlock extends Component {
+    constructor() {
+        super(...arguments);
+        this.state = {
+            forms: [],
+            loaded: false,
+            selected_form: null
+        };
+    }
+
+    componentDidMount() {
+        wp.ajax.post('mailerlite_gutenberg_forms').then(forms => {
+            this.setState({forms: forms, selected_form: forms[0].value, loaded: true});
+        });
+    }
+
+    renderPreview() {
+        const {form_id, editMode} = this.props.attributes;
+
+        return <Fragment>
+            preview {form_id}
+        </Fragment>;
+    }
+
+    renderEdit() {
+        const {forms, loaded, selected_form} = this.state;
+        const {setAttributes} = this.props;
+
+        return <Placeholder label={__('Mailerlite sign up form', 'mailerlite')}>
+            {!loaded ?
+                <Spinner/>
+                :
+                <Fragment>
+                    <SelectControl
+                        options={forms}
+                        onChange={(value) => {
+                            this.setState({selected_form: value});
+                        }}
+                    />
+                    <Button isPrimary style={{marginLeft: 12}} onClick={() => setAttributes({
+                        form_id: selected_form,
+                        editMode: false
+                    })}>
+                        Select
+                    </Button>
+                </Fragment>
+            }
+        </Placeholder>;
+    }
+
+    render() {
+        const {setAttributes} = this.props;
+        const {editMode} = this.props.attributes;
+
+        return ([
+            <Fragment>
+                <BlockControls>
+                    <BlockAlignmentToolbar
+                        controls={ validAlignments }
+                        value={ 'center' }
+                        onChange={ ( nextAlign ) => setAttributes( { align: nextAlign } ) }
+                    />
+                    <Toolbar
+                        controls={ [
+                            {
+                                icon: 'edit',
+                                title: __( 'Edit' ),
+                                onClick: () => setAttributes( { editMode: ! editMode } ),
+                                isActive: editMode,
+                            },
+                        ] }
+                    />
+                </BlockControls>
+
+                {editMode ? this.renderEdit() : this.renderPreview()}
+            </Fragment>
+        ]);
+    }
+}
+
+const WrappedMailerLiteFormBlock = withSpokenMessages(
+    MailerLiteFormBlock
+);
 
 registerBlockType('mailerlite/form-block', {
     title: 'Mailerlite sign-up form',
@@ -25,42 +115,23 @@ registerBlockType('mailerlite/form-block', {
     </svg>),
     category: 'widgets',
 
-    edit: props => {
-        wp.ajax.post('mailerlite_gutenberg_forms')
-            .then(forms => {
-                console.log(forms);
-            });
+    attributes: {
+        form_id: {
+            type: 'integer',
+            default: 0,
+        },
+        editMode: {
+            type: 'boolean',
+            default: true,
+        },
+    },
 
-        return ([
-            <InspectorControls>
-                InspectorControls
-            </InspectorControls>,
-            <div>
-                <Placeholder
-                    label={__('Mailerlite sign up form', 'mailerlite')}
-                >
-                    <SelectControl
-                        value={''}
-                        options={[
-                            {
-                                label: __(
-                                    'Newness - newest first',
-                                    'woo-gutenberg-products-block'
-                                ),
-                                value: 'date',
-                            },
-                        ]}
-                    />
-                    <Button isPrimary={true} style={{marginLeft: 12}}>
-                        Select
-                    </Button>
-                </Placeholder>
-            </div>]);
+    edit: props => {
+        return <WrappedMailerLiteFormBlock {...props} />;
     },
 
     save: props => {
-        return (
-            <p className={props.className}>Done</p>
-        );
+        return <div>hi</div>;
     },
 });
+
