@@ -4,20 +4,13 @@ import {
     SelectControl, Spinner, Toolbar, withSpokenMessages,
 } from '@wordpress/components';
 
-const {
-    InspectorControls
-} = wp.editor;
+import {Component, Fragment} from '@wordpress/element';
 
-import {Component, Fragment, RawHTML} from '@wordpress/element';
-import {BlockAlignmentToolbar, BlockControls} from "@wordpress/editor";
-
+const {BlockControls} = wp.editor;
 const {__} = wp.i18n;
 const {registerBlockType} = wp.blocks;
-const validAlignments = [ 'center', 'wide', 'full' ];
 
-/**
- * Component to handle edit mode of "Products by Category".
- */
+
 export default class MailerLiteFormBlock extends Component {
     constructor() {
         super(...arguments);
@@ -69,32 +62,28 @@ export default class MailerLiteFormBlock extends Component {
     }
 
     render() {
-        const {setAttributes} = this.props;
         const {editMode} = this.props.attributes;
+        const {setAttributes} = this.props;
 
-        return ([
+        return (
             <Fragment>
                 <BlockControls>
-                    <BlockAlignmentToolbar
-                        controls={ validAlignments }
-                        value={ 'center' }
-                        onChange={ ( nextAlign ) => setAttributes( { align: nextAlign } ) }
-                    />
                     <Toolbar
-                        controls={ [
+                        controls={[
                             {
                                 icon: 'edit',
-                                title: __( 'Edit' ),
-                                onClick: () => setAttributes( { editMode: ! editMode } ),
-                                isActive: editMode,
+                                title: __('Edit'),
+                                onClick: () => setAttributes({editMode: !editMode}),
+                                isActive: true,
                             },
-                        ] }
+                        ]}
                     />
                 </BlockControls>
-
                 {editMode ? this.renderEdit() : this.renderPreview()}
             </Fragment>
-        ]);
+        );
+
+        return
     }
 }
 
