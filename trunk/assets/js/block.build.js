@@ -60664,14 +60664,12 @@ var MailerLiteFormBlock = function (_Component) {
                             onClick: function onClick() {
                                 return setAttributes({ editMode: !editMode });
                             },
-                            isActive: true
+                            isActive: editMode
                         }]
                     })
                 ),
                 editMode ? this.renderEdit() : this.renderPreview()
             );
-
-            return;
         }
     }]);
 

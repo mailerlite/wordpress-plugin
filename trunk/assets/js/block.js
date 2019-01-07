@@ -74,7 +74,7 @@ export default class MailerLiteFormBlock extends Component {
                                 icon: 'edit',
                                 title: __('Edit'),
                                 onClick: () => setAttributes({editMode: !editMode}),
-                                isActive: true,
+                                isActive: editMode,
                             },
                         ]}
                     />
@@ -82,8 +82,6 @@ export default class MailerLiteFormBlock extends Component {
                 {editMode ? this.renderEdit() : this.renderPreview()}
             </Fragment>
         );
-
-        return
     }
 }
 
