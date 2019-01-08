@@ -68,9 +68,9 @@
                             </div>
                             <div class="mailerlite-col">
 
-                                <h3>Create first signup form</h3>
+                                <h3><?php _e('Create your first signup form', 'mailerlite');?></h3>
 
-                                <p>Create good-looking signup form or add form created using MailerLite.</p>
+                                <p><?php _e('Create a custom signup form or add a form created using MailerLite.','mailerlite');?></p>
 
                                 <p><a href="<?php echo admin_url('admin.php?page=mailerlite_main&view=create'); ?>"
                                       class="button button-hero button-primary"><?php _e('Add signup form', 'mailerlite'); ?></a></p>

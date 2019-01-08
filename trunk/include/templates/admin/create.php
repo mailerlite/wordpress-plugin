@@ -27,8 +27,7 @@
                                             <img class="mailerlite-icon" src="<?php echo MAILERLITE_PLUGIN_URL ?>/assets/image/custom_form.png">
                                         </p>
                                         <p class="description">
-                                            <!--<?php echo __('Create a custom signup form using MailerLite API.', 'mailerlite'); ?>-->
-                                            Create a custom form with different fields and interest groups directly in WordPress.
+                                          <?php _e('Create a custom form with different fields and interest groups directly in WordPress.', 'mailerlite'); ?>
                                         </p>
                                     </label>
 
@@ -54,13 +53,12 @@
                                     <label for="form_type_webform" class="selectit">
                                         <input id="form_type_webform" type="radio" name="form_type" onclick="jQuery('#expl').removeClass('hidden')"
                                                value="2"<?php echo count($embed_button_webforms) == 0 ? ' disabled="disabled"' : ''; ?>>
-                                        <?php echo __('Webforms created using MailerLite', 'mailerlite'); ?>
+                                        <?php echo __('Forms created in MailerLite', 'mailerlite'); ?>
                                         <p>
                                             <img class="mailerlite-icon" src="<?php echo MAILERLITE_PLUGIN_URL ?>/assets/image/mailerlite_form.png">
                                         </p>
                                         <p class="description">
-                                            <!--<?php echo __('Add signup form directly from the MailerLite account.', 'mailerlite'); ?>-->
-                                            Add signup forms from your MailerLite account.
+                                            <?php _e('Add signup forms from your MailerLite account.', 'mailerlite'); ?>
                                         </p>
                                     </label>
 

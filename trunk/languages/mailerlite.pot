@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Official MailerLite Sign Up Forms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 12:52+0000\n"
+"POT-Creation-Date: 2019-01-08 14:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,229 +15,16 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.2.0; wp-4.9.9"
 
-#: include/templates/admin/main.php:23
-msgid "Add New"
+#: include/mailerlite-form.php:95
+msgid "Subscriber successfully saved"
 msgstr ""
 
-#: include/templates/common/tiny_mce.php:25
-msgid "Add Shortcode"
-msgstr ""
-
-#: include/templates/admin/main.php:76
-msgid "Add signup form"
-msgstr ""
-
-#: include/templates/admin/create.php:59
-msgid "Add signup form directly from the MailerLite account."
-msgstr ""
-
-#: include/templates/admin/main.php:53
-msgid "Are you sure you want to delete this form?"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:106
-msgid "Are you sure you want to disable double opt-in?"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:201
-#: include/templates/admin/create.php:80
-#: include/templates/admin/edit_embedded.php:57
-msgid "Back"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:8
-#: include/templates/admin/edit_embedded.php:8
-msgid "Back to forms list"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:83
-msgid "Button title"
-msgstr ""
-
-#: include/templates/admin/settings.php:34
-#: include/templates/admin/api_key.php:28
-msgid "Check it here!"
-msgstr ""
-
-#: include/templates/admin/create.php:30
-msgid "Create a custom signup form using MailerLite API."
-msgstr ""
-
-#: include/templates/admin/create.php:77
-msgid "Create form"
-msgstr ""
-
-#: include/templates/admin/create.php:5
-msgid "Create new signup form"
-msgstr ""
-
-#: include/templates/admin/main.php:57
-msgid "Custom form"
-msgstr ""
-
-#: include/templates/admin/create.php:25
-msgid "Custom signup form"
-msgstr ""
-
-#: include/templates/admin/main.php:36
-msgid "Date"
-msgstr ""
-
-#: include/templates/admin/main.php:54
-msgid "Delete"
-msgstr ""
-
-#: include/templates/admin/settings.php:50
-msgid "Disable"
-msgstr ""
-
-#: include/templates/admin/settings.php:46 include/templates/admin/main.php:9
-msgid "disabled"
-msgstr ""
-
-#: include/templates/admin/settings.php:70
-#: include/templates/admin/api_key.php:39
-msgid "Don't have an account?"
-msgstr ""
-
-#: include/templates/admin/settings.php:31
-#: include/templates/admin/api_key.php:26
-msgid "Don't know where to find it?"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:98
-msgid "Double opt-in"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:109
-msgid "Double opt-in will send a confirmation email"
-msgstr ""
-
-#: include/templates/admin/main.php:51
-msgid "Edit"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:5
-msgid "Edit custom signup form"
-msgstr ""
-
-#: include/templates/admin/edit_embedded.php:5
-msgid "Edit webform"
-msgstr ""
-
-#: include/mailerlite-admin.php:264 include/mailerlite-admin.php:520
-msgid "Email"
-msgstr ""
-
-#: include/templates/admin/main.php:57
-msgid "Embedded form"
-msgstr ""
-
-#: include/mailerlite-admin.php:343
-msgid "Embedded webform"
-msgstr ""
-
-#: include/templates/admin/settings.php:50
-msgid "Enable"
-msgstr ""
-
-#: include/templates/admin/settings.php:46 include/templates/admin/main.php:9
-msgid "enabled"
-msgstr ""
-
-#: include/templates/admin/settings.php:15
-#: include/templates/admin/api_key.php:17
-msgid "Enter an API key"
-msgstr ""
-
-#: include/mailerlite-admin.php:154 include/mailerlite-admin.php:323
-msgid "Error happened"
-msgstr ""
-
-#: include/templates/admin/create.php:72
-#: include/templates/admin/edit_embedded.php:46
-msgid "Explanation about forms"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:139
-msgid "Fields"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:47
-msgid "Form description"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:29
-msgid "Form details"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:30
-msgid "Form fields and lists"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:17
-msgid "Form name"
-msgstr ""
-
-#: include/mailerlite-form.php:99
+#: include/mailerlite-form.php:102
 msgid "Form not found"
 msgstr ""
 
-#: include/templates/admin/edit_custom.php:7
-#: include/templates/admin/edit_embedded.php:7
-msgid "Form saved."
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:40
-#: include/templates/admin/edit_embedded.php:17
-msgid "Form title"
-msgstr ""
-
-#: include/templates/admin/create.php:6
-msgid "Form type"
-msgstr ""
-
-#: include/mailerlite-admin.php:87
-msgid "Forms"
-msgstr ""
-
-#: include/templates/admin/main.php:10
-msgid "Go to settings if you want to change it"
-msgstr ""
-
-#: include/templates/admin/sidebar.php:7
-msgid ""
-"Have any questions? Stuck on something or found bug? Feel free to contact us!"
-msgstr ""
-
-#: include/templates/admin/api_key.php:12
-msgid ""
-"Hi there! You will be able to create awesome signup forms, but first we need "
-"your MailerLite API key!"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://www.mailerlite.com"
-msgstr ""
-
-#: include/templates/admin/main.php:33
-msgid "ID"
-msgstr ""
-
-#: include/mailerlite-admin.php:228 include/mailerlite-admin.php:512
-msgid "Just simple MailerLite form!"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:166
-msgid "Lists"
-msgstr ""
-
-#. Author of the plugin
-msgid "MailerGroup"
-msgstr ""
-
-#: include/templates/admin/main.php:9
-msgid "MailerLite popup script is"
+#: include/mailerlite-form.php:108
+msgid "Wrong data provided"
 msgstr ""
 
 #. Base ID
@@ -249,24 +36,398 @@ msgstr ""
 msgid "MailerLite sign up form Widget"
 msgstr ""
 
+#: include/mailerlite-widget.php:84
+msgid "Select form:"
+msgstr ""
+
+#: include/mailerlite-admin.php:92
+msgid "Forms"
+msgstr ""
+
+#: include/mailerlite-admin.php:93 include/templates/admin/main.php:21
+msgid "Signup forms"
+msgstr ""
+
+#: include/mailerlite-admin.php:97 include/mailerlite-admin.php:98
+msgid "Settings"
+msgstr ""
+
+#: include/mailerlite-admin.php:155 include/mailerlite-admin.php:268
+msgid "Error happened"
+msgstr ""
+
+#: include/mailerlite-admin.php:159 include/mailerlite-admin.php:190
+#: include/mailerlite-admin.php:272 include/mailerlite-admin.php:382
+msgid "Send this error to info@mailerlite.com or our chat"
+msgstr ""
+
+#: include/mailerlite-admin.php:198
+msgid "Subscribe for newsletter!"
+msgstr ""
+
+#: include/mailerlite-admin.php:199 include/mailerlite-admin.php:473
+msgid "Newsletter signup"
+msgstr ""
+
+#: include/mailerlite-admin.php:200 include/mailerlite-admin.php:474
+msgid "Just simple MailerLite form!"
+msgstr ""
+
+#: include/mailerlite-admin.php:201 include/mailerlite-admin.php:477
+msgid "Thank you for sign up!"
+msgstr ""
+
+#: include/mailerlite-admin.php:202 include/mailerlite-admin.php:480
+msgid "Subscribe"
+msgstr ""
+
+#: include/mailerlite-admin.php:216 include/mailerlite-admin.php:482
+msgid "Email"
+msgstr ""
+
+#: include/mailerlite-admin.php:282
+msgid "Embedded webform"
+msgstr ""
+
+#: include/mailerlite-admin.php:361 include/mailerlite-admin.php:402
+#: include/mailerlite-admin.php:415
+msgid "You not allowed to do that"
+msgstr ""
+
+#: include/mailerlite-admin.php:380
+msgid "Wrong MailerLite API key"
+msgstr ""
+
+#: include/mailerlite-admin.php:471
+msgid "New custom signup form"
+msgstr ""
+
+#: include/mailerlite-admin.php:498
+msgid "New embedded signup form"
+msgstr ""
+
+#: include/templates/forms/custom_form.php:20
+msgid "Please wait..."
+msgstr ""
+
+#: include/templates/forms/custom_form.php:32
+msgid "Thank you for signing up!"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:5
+msgid "Edit custom signup form"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:7
+#: include/templates/admin/edit_embedded.php:7
+msgid "Form saved."
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:8
+#: include/templates/admin/edit_embedded.php:8
+msgid "Back to forms list"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:17
+#: include/templates/admin/create_custom.php:16
+msgid "Form name"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:19
+#: include/templates/admin/edit_embedded.php:19
+msgid "Use the shortcode"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:21
+#: include/templates/admin/edit_embedded.php:21
+msgid "to display this form inside a post, page or text widget."
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:29
+msgid "Form details"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:30
+msgid "Form fields and lists"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:40
+#: include/templates/admin/edit_embedded.php:17
+msgid "Form title"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:47
+msgid "Form description"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:65
+msgid "Success message"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:83
+msgid "Button title"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:90
+msgid "Please wait message"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:98
+msgid "Validation messages"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:122
+msgid "Fields"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:123
+msgid "Select fields which will be displayed in the form."
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:152
+#: include/templates/admin/create_custom.php:18
+msgid "Lists"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:153
+#: include/templates/admin/create_custom.php:19
+msgid ""
+"Select the list(s) to which people who submit this form should be subscribed."
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:185
+#: include/templates/admin/create_custom.php:49
+msgid "Please select at least one Interest Group (tag) from the list."
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:191
+#: include/templates/admin/edit_embedded.php:56
+msgid "Save form"
+msgstr ""
+
+#: include/templates/admin/edit_custom.php:194
+#: include/templates/admin/create_custom.php:58
+#: include/templates/admin/create.php:81
+#: include/templates/admin/edit_embedded.php:59
+msgid "Back"
+msgstr ""
+
+#: include/templates/admin/settings.php:5 include/templates/admin/api_key.php:5
+msgid "Plugin settings"
+msgstr ""
+
+#: include/templates/admin/settings.php:15
+#: include/templates/admin/api_key.php:17
+msgid "Enter an API key"
+msgstr ""
+
+#: include/templates/admin/settings.php:25
+#: include/templates/admin/api_key.php:22
+msgid "Save this key"
+msgstr ""
+
+#: include/templates/admin/settings.php:31
+#: include/templates/admin/api_key.php:26
+msgid "Don't know where to find it?"
+msgstr ""
+
+#: include/templates/admin/settings.php:34
+#: include/templates/admin/api_key.php:28
+msgid "Check it here!"
+msgstr ""
+
+#: include/templates/admin/settings.php:40
+msgid "Popup forms script"
+msgstr ""
+
+#: include/templates/admin/settings.php:46
+#: include/templates/admin/settings.php:74 include/templates/admin/main.php:9
+msgid "enabled"
+msgstr ""
+
+#: include/templates/admin/settings.php:46
+#: include/templates/admin/settings.php:74 include/templates/admin/main.php:9
+msgid "disabled"
+msgstr ""
+
+#: include/templates/admin/settings.php:50
+#: include/templates/admin/settings.php:78
+msgid "Disable"
+msgstr ""
+
+#: include/templates/admin/settings.php:50
+#: include/templates/admin/settings.php:78
+msgid "Enable"
+msgstr ""
+
+#: include/templates/admin/settings.php:58 include/templates/admin/main.php:13
+msgid ""
+"Your popup forms will be displayed automatically while the popup script is "
+"enabled"
+msgstr ""
+
+#: include/templates/admin/settings.php:60 include/templates/admin/main.php:15
+msgid "Your popup forms wont be displayed while the popup script is disabled"
+msgstr ""
+
+#: include/templates/admin/settings.php:68
+msgid "Double opt-in"
+msgstr ""
+
+#: include/templates/admin/settings.php:78
+msgid "Are you sure you want to disable double opt-in?"
+msgstr ""
+
+#: include/templates/admin/settings.php:84
+msgid "Double opt-in will send a confirmation email"
+msgstr ""
+
+#: include/templates/admin/settings.php:86
+msgid "Double opt-in will not send a confirmation email"
+msgstr ""
+
+#: include/templates/admin/settings.php:96
+#: include/templates/admin/api_key.php:39
+msgid "Don't have an account?"
+msgstr ""
+
+#: include/templates/admin/settings.php:99
+#: include/templates/admin/api_key.php:42
+msgid "Register!"
+msgstr ""
+
+#: include/templates/admin/main.php:9
+msgid "MailerLite popup script is"
+msgstr ""
+
+#: include/templates/admin/main.php:10
+msgid "Go to settings if you want to change it"
+msgstr ""
+
+#: include/templates/admin/main.php:23
+msgid "Add New"
+msgstr ""
+
+#: include/templates/admin/main.php:33
+msgid "ID"
+msgstr ""
+
 #: include/templates/admin/main.php:34
 msgid "Name"
+msgstr ""
+
+#: include/templates/admin/main.php:35
+msgid "Type"
+msgstr ""
+
+#: include/templates/admin/main.php:36
+msgid "Date"
+msgstr ""
+
+#: include/templates/admin/main.php:51
+msgid "Edit"
+msgstr ""
+
+#: include/templates/admin/main.php:53
+msgid "Are you sure you want to delete this form?"
+msgstr ""
+
+#: include/templates/admin/main.php:54
+msgid "Delete"
+msgstr ""
+
+#: include/templates/admin/main.php:57
+msgid "Custom form"
+msgstr ""
+
+#: include/templates/admin/main.php:57
+msgid "Embedded form"
+msgstr ""
+
+#: include/templates/admin/main.php:71
+msgid "Create your first signup form"
+msgstr ""
+
+#: include/templates/admin/main.php:73
+msgid "Create a custom signup form or add a form created using MailerLite."
+msgstr ""
+
+#: include/templates/admin/main.php:76
+msgid "Add signup form"
+msgstr ""
+
+#: include/templates/admin/create_custom.php:5
+#: include/templates/admin/create.php:5
+msgid "Create new signup form"
+msgstr ""
+
+#: include/templates/admin/create_custom.php:41
+msgid "Please create an Interest Group first."
+msgstr ""
+
+#: include/templates/admin/create_custom.php:55
+#: include/templates/admin/create.php:78
+msgid "Create form"
+msgstr ""
+
+#: include/templates/admin/create.php:6
+msgid "Form type"
+msgstr ""
+
+#: include/templates/admin/create.php:25
+msgid "Custom signup form"
+msgstr ""
+
+#: include/templates/admin/create.php:30
+msgid ""
+"Create a custom form with different fields and interest groups directly in "
+"WordPress."
+msgstr ""
+
+#: include/templates/admin/create.php:56
+msgid "Forms created in MailerLite"
+msgstr ""
+
+#: include/templates/admin/create.php:61
+msgid "Add signup forms from your MailerLite account."
+msgstr ""
+
+#: include/templates/admin/create.php:73
+#: include/templates/admin/edit_embedded.php:48
+msgid "Explanation about forms"
+msgstr ""
+
+#: include/templates/admin/api_key.php:12
+msgid ""
+"Hi there! You will be able to create awesome signup forms, but first we need "
+"your MailerLite API key!"
+msgstr ""
+
+#: include/templates/admin/edit_embedded.php:5
+msgid "Edit webform"
+msgstr ""
+
+#: include/templates/admin/edit_embedded.php:27
+msgid "Webform"
 msgstr ""
 
 #: include/templates/admin/sidebar.php:4
 msgid "Need help?"
 msgstr ""
 
-#: include/mailerlite-admin.php:509
-msgid "New custom signup form"
+#: include/templates/admin/sidebar.php:7
+msgid ""
+"Have any questions? Stuck on something or found bug? Feel free to contact us!"
 msgstr ""
 
-#: include/mailerlite-admin.php:523
-msgid "New embedded signup form"
+#: include/templates/common/tiny_mce.php:14
+msgid ""
+"Select form from list below, and hit \"Add Shortcode\" to add the shortcode "
+"to your post!"
 msgstr ""
 
-#: include/mailerlite-admin.php:223 include/mailerlite-admin.php:511
-msgid "Newsletter signup"
+#: include/templates/common/tiny_mce.php:25
+msgid "Add Shortcode"
 msgstr ""
 
 #. Name of the plugin
@@ -279,138 +440,10 @@ msgid ""
 "MailerLite webforms and create custom ones just with few clicks."
 msgstr ""
 
-#: include/templates/admin/edit_custom.php:90
-msgid "Please wait message"
+#. Author of the plugin
+msgid "MailerGroup"
 msgstr ""
 
-#: include/templates/forms/custom_form.php:20
-msgid "Please wait..."
-msgstr ""
-
-#: include/templates/admin/settings.php:5 include/templates/admin/api_key.php:5
-msgid "Plugin settings"
-msgstr ""
-
-#: include/templates/admin/settings.php:40
-msgid "Popup forms script"
-msgstr ""
-
-#: include/templates/admin/settings.php:73
-#: include/templates/admin/api_key.php:42
-msgid "Register!"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:198
-#: include/templates/admin/edit_embedded.php:54
-msgid "Save form"
-msgstr ""
-
-#: include/templates/admin/settings.php:25
-#: include/templates/admin/api_key.php:22
-msgid "Save this key"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:140
-msgid "Select fields which will be displayed in the form."
-msgstr ""
-
-#: include/templates/common/tiny_mce.php:14
-msgid ""
-"Select form from list below, and hit \"Add Shortcode\" to add the shortcode "
-"to your post!"
-msgstr ""
-
-#: include/mailerlite-widget.php:84
-msgid "Select form:"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:167
-msgid ""
-"Select the list(s) to which people who submit this form should be subscribed."
-msgstr ""
-
-#: include/mailerlite-admin.php:158 include/mailerlite-admin.php:193
-#: include/mailerlite-admin.php:205 include/mailerlite-admin.php:327
-#: include/mailerlite-admin.php:442
-msgid "Send this error to info@mailerlite.com or our chat"
-msgstr ""
-
-#: include/mailerlite-admin.php:92 include/mailerlite-admin.php:93
-msgid "Settings"
-msgstr ""
-
-#: include/mailerlite-admin.php:88 include/templates/admin/main.php:21
-msgid "Signup forms"
-msgstr ""
-
-#: include/mailerlite-admin.php:239 include/mailerlite-admin.php:518
-msgid "Subscribe"
-msgstr ""
-
-#: include/mailerlite-admin.php:217
-msgid "Subscribe for newsletter!"
-msgstr ""
-
-#: include/mailerlite-form.php:92
-msgid "Subscriber successfully saved"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:65
-msgid "Success message"
-msgstr ""
-
-#: include/mailerlite-admin.php:233 include/mailerlite-admin.php:515
-msgid "Thank you for sign up!"
-msgstr ""
-
-#: include/templates/forms/custom_form.php:32
-msgid "Thank you for signing up!"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:21
-#: include/templates/admin/edit_embedded.php:21
-msgid "to display this form inside a post, page or text widget."
-msgstr ""
-
-#: include/templates/admin/main.php:35
-msgid "Type"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:19
-#: include/templates/admin/edit_embedded.php:19
-msgid "Use the shortcode"
-msgstr ""
-
-#: include/templates/admin/edit_custom.php:115
-msgid "Validation messages"
-msgstr ""
-
-#: include/templates/admin/edit_embedded.php:27
-msgid "Webform"
-msgstr ""
-
-#: include/templates/admin/create.php:54
-msgid "Webforms created using MailerLite"
-msgstr ""
-
-#: include/mailerlite-form.php:105
-msgid "Wrong data provided"
-msgstr ""
-
-#: include/mailerlite-admin.php:440
-msgid "Wrong MailerLite API key"
-msgstr ""
-
-#: include/mailerlite-admin.php:430 include/mailerlite-admin.php:465
-msgid "You not allowed to do that"
-msgstr ""
-
-#: include/templates/admin/settings.php:58 include/templates/admin/main.php:13
-msgid ""
-"Your popup forms will be displayed automatically while the popup script is "
-"enabled"
-msgstr ""
-
-#: include/templates/admin/settings.php:60 include/templates/admin/main.php:15
-msgid "Your popup forms wont be displayed while the popup script is disabled"
+#. Author URI of the plugin
+msgid "https://www.mailerlite.com"
 msgstr ""
