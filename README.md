@@ -1,21 +1,24 @@
 # Official MailerLite WordPress plugin
 
-The Official MailerLite Sign Up Form plugin makes it easy to grow your newsletter subscriber list. Use the plugin to add newsletter sign up form to your Wordpress blog or website and automatically integrate it with your MailerLite account.
+The Official MailerLite Sign Up Form plugin makes it easy to grow your newsletter subscriber list from your WordPress blog or website. The plugin automatically integrates your Wordpress form with your MailerLite email marketing account.
 
 If you don't have MailerLite account yet, [you can signup for a FREE trial here](https://www.mailerlite.com/).
 
-Once you activate the plugin, you'll be able to select and add any of webforms you have in your MailerLite account or create a new webform. Place the webform in the sidebar using widget or put it enywhere in your post with a shortcode.
+Once you activate the plugin, you’ll be able to select and add any of the pre-built webforms from your MailerLite account or create a new form from scratch. You can place the form in the sidebar using a widget or use a shortcode to put it wherever you want.
 
-Setup is fast and easy! You just need to enter your MailerLite account API code and you're all set.
+Setup is fast and easy! You just need to enter your MailerLite account API code and you’re all set.
 
-Plugin features:
+Plugin features include:
 
-* Add webforms from your MailerLite account to your Wordpress blog or website
-* Create new webforms
+* Easily-to-add webforms from MailerLite to your WordPress blog or website
+* Option to create new webforms
+* Wordpress 5 new editor support
 * Save subscribers automatically to your MailerLite account
 * Place webforms using widget or shortcode
 * Double opt-in signup
-* Setup welcome emails in your MailerLite account
+* Updated plugin layout
+* Automate welcome emails from your MailerLite account
+
 
 # Installation
 
