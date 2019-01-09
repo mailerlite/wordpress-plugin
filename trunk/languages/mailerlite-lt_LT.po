@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Official MailerLite sign up forms v1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-08 13:41+0000\n"
-"PO-Revision-Date: 2019-01-08 13:42+0000\n"
+"POT-Creation-Date: 2019-01-08 14:06+0000\n"
+"PO-Revision-Date: 2019-01-09 08:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -253,7 +253,7 @@ msgstr "Išsaugoti formą"
 # @ mailerlite
 #: include/templates/admin/edit_custom.php:194
 #: include/templates/admin/create_custom.php:58
-#: include/templates/admin/create.php:83
+#: include/templates/admin/create.php:81
 #: include/templates/admin/edit_embedded.php:59
 msgid "Back"
 msgstr "Atgal"
@@ -420,6 +420,14 @@ msgstr "Pritaikyta forma"
 msgid "Embedded form"
 msgstr "Integruojama forma"
 
+#: include/templates/admin/main.php:71
+msgid "Create your first signup form"
+msgstr ""
+
+#: include/templates/admin/main.php:73
+msgid "Create a custom signup form or add a form created using MailerLite."
+msgstr ""
+
 # @ mailerlite
 #: include/templates/admin/main.php:76
 msgid "Add signup form"
@@ -436,7 +444,7 @@ msgstr ""
 
 # @ mailerlite
 #: include/templates/admin/create_custom.php:55
-#: include/templates/admin/create.php:80
+#: include/templates/admin/create.php:78
 msgid "Create form"
 msgstr "Sukurti formą"
 
@@ -450,23 +458,22 @@ msgstr "Formos tipas"
 msgid "Custom signup form"
 msgstr "Pritaikyta prenumeratos forma"
 
-# @ mailerlite
 #: include/templates/admin/create.php:30
-msgid "Create a custom signup form using MailerLite API."
-msgstr "Create a custom signup form using MailerLite API."
+msgid ""
+"Create a custom form with different fields and interest groups directly in "
+"WordPress."
+msgstr ""
+
+#: include/templates/admin/create.php:56
+msgid "Forms created in MailerLite"
+msgstr ""
+
+#: include/templates/admin/create.php:61
+msgid "Add signup forms from your MailerLite account."
+msgstr ""
 
 # @ mailerlite
-#: include/templates/admin/create.php:57
-msgid "Webforms created using MailerLite"
-msgstr "Formos sukurtos naudojantis MailerLite"
-
-# @ mailerlite
-#: include/templates/admin/create.php:62
-msgid "Add signup form directly from the MailerLite account."
-msgstr "Add signup form directly from the MailerLite account."
-
-# @ mailerlite
-#: include/templates/admin/create.php:75
+#: include/templates/admin/create.php:73
 #: include/templates/admin/edit_embedded.php:48
 msgid "Explanation about forms"
 msgstr ""

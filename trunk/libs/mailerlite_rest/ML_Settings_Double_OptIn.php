@@ -44,7 +44,7 @@ class ML_Settings_Double_OptIn extends ML_Rest {
 		$response = $this->execute( 'GET' );
 		$array    = json_decode( $response, true );
 
-		if ( isset( $array['enabled'] ) ) {
+		if ( isset( $array['enabled'] ) && $array['enabled'] ) {
 			return true;
 		}
 

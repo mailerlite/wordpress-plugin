@@ -6,6 +6,11 @@ require_once dirname( __FILE__ ) . '/base/ML_Rest.php';
  * Class ML_Webforms
  */
 class ML_Webforms extends ML_Rest {
+	/**
+	 * ML_Webforms constructor.
+	 *
+	 * @param $api_key
+	 */
 	function __construct( $api_key ) {
 		$this->endpoint = 'webforms';
 

@@ -4,7 +4,8 @@ Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
 Tested up to: 5.0.2
-Stable tag: 1.2.8
+Requires PHP: 5.4.0
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -126,6 +127,12 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 
 == Changelog ==
+
+= 1.3 =
+WordPress 5 block
+Updated the MailerLite API to V2
+Added Double opt-in feature
+Updated admin design
 
 = 1.2.8 =
 Check WP 5.0 support

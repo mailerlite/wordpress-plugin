@@ -4,20 +4,26 @@
     <div class="mailerlite-form">
         <form action="" method="post">
             <div class="mailerlite-form-title"><h3><?php echo $form_data['title']; ?></h3></div>
-            <div class="mailerlite-form-description"><?php echo stripslashes($form_data['description']); ?></div>
+            <div class="mailerlite-form-description"><?php echo stripslashes( $form_data['description'] ); ?></div>
             <div class="mailerlite-form-inputs">
-                <?php foreach ($form_data['fields'] as $field => $title): ?>
-                    <?php if ($field == 'email') {
-                        $input_type = 'email';
-                    } else {
-                        $input_type = 'text';
-                    } ?>
+				<?php foreach ( $form_data['fields'] as $field => $title ): ?>
+					<?php if ( $field == 'email' ) {
+						$input_type = 'email';
+					} else {
+						$input_type = 'text';
+					} ?>
                     <div class="mailerlite-form-field">
                         <label for="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"><?php echo $title; ?></label>
-                        <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>" type="<?php echo $input_type; ?>" required="required" name="form_fields[<?php echo $field; ?>]"/>
+                        <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"
+                               type="<?php echo $input_type; ?>" required="required"
+                               name="form_fields[<?php echo $field; ?>]"/>
                     </div>
-                <?php endforeach; ?>
-                <div class="mailerlite-form-loader"><?php if (!empty($form_data['please_wait'])) echo $form_data['please_wait']; else _e('Please wait...', 'mailerlite'); ?></div>
+				<?php endforeach; ?>
+                <div class="mailerlite-form-loader"><?php if ( ! empty( $form_data['please_wait'] ) ) {
+						echo $form_data['please_wait'];
+					} else {
+						_e( 'Please wait...', 'mailerlite' );
+					} ?></div>
                 <div class="mailerlite-subscribe-button-container">
                     <input class="mailerlite-subscribe-submit" type="submit"
                            value="<?php echo $form_data['button']; ?>"/>
@@ -26,22 +32,23 @@
                 <input type="hidden" name="action" value="mailerlite_subscribe_form"/>
             </div>
             <div class="mailerlite-form-response">
-                <?php if (!empty($form_data['success_message'])) { ?>
+				<?php if ( ! empty( $form_data['success_message'] ) ) { ?>
                     <h4><?php echo $form_data['success_message'] ?></h4>
-                <?php } else { ?>
-                    <h4><?php _e('Thank you for signing up!', 'mailerlite'); ?></h4>
-                <?php } ?>
+				<?php } else { ?>
+                    <h4><?php _e( 'Thank you for signing up!', 'mailerlite' ); ?></h4>
+				<?php } ?>
             </div>
         </form>
     </div>
 </div>
 
-<?php if (!empty($form_data['language'])):?>
-    <script type='text/javascript' src='<?php echo MAILERLITE_PLUGIN_URL?>/assets/js/localization/jquery.validate/messages_<?php echo strtolower($form_data['language'])?>.js'></script>
+<?php if ( ! empty( $form_data['language'] ) ): ?>
+    <script type='text/javascript'
+            src='<?php echo MAILERLITE_PLUGIN_URL ?>/assets/js/localization/jquery.validate/messages_<?php echo strtolower( $form_data['language'] ) ?>.js'></script>
 <?php endif; ?>
 
 <script type="text/javascript">
-    (function() {
+    (function () {
         var jQuery = window.jQueryWP || window.jQuery;
 
         jQuery(document).ready(function () {
@@ -49,22 +56,22 @@
             form_container.submit(function (e) {
                 e.preventDefault();
             }).validate({
-                    submitHandler: function (form) {
+                submitHandler: function (form) {
 
-                        jQuery(this.submitButton).prop('disabled', true);
+                    jQuery(this.submitButton).prop('disabled', true);
 
-                        form_container.find('.mailerlite-subscribe-button-container').fadeOut(function () {
-                            form_container.find('.mailerlite-form-loader').fadeIn()
+                    form_container.find('.mailerlite-subscribe-button-container').fadeOut(function () {
+                        form_container.find('.mailerlite-form-loader').fadeIn()
+                    });
+
+                    var data = jQuery(form).serialize();
+
+                    jQuery.post('<?php echo admin_url( 'admin-ajax.php' ); ?>', data, function (response) {
+                        form_container.find('.mailerlite-form-inputs').fadeOut(function () {
+                            form_container.find('.mailerlite-form-response').fadeIn()
                         });
-
-                        var data = jQuery(form).serialize();
-
-                        jQuery.post('<?php echo admin_url( 'admin-ajax.php' ); ?>', data, function (response) {
-                            form_container.find('.mailerlite-form-inputs').fadeOut(function () {
-                                form_container.find('.mailerlite-form-response').fadeIn()
-                            });
-                        });
-                    }
+                    });
+                }
             });
         });
     })();

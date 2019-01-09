@@ -4,7 +4,7 @@ import {
     SelectControl, Spinner, Toolbar, withSpokenMessages,
 } from '@wordpress/components';
 
-import {Component, Fragment} from '@wordpress/element';
+import {Component, Fragment, RawHTML} from '@wordpress/element';
 
 const {BlockControls} = wp.editor;
 const {__} = wp.i18n;
@@ -17,45 +17,93 @@ export default class MailerLiteFormBlock extends Component {
         this.state = {
             forms: [],
             loaded: false,
-            selected_form: null
+            selected_form: null,
+            preview_html: null,
+            forms_link: null,
         };
     }
 
     componentDidMount() {
-        wp.ajax.post('mailerlite_gutenberg_forms').then(forms => {
-            this.setState({forms: forms, selected_form: forms[0].value, loaded: true});
+        wp.ajax.post('mailerlite_gutenberg_forms').then(response => {
+            if (response.count) {
+                this.setState({
+                    forms: response.forms,
+                    selected_form: response.forms[0].value,
+                    loaded: true,
+                    forms_link: response.forms_link
+                });
+            } else {
+                this.setState({
+                    loaded: true,
+                    forms_link: response.forms_link
+                });
+            }
         });
     }
 
     renderPreview() {
-        const {form_id, editMode} = this.props.attributes;
+        const {form_id} = this.props.attributes;
+        const {preview_html} = this.state;
+        const {setAttributes} = this.props;
 
-        return <Fragment>
-            preview {form_id}
-        </Fragment>;
+        if (preview_html === null) {
+            wp.ajax.post('mailerlite_gutenberg_form_preview', {form_id}).then(response => {
+                this.setState({
+                    preview_html: response.html,
+                });
+
+                // If the form is not found
+                if (response.html === false) {
+                    setAttributes({
+                        editMode: true,
+                        form_id: 0
+                    });
+                }
+            });
+        }
+
+        return <RawHTML>
+            {preview_html}
+        </RawHTML>;
     }
 
     renderEdit() {
-        const {forms, loaded, selected_form} = this.state;
+        const {forms, loaded, selected_form, forms_link} = this.state;
         const {setAttributes} = this.props;
+        const {form_id} = this.props.attributes;
 
         return <Placeholder label={__('Mailerlite sign up form', 'mailerlite')}>
             {!loaded ?
                 <Spinner/>
                 :
                 <Fragment>
-                    <SelectControl
-                        options={forms}
-                        onChange={(value) => {
-                            this.setState({selected_form: value});
-                        }}
-                    />
-                    <Button isPrimary style={{marginLeft: 12}} onClick={() => setAttributes({
-                        form_id: selected_form,
-                        editMode: false
-                    })}>
-                        Select
-                    </Button>
+                    {forms.length !== 0 ?
+                        <Fragment>
+                            <SelectControl
+                                value={form_id}
+                                options={forms}
+                                onChange={(value) => {
+                                    this.setState({selected_form: value, preview_html: null});
+                                }}
+                            />
+                            <Button isPrimary style={{marginLeft: 12}} onClick={() => setAttributes({
+                                form_id: selected_form,
+                                editMode: false
+                            })}>
+                                Select
+                            </Button>
+                        </Fragment>
+                        :
+                        <Fragment>
+                            <p>{__('Create a custom signup form or add a form created using MailerLite.', 'mailerlite')}</p>
+
+                            <p>
+                                <a href={forms_link} className="button button-hero button-primary">
+                                    {__('Add signup form', 'mailerlite')}
+                                </a>
+                            </p>
+                        </Fragment>
+                    }
                 </Fragment>
             }
         </Placeholder>;
@@ -104,8 +152,8 @@ registerBlockType('mailerlite/form-block', {
 
     attributes: {
         form_id: {
-            type: 'integer',
-            default: 0,
+            type: 'string',
+            default: '0'
         },
         editMode: {
             type: 'boolean',
@@ -118,7 +166,7 @@ registerBlockType('mailerlite/form-block', {
     },
 
     save: props => {
-        return <div>hi</div>;
+        return <Fragment>[mailerlite_form form_id={props.attributes.form_id}]</Fragment>;
     },
 });
 
