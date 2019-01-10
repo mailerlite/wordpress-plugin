@@ -57977,6 +57977,22 @@ var BlockControls = wp.editor.BlockControls;
 var __ = wp.i18n.__;
 var registerBlockType = wp.blocks.registerBlockType;
 
+var icon = wp.element.createElement(
+    'svg',
+    { width: '21px', height: '21px', viewBox: '0 0 21 21' },
+    wp.element.createElement(
+        'g',
+        { id: 'Page-1', stroke: 'none', 'stroke-width': '1', fill: 'none', 'fill-rule': 'evenodd' },
+        wp.element.createElement(
+            'g',
+            { id: 'mailerlitelogo', transform: 'translate(0.198319, 0.325455)', fill: '#09C269', 'fill-rule': 'nonzero' },
+            wp.element.createElement('path', {
+                d: 'M17.2807581,0.115646258 L2.78853487,0.115646258 C1.28807741,0.115646258 0.0437956203,1.34864717 0.0437956203,2.8355012 L0.0437956203,11.9016843 L0.0437956203,13.6786562 L0.0437956203,20.1156463 L3.83153579,16.3985111 L17.2990564,16.3985111 C18.7995138,16.3985111 20.0437956,15.1655103 20.0437956,13.6786562 L20.0437956,2.8355012 C20.0254974,1.3305148 18.7995138,0.115646258 17.2807581,0.115646258 Z',
+                id: 'Shape-path' })
+        )
+    )
+);
+
 var MailerLiteFormBlock = function (_Component) {
     _inherits(MailerLiteFormBlock, _Component);
 
@@ -58049,64 +58065,75 @@ var MailerLiteFormBlock = function (_Component) {
             );
         }
     }, {
-        key: 'renderEdit',
-        value: function renderEdit() {
+        key: 'renderEditWithForms',
+        value: function renderEditWithForms() {
             var _this4 = this;
 
             var _state = this.state,
                 forms = _state.forms,
-                loaded = _state.loaded,
-                selected_form = _state.selected_form,
-                forms_link = _state.forms_link;
+                selected_form = _state.selected_form;
             var setAttributes = this.props.setAttributes;
             var form_id = this.props.attributes.form_id;
 
 
             return wp.element.createElement(
-                __WEBPACK_IMPORTED_MODULE_0__wordpress_components__["e" /* Placeholder */],
-                { label: __('Mailerlite sign up form', 'mailerlite') },
-                !loaded ? wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__wordpress_components__["i" /* Spinner */], null) : wp.element.createElement(
-                    __WEBPACK_IMPORTED_MODULE_1__wordpress_element__["c" /* Fragment */],
+                __WEBPACK_IMPORTED_MODULE_1__wordpress_element__["c" /* Fragment */],
+                null,
+                wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__wordpress_components__["h" /* SelectControl */], {
+                    value: form_id,
+                    options: forms,
+                    onChange: function onChange(value) {
+                        _this4.setState({ selected_form: value, preview_html: null });
+                    }
+                }),
+                wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__wordpress_components__["d" /* IconButton */], {
+                    isPrimary: true, style: { marginLeft: 12 }, onClick: function onClick() {
+                        return setAttributes({
+                            form_id: selected_form,
+                            editMode: false
+                        });
+                    },
+                    icon: 'yes'
+                })
+            );
+        }
+    }, {
+        key: 'renderEditWithoutForms',
+        value: function renderEditWithoutForms() {
+            var forms_link = this.state.forms_link;
+
+
+            return wp.element.createElement(
+                __WEBPACK_IMPORTED_MODULE_1__wordpress_element__["c" /* Fragment */],
+                null,
+                wp.element.createElement(
+                    'p',
                     null,
-                    forms.length !== 0 ? wp.element.createElement(
-                        __WEBPACK_IMPORTED_MODULE_1__wordpress_element__["c" /* Fragment */],
-                        null,
-                        wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__wordpress_components__["h" /* SelectControl */], {
-                            value: form_id,
-                            options: forms,
-                            onChange: function onChange(value) {
-                                _this4.setState({ selected_form: value, preview_html: null });
-                            }
-                        }),
-                        wp.element.createElement(
-                            __WEBPACK_IMPORTED_MODULE_0__wordpress_components__["b" /* Button */],
-                            { isPrimary: true, style: { marginLeft: 12 }, onClick: function onClick() {
-                                    return setAttributes({
-                                        form_id: selected_form,
-                                        editMode: false
-                                    });
-                                } },
-                            'Select'
-                        )
-                    ) : wp.element.createElement(
-                        __WEBPACK_IMPORTED_MODULE_1__wordpress_element__["c" /* Fragment */],
-                        null,
-                        wp.element.createElement(
-                            'p',
-                            null,
-                            __('Create a custom signup form or add a form created using MailerLite.', 'mailerlite')
-                        ),
-                        wp.element.createElement(
-                            'p',
-                            null,
-                            wp.element.createElement(
-                                'a',
-                                { href: forms_link, className: 'button button-hero button-primary' },
-                                __('Add signup form', 'mailerlite')
-                            )
-                        )
+                    __('Create a custom signup form or add a form created using MailerLite.', 'mailerlite')
+                ),
+                wp.element.createElement(
+                    'p',
+                    null,
+                    wp.element.createElement(
+                        'a',
+                        { href: forms_link, className: 'button button-hero button-primary' },
+                        __('Add signup form', 'mailerlite')
                     )
                 )
+            );
+        }
+    }, {
+        key: 'renderEdit',
+        value: function renderEdit() {
+            var _state2 = this.state,
+                forms = _state2.forms,
+                loaded = _state2.loaded;
+
+
+            return wp.element.createElement(
+                __WEBPACK_IMPORTED_MODULE_0__wordpress_components__["e" /* Placeholder */],
+                { label: __('Mailerlite sign up form', 'mailerlite') },
+                !loaded ? wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__wordpress_components__["i" /* Spinner */], null) : forms.length !== 0 ? this.renderEditWithForms() : this.renderEditWithoutForms()
             );
         }
     }, {
@@ -58148,23 +58175,8 @@ var WrappedMailerLiteFormBlock = Object(__WEBPACK_IMPORTED_MODULE_0__wordpress_c
 
 registerBlockType('mailerlite/form-block', {
     title: 'Mailerlite sign-up form',
-    icon: wp.element.createElement(
-        'svg',
-        { width: '21px', height: '21px', viewBox: '0 0 21 21' },
-        wp.element.createElement(
-            'g',
-            { id: 'Page-1', stroke: 'none', 'stroke-width': '1', fill: 'none', 'fill-rule': 'evenodd' },
-            wp.element.createElement(
-                'g',
-                { id: 'mailerlitelogo', transform: 'translate(0.198319, 0.325455)', fill: '#09C269', 'fill-rule': 'nonzero' },
-                wp.element.createElement('path', {
-                    d: 'M17.2807581,0.115646258 L2.78853487,0.115646258 C1.28807741,0.115646258 0.0437956203,1.34864717 0.0437956203,2.8355012 L0.0437956203,11.9016843 L0.0437956203,13.6786562 L0.0437956203,20.1156463 L3.83153579,16.3985111 L17.2990564,16.3985111 C18.7995138,16.3985111 20.0437956,15.1655103 20.0437956,13.6786562 L20.0437956,2.8355012 C20.0254974,1.3305148 18.7995138,0.115646258 17.2807581,0.115646258 Z',
-                    id: 'Shape-path' })
-            )
-        )
-    ),
+    icon: icon,
     category: 'widgets',
-
     attributes: {
         form_id: {
             type: 'string',

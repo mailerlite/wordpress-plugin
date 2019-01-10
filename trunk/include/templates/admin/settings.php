@@ -96,7 +96,7 @@
 								<?php if ( ! get_option( 'mailerlite_double_optin_disabled' ) ): ?>
 									<?php echo __( 'Double opt-in will send a confirmation email', 'mailerlite' ); ?>
 								<?php else: ?>
-									<?php echo __( 'Double opt-in will not send a confirmation email',
+									<?php echo __( 'Confirmation email will be sent while double opt-in is enabled',
 										'mailerlite' ); ?>
 								<?php endif; ?>
                             </p>
