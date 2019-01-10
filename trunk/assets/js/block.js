@@ -107,7 +107,7 @@ export default class MailerLiteFormBlock extends Component {
         const {forms_link} = this.state;
 
         return <Fragment>
-            <p>{__('Create a custom signup form or add a form created using MailerLite.', 'mailerlite')}</p>
+            <div>{__('Create a custom signup form or add a form created using MailerLite.', 'mailerlite')}</div>
 
             <p>
                 <a href={forms_link} className="button button-hero button-primary">
@@ -120,7 +120,7 @@ export default class MailerLiteFormBlock extends Component {
     renderEdit() {
         const {forms, loaded} = this.state;
 
-        return <Placeholder label={__('Mailerlite sign up form', 'mailerlite')}>
+        return <Placeholder label={<h3>{__('Mailerlite sign up form', 'mailerlite')}</h3>}>
             {!loaded ?
                 <Spinner/>
                 :

@@ -58107,7 +58107,7 @@ var MailerLiteFormBlock = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_1__wordpress_element__["c" /* Fragment */],
                 null,
                 wp.element.createElement(
-                    'p',
+                    'div',
                     null,
                     __('Create a custom signup form or add a form created using MailerLite.', 'mailerlite')
                 ),
@@ -58132,7 +58132,11 @@ var MailerLiteFormBlock = function (_Component) {
 
             return wp.element.createElement(
                 __WEBPACK_IMPORTED_MODULE_0__wordpress_components__["e" /* Placeholder */],
-                { label: __('Mailerlite sign up form', 'mailerlite') },
+                { label: wp.element.createElement(
+                        'h3',
+                        null,
+                        __('Mailerlite sign up form', 'mailerlite')
+                    ) },
                 !loaded ? wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__wordpress_components__["i" /* Spinner */], null) : forms.length !== 0 ? this.renderEditWithForms() : this.renderEditWithoutForms()
             );
         }
