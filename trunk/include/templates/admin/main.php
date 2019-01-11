@@ -9,8 +9,7 @@
                 <strong><?php echo __( 'MailerLite popup script is',
 						'mailerlite' ) ?> <?php if ( ! get_option( 'mailerlite_popups_disabled',
 						'mailerlite' ) ) : ?><?php echo __( 'enabled',
-						'mailerlite' ) ?><?php else: ?><?php echo __( 'disabled', 'mailerlite' ) ?><?php endif; ?>
-                    .</strong>
+						'mailerlite' ) ?><?php else: ?><?php echo __( 'disabled', 'mailerlite' ) ?><?php endif; ?>.</strong>
 				<?php echo __( 'Go to settings if you want to change it', 'mailerlite' ); ?>.
                 <br/>
 				<?php if ( ! get_option( 'mailerlite_popups_disabled' ) ): ?>

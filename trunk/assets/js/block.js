@@ -1,6 +1,7 @@
 import {
     Placeholder,
     SelectControl,
+    PanelBody,
     Spinner,
     Toolbar,
     withSpokenMessages,
@@ -13,7 +14,12 @@ import {
     RawHTML
 } from '@wordpress/element';
 
-const {BlockControls} = wp.editor;
+const {
+    BlockAlignmentToolbar,
+    BlockControls,
+    InspectorControls,
+} = wp.editor;
+
 const {__} = wp.i18n;
 const {registerBlockType} = wp.blocks;
 const icon = <svg width="21px" height="21px" viewBox="0 0 21 21">
@@ -138,6 +144,12 @@ export default class MailerLiteFormBlock extends Component {
 
         return (
             <Fragment>
+                <InspectorControls key="inspector">
+                    <br/><br/>
+                    <a href={""} target={_blank} class="button button-primary">
+                        Edit form on mailerlite.com
+                    </a>
+                </InspectorControls>
                 <BlockControls>
                     <Toolbar
                         controls={[
@@ -161,7 +173,7 @@ const WrappedMailerLiteFormBlock = withSpokenMessages(
 );
 
 registerBlockType('mailerlite/form-block', {
-    title: 'Mailerlite sign-up form',
+    title: __('Mailerlite sign up form', 'mailerlite'),
     icon: icon,
     category: 'widgets',
     attributes: {

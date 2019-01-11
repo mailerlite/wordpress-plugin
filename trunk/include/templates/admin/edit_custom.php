@@ -144,7 +144,7 @@
 
                                     <table class="form-table">
                                         <tr>
-                                            <td style="vertical-align: top;">
+                                            <td style="vertical-align: top;width: 350px;">
                                                 <h2><?php _e( 'Fields', 'mailerlite' ); ?></h2>
                                                 <p class="description"><?php _e( 'Select fields which will be displayed in the form.',
 														'mailerlite' ); ?></p>

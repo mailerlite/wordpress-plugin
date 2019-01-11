@@ -48,6 +48,13 @@
                             </td>
                         </tr>
                         <tr>
+                            <td colspan="2">
+                                <button class="button button-primary">
+                                    Edit form on mailerlite.com
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
                             <td colspan="2" style="padding: 0;">
                                 <div id="webform_example">​</div>
                             </td>

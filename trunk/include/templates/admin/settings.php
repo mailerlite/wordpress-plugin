@@ -38,14 +38,14 @@
 
                     <tr>
                         <th valign="middle">
-                            <label><?php echo __( 'Popup forms script', 'mailerlite' ); ?></label>
+                            <label><?php echo __( 'MailerLite Popups', 'mailerlite' ); ?></label>
                         </th>
                         <td>
                             <form action="" method="post" id="mailerlite-popups">
 
                                 <p class="<?php if ( get_option( 'mailerlite_popups_disabled' ) ) : ?>gray<?php else: ?>success<?php endif; ?> popups">
-									<?php if ( ! get_option( 'mailerlite_popups_disabled' ) ) : ?><?php echo __( 'enabled',
-										'mailerlite' ); ?><?php else: ?><?php echo __( 'disabled',
+									<?php if ( ! get_option( 'mailerlite_popups_disabled' ) ) : ?><?php echo __( 'Enabled',
+										'mailerlite' ); ?><?php else: ?><?php echo __( 'Disabled',
 										'mailerlite' ); ?><?php endif; ?>
                                 </p>
 
@@ -59,13 +59,8 @@
 
 
                             <p class="description">
-								<?php if ( ! get_option( 'mailerlite_popups_disabled' ) ): ?>
-									<?php echo __( 'Your popup forms will be displayed automatically while the popup script is enabled',
-										'mailerlite' ); ?>
-								<?php else: ?>
-									<?php echo __( 'Your popup forms wont be displayed while the popup script is disabled',
-										'mailerlite' ); ?>
-								<?php endif; ?>
+								<?php echo __( 'Enable or disable popup subscribe forms created within MailerLite.',
+									'mailerlite' ); ?>
                             </p>
                         </td>
                     </tr>
@@ -78,8 +73,8 @@
                             <form action="" method="post" id="mailerlite-popups">
 
                                 <p class="<?php if ( get_option( 'mailerlite_double_optin_disabled' ) ) : ?>gray<?php else: ?>success<?php endif; ?> popups">
-									<?php if ( ! get_option( 'mailerlite_double_optin_disabled' ) ) : ?><?php echo __( 'enabled',
-										'mailerlite' ); ?><?php else: ?><?php echo __( 'disabled',
+									<?php if ( ! get_option( 'mailerlite_double_optin_disabled' ) ) : ?><?php echo __( 'Enabled',
+										'mailerlite' ); ?><?php else: ?><?php echo __( 'Disabled',
 										'mailerlite' ); ?><?php endif; ?>
                                 </p>
 
@@ -93,12 +88,8 @@
                             </form>
 
                             <p class="description">
-								<?php if ( ! get_option( 'mailerlite_double_optin_disabled' ) ): ?>
-									<?php echo __( 'Double opt-in will send a confirmation email', 'mailerlite' ); ?>
-								<?php else: ?>
-									<?php echo __( 'Confirmation email will be sent while double opt-in is enabled',
-										'mailerlite' ); ?>
-								<?php endif; ?>
+								<?php echo __( 'Enable double opt-in for custom signup forms if you want to send confirmation emails to subscribers.',
+									'mailerlite' ); ?>
                             </p>
                         </td>
                     </tr>
