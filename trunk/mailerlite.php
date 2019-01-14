@@ -97,8 +97,8 @@ register_activation_hook( __FILE__, 'mailerlite_install' );
 
 function register_mailerlite_styles() {
 	wp_register_style(
-		'mailerlite_forms.css', MAILERLITE_PLUGIN_URL
-		                        . '/assets/css/mailerlite_forms.css', [],
+		'mailerlite_forms.css',
+		MAILERLITE_PLUGIN_URL . '/assets/css/mailerlite_forms.css', [],
 		MAILERLITE_VERSION
 	);
 	wp_enqueue_style( 'mailerlite_forms.css' );
