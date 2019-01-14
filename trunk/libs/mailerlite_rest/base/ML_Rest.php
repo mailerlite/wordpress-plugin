@@ -1,59 +1,67 @@
 <?php
 
-require_once dirname(__FILE__) . '/ML_Rest_Base.php';
+require_once dirname( __FILE__ ) . '/ML_Rest_Base.php';
 
-class ML_Rest extends ML_Rest_Base
-{
-    var $name = '';
+/**
+ * Class ML_Rest
+ */
+class ML_Rest extends ML_Rest_Base {
+	/** @var string */
+	var $endpoint = '';
 
-    var $id = null;
+	/** @var int|null */
+	var $id = null;
 
-    function __construct($api_key)
-    {
-        parent::__construct();
+	/**
+	 * ML_Rest constructor.
+	 *
+	 * @param $api_key
+	 */
+	function __construct( $api_key ) {
+		parent::__construct();
 
-        $this->apiKey = $api_key;
+		$this->apiKey = $api_key;
 
-        $this->path = $this->url . $this->name . '/';
-    }
+		$this->path = $this->url . $this->endpoint . '/';
+	}
 
-    function setId($id)
-    {
-        $this->id = $id;
+	function setId( $id ) {
+		$this->id = $id;
 
-        if ($this->id)
-            $this->path = $this->url . $this->name . '/' . $id . '/';
-        else
-            $this->path = $this->url . $this->name . '/';
+		if ( $this->id ) {
+			$this->path = $this->url . $this->endpoint . '/' . $id . '/';
+		} else {
+			$this->path = $this->url . $this->endpoint . '/';
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    function getAll()
-    {
-        return $this->execute('GET');
-    }
+	function getAll() {
+		return $this->execute( 'GET' );
+	}
 
-    function get($data = null)
-    {
-        if (!$this->id)
-            throw new InvalidArgumentException('ID is not set.');
+	function getAllJson() {
+		return json_decode( $this->execute( 'GET' ) );
+	}
 
-        return $this->execute('GET');
-    }
+	function get( $data = null ) {
+		if ( ! $this->id ) {
+			throw new InvalidArgumentException( 'ID is not set.' );
+		}
 
-    function add($data = null)
-    {
-        return $this->execute('POST', $data);
-    }
+		return $this->execute( 'GET' );
+	}
 
-    function put($data = null)
-    {
-        return $this->execute('PUT', $data);
-    }
+	function add( $data = null ) {
+		return $this->execute( 'POST', $data );
+	}
 
-    function remove($data = null)
-    {
-        return $this->execute('DELETE');
-    }
+	function put( $data = null ) {
+		return $this->execute( 'PUT', $data );
+	}
+
+	function remove( $data = null ) {
+		return $this->execute( 'DELETE' );
+	}
 }

@@ -3,8 +3,9 @@ Contributors: mailerlite
 Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
-Tested up to: 5.0
-Stable tag: 1.2.8
+Tested up to: 5.0.2
+Requires PHP: 5.6.0
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,7 +76,7 @@ Yes, you can easily register at www.mailerlite.com
 Use shortcode with form id which you created [mailerlite_form form_id=1].
 
 = How to display a form in widget areas like a sidebar? =
-Just add "Mailerlite sign up form widget" and select form you have created
+Just add "MailerLite sign up form widget" and select form you have created
 
 = How to display a form in my template files? =
 
@@ -126,6 +127,12 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 
 == Changelog ==
+
+= 1.3 =
+WordPress 5 block
+Updated the MailerLite API to V2
+Added Double opt-in feature
+Updated admin design
 
 = 1.2.8 =
 Check WP 5.0 support

@@ -1,110 +1,129 @@
 <?php
 
-class MailerLite_Shortcode
-{
+/**
+ * Class MailerLite_Shortcode
+ */
+class MailerLite_Shortcode {
 
-    /**
-     * WordPress' init() hook
-     */
-    public static function init()
-    {
+	/**
+	 * WordPress' init() hook
+	 */
+	public static function init() {
+		add_shortcode(
+			'mailerlite_form', [
+				'MailerLite_Shortcode',
+				'mailerlite_generate_shortcode',
+			]
+		);
 
-        add_shortcode(
-            'mailerlite_form', array('MailerLite_Shortcode',
-                'mailerlite_generate_shortcode')
-        );
+		add_action(
+			'wp_ajax_mailerlite_tinymce_window',
+			[ 'MailerLite_Shortcode', 'mailerlite_tinymce_window' ]
+		);
 
-        add_action(
-            'wp_ajax_nopriv_mailerlite_tinymce_window',
-            array('MailerLite_Shortcode', 'mailerlite_tinymce_window')
-        );
-        add_action(
-            'wp_ajax_mailerlite_tinymce_window',
-            array('MailerLite_Shortcode', 'mailerlite_tinymce_window')
-        );
+		add_action(
+			'wp_ajax_mailerlite_redirect_to_form_edit',
+			[ 'MailerLite_Shortcode', 'redirect_to_form_edit' ]
+		);
 
-        if (get_user_option('rich_editing')) {
-            add_filter(
-                'mce_buttons', array('MailerLite_Shortcode',
-                    'mailerlite_register_button')
-            );
-            add_filter(
-                'mce_external_plugins', array('MailerLite_Shortcode',
-                    'mailerlite_add_tinymce_plugin')
-            );
-        }
+		if ( get_user_option( 'rich_editing' ) ) {
+			add_filter(
+				'mce_buttons', [
+					'MailerLite_Shortcode',
+					'mailerlite_register_button',
+				]
+			);
+			add_filter(
+				'mce_external_plugins', [
+					'MailerLite_Shortcode',
+					'mailerlite_add_tinymce_plugin',
+				]
+			);
+		}
 
-    }
+	}
 
-    /**
-     * Add tinymce button to toolbar
-     *
-     * @param $buttons
-     * @return mixed
-     */
-    public static function mailerlite_register_button($buttons)
-    {
+	/**
+	 * Add tinymce button to toolbar
+	 *
+	 * @param $buttons
+	 *
+	 * @return mixed
+	 */
+	public static function mailerlite_register_button( $buttons ) {
+		array_push( $buttons, "mailerlite_shortcode" );
 
-        array_push($buttons, "mailerlite_shortcode");
+		return $buttons;
+	}
 
-        return $buttons;
+	/**
+	 * Register tinymce plugin
+	 *
+	 * @param $plugin_array
+	 *
+	 * @return mixed
+	 */
+	public static function mailerlite_add_tinymce_plugin( $plugin_array ) {
+		$plugin_array['mailerlite_shortcode'] = MAILERLITE_PLUGIN_URL . '/assets/js/mailerlite_shortcode.js';
 
-    }
+		return $plugin_array;
+	}
 
-    /**
-     * Register tinymce plugin
-     *
-     * @param $plugin_array
-     * @return mixed
-     */
-    public static function mailerlite_add_tinymce_plugin($plugin_array)
-    {
-        $plugin_array['mailerlite_shortcode']
-            = MAILERLITE_PLUGIN_URL . '/assets/js/mailerlite_shortcode.js';
+	/**
+	 * Returns selection of forms
+	 */
+	public static function mailerlite_tinymce_window() {
+		global $wpdb, $forms;
 
-        return $plugin_array;
-    }
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return;
+		}
 
-    /**
-     * Returns selection of forms
-     */
-    public static function mailerlite_tinymce_window()
-    {
-        global $wpdb, $forms;
+		$forms = $wpdb->get_results(
+			"SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms"
+		);
 
-        if (!current_user_can('edit_posts')) {
-            return;
-        }
+		include( MAILERLITE_PLUGIN_DIR . 'include/templates/common/tiny_mce.php' );
 
-        $forms = $wpdb->get_results(
-            "SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms"
-        );
+		exit;
+	}
 
-        include(MAILERLITE_PLUGIN_DIR
-            . 'include/templates/common/tiny_mce.php');
+	/**
+	 *
+	 * Converts shortcode into html
+	 *
+	 * @param $attributes
+	 *
+	 * @return string
+	 */
+	public static function mailerlite_generate_shortcode( $attributes ) {
+		$form_attributes = shortcode_atts( [
+			'form_id' => '1',
+		], $attributes );
 
-        exit;
-    }
+		ob_start();
+		load_mailerlite_form( $form_attributes['form_id'] );
 
-    /**
-     *
-     * Converts shortcode into html
-     *
-     * @param $attributes
-     *
-     * @return string
-     */
-    public static function mailerlite_generate_shortcode($attributes)
-    {
-        $form_attributes = shortcode_atts(
-            array(
-                'form_id' => '1'
-            ), $attributes
-        );
+		return ob_get_clean();
+	}
 
-        ob_start();
-        load_mailerlite_form($form_attributes['form_id']);
+	public function redirect_to_form_edit() {
+		global $wpdb;
 
-        return ob_get_clean();
-    }
+		$form = $wpdb->get_row(
+			"SELECT * FROM `" . $wpdb->base_prefix . "mailerlite_forms` WHERE `id` = " . $_GET['form_id'] . " ORDER BY time DESC"
+		);
+
+		if ( $form != null ) {
+			if ( $form->type == MailerLite_Form::TYPE_CUSTOM ) {
+				wp_redirect( admin_url( 'admin.php?page=mailerlite_main&view=edit&id=' . $form->id ) );
+			} elseif ( $form->type == MailerLite_Form::TYPE_EMBEDDED ) {
+				$form_data = unserialize( $form->data );
+				wp_redirect( 'https://app.mailerlite.com/webforms/new/content/' . ( $form_data['id'] ) );
+			}
+		} else {
+			echo 'Form not found.';
+			exit;
+		}
+	}
 }
