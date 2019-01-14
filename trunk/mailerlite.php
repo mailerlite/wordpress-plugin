@@ -31,7 +31,7 @@ define( 'MAILERLITE_PLUGIN_URL', plugins_url( '', __FILE__ ) );
 
 define( 'MAILERLITE_VERSION', '1.3' );
 
-define( 'MAILERLITE_PHP_VERSION', '5.4.0' );
+define( 'MAILERLITE_PHP_VERSION', '5.6.0' );
 define( 'MAILERLITE_WP_VERSION', '3.0.1' );
 
 function mailerlite_load_plugin_textdomain() {

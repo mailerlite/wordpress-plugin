@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Official MailerLite sign up forms v1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-14 08:12+0000\n"
-"PO-Revision-Date: 2019-01-14 08:34+0000\n"
+"PO-Revision-Date: 2019-01-14 13:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -288,7 +288,7 @@ msgstr "Pažiūrėkite!"
 
 #: include/templates/admin/settings.php:41
 msgid "MailerLite Popups"
-msgstr ""
+msgstr "MailerLite iššokančios formos"
 
 #: include/templates/admin/settings.php:47
 #: include/templates/admin/settings.php:76
@@ -314,7 +314,7 @@ msgstr "Įjungti"
 
 #: include/templates/admin/settings.php:62
 msgid "Enable or disable popup subscribe forms created within MailerLite."
-msgstr ""
+msgstr "Įjunkite arba išjunkite iššokančias formas sukurtas MailerLite."
 
 # @ mailerlite
 #: include/templates/admin/settings.php:70
@@ -331,6 +331,8 @@ msgid ""
 "Enable double opt-in for custom signup forms if you want to send "
 "confirmation emails to subscribers."
 msgstr ""
+"Jeigu norite siųsti patvirtinimo laiškus prenumeriatoriams įjunkite "
+"registracijos patvirtinimą pritaikytoms formoms."
 
 # @ mailerlite
 #: include/templates/admin/settings.php:101
@@ -346,7 +348,7 @@ msgstr "Užsiregistruokite!"
 
 #: include/templates/admin/main.php:9
 msgid "MailerLite popup script is"
-msgstr "MailerLite popup įskiepas yra"
+msgstr "MailerLite iššokančios formos įskiepas yra"
 
 # @ mailerlite
 #: include/templates/admin/main.php:11
