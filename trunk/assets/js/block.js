@@ -40,6 +40,7 @@ export default class MailerLiteFormBlock extends Component {
             loaded: false,
             selected_form: null,
             preview_html: null,
+            edit_link: null,
             forms_link: null,
         };
     }
@@ -64,13 +65,14 @@ export default class MailerLiteFormBlock extends Component {
 
     renderPreview() {
         const {form_id} = this.props.attributes;
-        const {preview_html} = this.state;
+        const {preview_html, edit_link} = this.state;
         const {setAttributes} = this.props;
 
         if (preview_html === null) {
             wp.ajax.post('mailerlite_gutenberg_form_preview', {form_id}).then(response => {
                 this.setState({
                     preview_html: response.html,
+                    edit_link: response.edit_link
                 });
 
                 // If the form is not found
@@ -83,7 +85,15 @@ export default class MailerLiteFormBlock extends Component {
             });
         }
 
-        return <RawHTML>{preview_html}</RawHTML>;
+        return <Fragment>
+            <InspectorControls key="inspector">
+                <br/>
+                <a href={edit_link} target="_blank" class="button button-primary">
+                    {__('Edit form', 'mailerlite')}
+                </a>
+            </InspectorControls>
+            <RawHTML>{preview_html}</RawHTML>
+        </Fragment>;
     }
 
     renderEditWithForms() {
@@ -126,7 +136,7 @@ export default class MailerLiteFormBlock extends Component {
     renderEdit() {
         const {forms, loaded} = this.state;
 
-        return <Placeholder label={<h3>{__('Mailerlite sign up form', 'mailerlite')}</h3>}>
+        return <Placeholder label={<h3>{__('MailerLite sign up form', 'mailerlite')}</h3>}>
             {!loaded ?
                 <Spinner/>
                 :
@@ -144,12 +154,6 @@ export default class MailerLiteFormBlock extends Component {
 
         return (
             <Fragment>
-                <InspectorControls key="inspector">
-                    <br/><br/>
-                    <a href={""} target={_blank} class="button button-primary">
-                        Edit form on mailerlite.com
-                    </a>
-                </InspectorControls>
                 <BlockControls>
                     <Toolbar
                         controls={[
@@ -173,7 +177,7 @@ const WrappedMailerLiteFormBlock = withSpokenMessages(
 );
 
 registerBlockType('mailerlite/form-block', {
-    title: __('Mailerlite sign up form', 'mailerlite'),
+    title: __('MailerLite sign up form', 'mailerlite'),
     icon: icon,
     category: 'widgets',
     attributes: {

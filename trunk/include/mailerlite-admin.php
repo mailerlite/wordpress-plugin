@@ -17,8 +17,6 @@ class MailerLite_Admin {
 	 * Initialization method
 	 */
 	public static function init() {
-		global $mailerlite_error;
-
 		$mailerlite_error = false;
 
 		self::$api_key = get_option( 'mailerlite_api_key' );
@@ -101,28 +99,23 @@ class MailerLite_Admin {
 	}
 
 	public static function mailerlite_admin_init_setting() {
-
 	}
 
 	/**
 	 * Checks if there is API key set
 	 */
 	private static function mailerlite_api_key_require() {
-		global $mailerlite_error;
-
 		if ( self::$api_key == false ) {
-			include( MAILERLITE_PLUGIN_DIR
-			         . 'include/templates/admin/api_key.php' );
+			include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/api_key.php' );
 			exit;
 		}
-
 	}
 
 	/**
 	 * Create, edit, list pages method
 	 */
 	public static function mailerlite_main() {
-		global $form, $forms_data, $mailerlite_error, $result, $wpdb;
+		global $wpdb;
 
 		// Check for api key
 		self::mailerlite_api_key_require();
@@ -324,8 +317,7 @@ class MailerLite_Admin {
 		} // Delete signup form view
 		elseif ( isset( $_GET['view'] ) && isset( $_GET['id'] )
 		         && $_GET['view'] == 'delete'
-		         && absint( $_GET['id'] )
-		) {
+		         && absint( $_GET['id'] ) ) {
 			$wpdb->delete(
 				$wpdb->base_prefix . 'mailerlite_forms', [ 'id' => $_GET['id'] ]
 			);
@@ -345,8 +337,6 @@ class MailerLite_Admin {
 	 * Settings page method
 	 */
 	public static function mailerlite_settings() {
-		global $api_key, $mailerlite_error;
-
 		self::mailerlite_api_key_require();
 
 		$api_key = self::$api_key;
@@ -407,8 +397,6 @@ class MailerLite_Admin {
 	 * Checks and sets popup tracker setting
 	 */
 	private static function set_popups() {
-		global $mailerlite_error;
-
 		if ( function_exists( 'current_user_can' ) && ! current_user_can( 'manage_options' ) ) {
 			die( __( 'You not allowed to do that', 'mailerlite' ) );
 		}
@@ -420,8 +408,6 @@ class MailerLite_Admin {
 	 * Checks and sets the double opt-in
 	 */
 	private static function toggle_double_opt_in() {
-		global $mailerlite_error;
-
 		if ( function_exists( 'current_user_can' ) && ! current_user_can( 'manage_options' ) ) {
 			die( __( 'You not allowed to do that', 'mailerlite' ) );
 		}
@@ -472,7 +458,7 @@ class MailerLite_Admin {
 	 * @param $data
 	 */
 	private static function create_new_form( $data ) {
-		global $wpdb, $mailerlite_error;
+		global $wpdb;
 
 		$form_type = in_array( $data['form_type'], [ MailerLite_Form::TYPE_CUSTOM, MailerLite_Form::TYPE_EMBEDDED ] )
 			? $data['form_type'] : MailerLite_Form::TYPE_CUSTOM;
@@ -497,8 +483,7 @@ class MailerLite_Admin {
 				$form_data['lists'] = $_POST['form_lists'];
 			} else {
 				$ML_Groups = new ML_Groups( self::$api_key );
-				$groups    = $ML_Groups->getAll();
-				$groups    = json_decode( $groups );
+				$groups    = $ML_Groups->getAllJson();
 
 				require_once( ABSPATH . 'wp-admin/admin-header.php' );
 				include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/create_custom.php' );
@@ -521,7 +506,7 @@ class MailerLite_Admin {
 	}
 
 	/**
-	 * Helper to reuse code
+	 * Helper to reuse input field with default data
 	 *
 	 * @param string $post_key
 	 * @param string $default

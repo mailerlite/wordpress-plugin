@@ -76,7 +76,7 @@ Yes, you can easily register at www.mailerlite.com
 Use shortcode with form id which you created [mailerlite_form form_id=1].
 
 = How to display a form in widget areas like a sidebar? =
-Just add "Mailerlite sign up form widget" and select form you have created
+Just add "MailerLite sign up form widget" and select form you have created
 
 = How to display a form in my template files? =
 

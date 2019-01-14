@@ -13,11 +13,9 @@ class MailerLite_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'mailerlite_widget',
-			__( 'Mailerlite sign up form', 'mailerlite' ),
+			__( 'MailerLite sign up form', 'mailerlite' ),
 			[
-				'description' => __(
-					'MailerLite sign up form Widget', 'mailerlite'
-				),
+				'description' => __( 'MailerLite sign up form Widget', 'mailerlite' ),
 			]
 		);
 	}

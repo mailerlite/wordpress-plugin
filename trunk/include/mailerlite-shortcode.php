@@ -9,7 +9,6 @@ class MailerLite_Shortcode {
 	 * WordPress' init() hook
 	 */
 	public static function init() {
-
 		add_shortcode(
 			'mailerlite_form', [
 				'MailerLite_Shortcode',
@@ -20,6 +19,11 @@ class MailerLite_Shortcode {
 		add_action(
 			'wp_ajax_mailerlite_tinymce_window',
 			[ 'MailerLite_Shortcode', 'mailerlite_tinymce_window' ]
+		);
+
+		add_action(
+			'wp_ajax_mailerlite_redirect_to_form_edit',
+			[ 'MailerLite_Shortcode', 'redirect_to_form_edit' ]
 		);
 
 		if ( get_user_option( 'rich_editing' ) ) {
@@ -47,11 +51,9 @@ class MailerLite_Shortcode {
 	 * @return mixed
 	 */
 	public static function mailerlite_register_button( $buttons ) {
-
 		array_push( $buttons, "mailerlite_shortcode" );
 
 		return $buttons;
-
 	}
 
 	/**
@@ -103,5 +105,25 @@ class MailerLite_Shortcode {
 		load_mailerlite_form( $form_attributes['form_id'] );
 
 		return ob_get_clean();
+	}
+
+	public function redirect_to_form_edit() {
+		global $wpdb;
+
+		$form = $wpdb->get_row(
+			"SELECT * FROM `" . $wpdb->base_prefix . "mailerlite_forms` WHERE `id` = " . $_GET['form_id'] . " ORDER BY time DESC"
+		);
+
+		if ( $form != null ) {
+			if ( $form->type == MailerLite_Form::TYPE_CUSTOM ) {
+				wp_redirect( admin_url( 'admin.php?page=mailerlite_main&view=edit&id=' . $form->id ) );
+			} elseif ( $form->type == MailerLite_Form::TYPE_EMBEDDED ) {
+				$form_data = unserialize( $form->data );
+				wp_redirect( 'https://app.mailerlite.com/webforms/new/content/' . ( $form_data['id'] ) );
+			}
+		} else {
+			echo 'Form not found.';
+			exit;
+		}
 	}
 }

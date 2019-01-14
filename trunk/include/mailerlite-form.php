@@ -34,8 +34,6 @@ class MailerLite_Form {
 	 * @param $form_data
 	 */
 	public function generate_form( $form_id, $form_type, $form_name, $form_data ) {
-		global $mailerlite_error;
-
 		$this->form_id   = $form_id;
 		$this->form_type = $form_type;
 		$this->form_name = $form_name;
@@ -52,7 +50,7 @@ class MailerLite_Form {
 	 * Saves form data
 	 */
 	public static function save_form_data() {
-		global $wpdb, $mailerlite_error;
+		global $wpdb;
 
 		$form_id     = isset( $_POST['form_id'] ) ? absint( $_POST['form_id'] ) : 0;
 		$form_fields = isset( $_POST['form_fields'] ) ? $_POST['form_fields']

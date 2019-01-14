@@ -45,13 +45,11 @@
                                         </option>
 									<?php endforeach; ?>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <button class="button button-primary">
-                                    Edit form on mailerlite.com
-                                </button>
+
+                                <a href="<?php echo admin_url( 'admin-ajax.php' ) . '?action=mailerlite_redirect_to_form_edit&form_id=' . $form->id; ?>"
+                                   target="_blank" class="button button-primary">
+									<?php _e( 'Edit form', 'mailerlite' ); ?>
+                                </a>
                             </td>
                         </tr>
                         <tr>

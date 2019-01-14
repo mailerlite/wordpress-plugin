@@ -9,30 +9,26 @@ class MailerLite_Gutenberg {
 	 * WordPress' init() hook
 	 */
 	public static function init() {
+
+		/**
+		 * Only run block editor is supported
+		 */
 		if ( function_exists( 'register_block_type' ) ) {
 			wp_register_script(
 				'mailerlite-form-block',
 				MAILERLITE_PLUGIN_URL . '/assets/js/block.build.js',
 				[
-					'wp-api-fetch',
 					'wp-blocks',
 					'wp-components',
-					'wp-compose',
-					'wp-data',
 					'wp-element',
 					'wp-editor',
 					'wp-i18n',
-					'wp-url',
-					'lodash',
 				]
 			);
 
 			register_block_type( 'mailerlite/form-block', [
 				'editor_script' => 'mailerlite-form-block',
 			] );
-
-
-			//
 
 			add_action(
 				'wp_ajax_mailerlite_gutenberg_forms',
@@ -79,7 +75,6 @@ class MailerLite_Gutenberg {
 	 * The selected block preview HTML
 	 */
 	public function form_preview_html() {
-
 		include( MAILERLITE_PLUGIN_DIR . 'include/templates/forms/preview.php' );
 		exit;
 	}
@@ -95,15 +90,18 @@ class MailerLite_Gutenberg {
 		);
 
 		if ( count( $form ) === 0 ) {
-			echo wp_send_json_success( [ 'html' => false ] );
+			echo wp_send_json_success( [ 'html' => false, 'edit_link' => false ] );
 		}
 
-		$url  = admin_url( 'admin-ajax.php' ) . '?action=mailerlite_gutenberg_form_preview2&form_id=' . $_POST['form_id'];
-		$html = "<div style='position: relative;'>
-<div style='position: absolute;top:0;left:0;width:100%;height:100%;'></div>
-<iframe style='z-index:1;' src='" . $url . "' onload=\"this.style.height = this.contentWindow.document.body.scrollHeight + 'px'\"></iframe>
-</div>";
+		$url = admin_url( 'admin-ajax.php' ) . '?action=mailerlite_gutenberg_form_preview2&form_id=' . $_POST['form_id'];
 
-		echo wp_send_json_success( [ 'html' => $html ] );
+		ob_start();
+		include( MAILERLITE_PLUGIN_DIR . 'include/templates/forms/iframe.php' );
+		$html = ob_get_clean();
+
+		echo wp_send_json_success( [
+			'html'      => $html,
+			'edit_link' => admin_url( 'admin-ajax.php' ) . '?action=mailerlite_redirect_to_form_edit&form_id=' . $_POST['form_id'],
+		] );
 	}
 }
