@@ -5,7 +5,7 @@ Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
 Tested up to: 5.0.2
 Requires PHP: 5.6.0
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,11 +130,14 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.3.1 =
+* Fix - "Media views" block bug
+
 = 1.3 =
-WordPress 5 block
-Updated the MailerLite API to V2
-Added Double opt-in feature
-Updated admin design
+* Feature - WordPress 5 block
+* Feature - Double opt-in feature
+* Tweak - New admin design
+* Update - The plugin uses MailerLite API V2 from now on
 
 = 1.2.8 =
 Check WP 5.0 support
