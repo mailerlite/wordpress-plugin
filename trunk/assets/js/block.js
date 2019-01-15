@@ -15,7 +15,6 @@ import {
 } from '@wordpress/element';
 
 const {
-    BlockAlignmentToolbar,
     BlockControls,
     InspectorControls,
 } = wp.editor;
