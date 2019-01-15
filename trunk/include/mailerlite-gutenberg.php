@@ -23,7 +23,8 @@ class MailerLite_Gutenberg {
 					'wp-element',
 					'wp-editor',
 					'wp-i18n',
-				]
+				],
+				MAILERLITE_VERSION
 			);
 
 			register_block_type( 'mailerlite/form-block', [
