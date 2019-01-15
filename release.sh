@@ -23,5 +23,5 @@ git tag -a $release -m "$release release" || exit
 
 git push --follow-tags || exit 1
 
-# back to develop branch
-git checkout develop || exit 1
+# back to master branch
+git checkout master || exit 1
