@@ -7,9 +7,6 @@ read release
 
 echo releasing: $release
 
-# write the latest version to the file
-printf $release > latest_version.txt
-
 # make sure branches are up to date
 git checkout develop || exit 1
 git pull || exit 1
