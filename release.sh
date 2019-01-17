@@ -1,7 +1,4 @@
 #!/bin/bash
-latest="$(cat latest_version.txt)"
-
-echo latest version was: $latest
 echo enter version like: 1.2.3
 read release
 
