@@ -120,6 +120,7 @@ class MailerLite_Shortcode {
 			} elseif ( $form->type == MailerLite_Form::TYPE_EMBEDDED ) {
 				$form_data = unserialize( $form->data );
 				wp_redirect( 'https://app.mailerlite.com/webforms/new/content/' . ( $form_data['id'] ) );
+				exit;
 			}
 		} else {
 			echo 'Form not found.';
