@@ -10,7 +10,7 @@ class ML_Rest extends ML_Rest_Base {
 	var $endpoint = '';
 
 	/** @var int|null */
-	var $id = null;
+	var $groupId = null;
 
 	/**
 	 * ML_Rest constructor.
@@ -25,11 +25,11 @@ class ML_Rest extends ML_Rest_Base {
 		$this->path = $this->url . $this->endpoint . '/';
 	}
 
-	function setId( $id ) {
-		$this->id = $id;
+	function setGroupId( $groupId ) {
+		$this->groupId = $groupId;
 
-		if ( $this->id ) {
-			$this->path = $this->url . $this->endpoint . '/' . $id . '/';
+		if ( $this->groupId ) {
+			$this->path = $this->url . 'groups' . '/' . $groupId . '/subscribers';
 		} else {
 			$this->path = $this->url . $this->endpoint . '/';
 		}

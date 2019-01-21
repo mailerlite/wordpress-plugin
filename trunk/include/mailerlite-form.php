@@ -85,7 +85,7 @@ class MailerLite_Form {
 				];
 
 				foreach ( $form->data['lists'] as $list ) {
-					$ML_Subscribers->setId( $list )->add( $subscriber, 1 );
+					$ML_Subscribers->setGroupId( $list )->add( $subscriber, 1 );
 				}
 
 				echo json_encode(
