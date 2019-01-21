@@ -9,9 +9,6 @@ class ML_Rest extends ML_Rest_Base {
 	/** @var string */
 	var $endpoint = '';
 
-	/** @var int|null */
-	var $groupId = null;
-
 	/**
 	 * ML_Rest constructor.
 	 *
@@ -23,18 +20,6 @@ class ML_Rest extends ML_Rest_Base {
 		$this->apiKey = $api_key;
 
 		$this->path = $this->url . $this->endpoint . '/';
-	}
-
-	function setGroupId( $groupId ) {
-		$this->groupId = $groupId;
-
-		if ( $this->groupId ) {
-			$this->path = $this->url . 'groups' . '/' . $groupId . '/subscribers';
-		} else {
-			$this->path = $this->url . $this->endpoint . '/';
-		}
-
-		return $this;
 	}
 
 	function getAll() {

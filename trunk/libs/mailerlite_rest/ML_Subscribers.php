@@ -6,6 +6,9 @@ require_once dirname( __FILE__ ) . '/base/ML_Rest.php';
  * Class ML_Subscribers
  */
 class ML_Subscribers extends ML_Rest {
+	/** @var int|null */
+	var $groupId = null;
+
 	/**
 	 * ML_Subscribers constructor.
 	 *
@@ -34,7 +37,7 @@ class ML_Subscribers extends ML_Rest {
 	}
 
 	function get( $email = null, $history = 0 ) {
-		$this->setId( null );
+		$this->setGroupId( null );
 
 		$this->path .= '?email=' . urlencode( $email );
 
@@ -55,5 +58,17 @@ class ML_Subscribers extends ML_Rest {
 		$this->path .= 'unsubscribe/?email=' . urlencode( $email );
 
 		return $this->execute( 'POST' );
+	}
+
+	function setGroupId( $groupId ) {
+		$this->groupId = $groupId;
+
+		if ( $this->groupId ) {
+			$this->path = $this->url . 'groups' . '/' . $groupId . '/subscribers';
+		} else {
+			$this->path = $this->url . $this->endpoint . '/';
+		}
+
+		return $this;
 	}
 }
