@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Official MailerLite Sign Up Forms
  * Description: Official MailerLite Sign Up Forms plugin for WordPress. Ability to embed MailerLite webforms and create custom ones just with few clicks.
- * Version: 1.3.4
+ * Version: 1.3.5
  * Author: MailerGroup
  * Author URI: https://www.mailerlite.com
  * License: GPLv2 or later
@@ -29,7 +29,7 @@
 define( 'MAILERLITE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MAILERLITE_PLUGIN_URL', plugins_url( '', __FILE__ ) );
 
-define( 'MAILERLITE_VERSION', '1.3.4' );
+define( 'MAILERLITE_VERSION', '1.3.5' );
 
 define( 'MAILERLITE_PHP_VERSION', '5.6.0' );
 define( 'MAILERLITE_WP_VERSION', '3.0.1' );
@@ -62,7 +62,7 @@ function mailerlite_install() {
 
 	if ( $message ) {
 		deactivate_plugins( basename( __FILE__ ) );
-		wp_die( $message, 'Plugin Activation Error', [ 'response' => 200, 'back_link' => true ] );
+		wp_die( $message, 'Plugin Activation Error', array( 'response' => 200, 'back_link' => true ) );
 	}
 
 	$table_name = $wpdb->base_prefix . "mailerlite_forms";
@@ -98,7 +98,7 @@ register_activation_hook( __FILE__, 'mailerlite_install' );
 function register_mailerlite_styles() {
 	wp_register_style(
 		'mailerlite_forms.css',
-		MAILERLITE_PLUGIN_URL . '/assets/css/mailerlite_forms.css', [],
+		MAILERLITE_PLUGIN_URL . '/assets/css/mailerlite_forms.css', array(),
 		MAILERLITE_VERSION
 	);
 	wp_enqueue_style( 'mailerlite_forms.css' );
@@ -108,7 +108,7 @@ add_action( 'wp_enqueue_scripts', 'register_mailerlite_styles' );
 
 if ( is_admin() ) {
 	require_once( MAILERLITE_PLUGIN_DIR . 'include/mailerlite-admin.php' );
-	add_action( 'init', [ 'MailerLite_Admin', 'init' ] );
+	add_action( 'init', array( 'MailerLite_Admin', 'init' ) );
 }
 
 
@@ -116,6 +116,6 @@ require_once( MAILERLITE_PLUGIN_DIR . 'include/mailerlite-widget.php' );
 require_once( MAILERLITE_PLUGIN_DIR . 'include/mailerlite-shortcode.php' );
 require_once( MAILERLITE_PLUGIN_DIR . 'include/mailerlite-gutenberg.php' );
 
-add_action( 'init', [ 'MailerLite_Shortcode', 'init' ] );
-add_action( 'init', [ 'MailerLite_Form', 'init' ] );
-add_action( 'init', [ 'MailerLite_Gutenberg', 'init' ] );
+add_action( 'init', array( 'MailerLite_Shortcode', 'init' ) );
+add_action( 'init', array( 'MailerLite_Form', 'init' ) );
+add_action( 'init', array( 'MailerLite_Gutenberg', 'init' ) );
