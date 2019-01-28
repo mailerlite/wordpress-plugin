@@ -76,7 +76,7 @@ class MailerLite_Form {
 				$fields = [];
 
 				foreach ( $form_fields as $field => $value ) {
-					$fields[] = [ 'name' => $field, 'value' => $value ];
+					$fields[$field] = $value;
 				}
 
 				$subscriber = [
