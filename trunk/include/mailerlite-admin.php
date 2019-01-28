@@ -68,13 +68,28 @@ class MailerLite_Admin {
 			]
 		);
 
-		wp_register_style(
-			'mailerlite.css',
-			MAILERLITE_PLUGIN_URL . '/assets/css/mailerlite.css', [],
-			MAILERLITE_VERSION
-		);
-		wp_enqueue_style( 'mailerlite.css' );
+        add_action( 'admin_enqueue_scripts', ['MailerLite_Admin', 'load_mailerlite_admin_css'] );
 	}
+
+    public static function load_mailerlite_admin_css($hook)
+    {
+        $allowed_hooks = [
+            'toplevel_page_mailerlite_main',
+            'mailerlite_page_mailerlite_settings',
+            'mailerlite_page_mailerlite_status',
+        ];
+
+        if (!in_array($hook, $allowed_hooks)) {
+            return;
+        }
+
+        wp_register_style(
+            'mailerlite.css',
+            MAILERLITE_PLUGIN_URL . '/assets/css/mailerlite.css', [],
+            MAILERLITE_VERSION
+        );
+        wp_enqueue_style( 'mailerlite.css' );
+    }
 
 	/**
 	 * Generates admin menu links
@@ -86,15 +101,28 @@ class MailerLite_Admin {
 		);
 
 		add_submenu_page(
-			'mailerlite_main', __( 'Forms', 'mailerlite' ),
-			__( 'Signup forms', 'mailerlite' ), 'manage_options',
-			'mailerlite_main', [ 'MailerLite_Admin', 'mailerlite_main' ]
+			'mailerlite_main',
+            __( 'Forms', 'mailerlite' ),
+			__( 'Signup forms', 'mailerlite' ),
+            'manage_options',
+			'mailerlite_main',
+            [ 'MailerLite_Admin', 'mailerlite_main' ]
 		);
 		add_submenu_page(
-			'mailerlite_main', __( 'Settings', 'mailerlite' ),
-			__( 'Settings', 'mailerlite' ), 'manage_options',
+			'mailerlite_main',
+            __( 'Settings', 'mailerlite' ),
+			__( 'Settings', 'mailerlite' ),
+            'manage_options',
 			'mailerlite_settings',
 			[ 'MailerLite_Admin', 'mailerlite_settings' ]
+		);
+		add_submenu_page(
+			'mailerlite_main',
+            __( 'Status', 'mailerlite' ),
+			__( 'Status', 'mailerlite' ),
+            'manage_options',
+			'mailerlite_status',
+			[ 'MailerLite_Admin_Status', 'mailerlite_status' ]
 		);
 	}
 
@@ -105,6 +133,8 @@ class MailerLite_Admin {
 	 * Checks if there is API key set
 	 */
 	private static function mailerlite_api_key_require() {
+	    global $mailerlite_error;
+
 		if ( self::$api_key == false ) {
 			include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/api_key.php' );
 			exit;
@@ -115,7 +145,7 @@ class MailerLite_Admin {
 	 * Create, edit, list pages method
 	 */
 	public static function mailerlite_main() {
-		global $wpdb;
+		global $wpdb, $mailerlite_error;
 
 		// Check for api key
 		self::mailerlite_api_key_require();
@@ -337,6 +367,7 @@ class MailerLite_Admin {
 	 * Settings page method
 	 */
 	public static function mailerlite_settings() {
+	    global $mailerlite_error;
 		self::mailerlite_api_key_require();
 
 		$api_key = self::$api_key;
@@ -458,7 +489,7 @@ class MailerLite_Admin {
 	 * @param $data
 	 */
 	private static function create_new_form( $data ) {
-		global $wpdb;
+		global $wpdb, $mailerlite_error;
 
 		$form_type = in_array( $data['form_type'], [ MailerLite_Form::TYPE_CUSTOM, MailerLite_Form::TYPE_EMBEDDED ] )
 			? $data['form_type'] : MailerLite_Form::TYPE_CUSTOM;

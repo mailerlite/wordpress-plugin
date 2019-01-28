@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Official MailerLite Sign Up Forms
  * Description: Official MailerLite Sign Up Forms plugin for WordPress. Ability to embed MailerLite webforms and create custom ones just with few clicks.
- * Version: 1.3.5
+ * Version: 1.3.6
  * Author: MailerGroup
  * Author URI: https://www.mailerlite.com
  * License: GPLv2 or later
@@ -29,7 +29,7 @@
 define( 'MAILERLITE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MAILERLITE_PLUGIN_URL', plugins_url( '', __FILE__ ) );
 
-define( 'MAILERLITE_VERSION', '1.3.5' );
+define( 'MAILERLITE_VERSION', '1.3.6' );
 
 define( 'MAILERLITE_PHP_VERSION', '5.6.0' );
 define( 'MAILERLITE_WP_VERSION', '3.0.1' );
@@ -49,7 +49,7 @@ function mailerlite_install() {
 	$message = '';
 
 	if ( version_compare( PHP_VERSION, MAILERLITE_PHP_VERSION, '<' ) ) {
-		$message = '<p> The <strong>MailerLite</strong> plugin requires PHP version ' . MAILERLITE_PHP_VERSION . ' or greater.</p>';
+		$message = '<p> The <strong>MailerLite</strong> plugin requires PHP version ' . MAILERLITE_PHP_VERSION . ' or greater. You are currently using PHP version '.PHP_VERSION.'</p>';
 	}
 
 	if ( version_compare( $wp_version, MAILERLITE_WP_VERSION, '<' ) ) {
@@ -106,16 +106,116 @@ function register_mailerlite_styles() {
 
 add_action( 'wp_enqueue_scripts', 'register_mailerlite_styles' );
 
-if ( is_admin() ) {
-	require_once( MAILERLITE_PLUGIN_DIR . 'include/mailerlite-admin.php' );
-	add_action( 'init', array( 'MailerLite_Admin', 'init' ) );
+function mailerlite_status_information_for_mailto_link(){
+    $data = mailerlite_status_information();
+
+    $body = "\n\n\n";
+
+    $body .= "Official MailerLite Sign Up Forms information: \n\n";
+
+    foreach ($data as $group => $fields) {
+        $body.=sprintf("# %s \n\n", $group);
+
+        foreach ($fields as $name=>$value) {
+            $body .= sprintf("%s: %s\n", $name,$value);
+        }
+
+        $body.="\n";
+    }
+
+    $body = str_replace("\n", '%0A', $body);
+
+    return $body;
 }
 
+mailerlite_status_information_for_mailto_link();
 
-require_once( MAILERLITE_PLUGIN_DIR . 'include/mailerlite-widget.php' );
-require_once( MAILERLITE_PLUGIN_DIR . 'include/mailerlite-shortcode.php' );
-require_once( MAILERLITE_PLUGIN_DIR . 'include/mailerlite-gutenberg.php' );
+function mailerlite_status_information(){
+    global $wpdb;
 
-add_action( 'init', array( 'MailerLite_Shortcode', 'init' ) );
-add_action( 'init', array( 'MailerLite_Form', 'init' ) );
-add_action( 'init', array( 'MailerLite_Gutenberg', 'init' ) );
+    $theme=wp_get_theme();
+    $curl_version = '';
+    if (function_exists('curl_version')) {
+        $curl_info = curl_version();
+        $curl_version = $curl_info['version'].', '.$curl_info['ssl_version'];
+    }
+
+    // Only if loading the plugin succeeded
+    if (class_exists('MailerLite_Form')) {
+        $forms = $wpdb->get_results(sprintf("SELECT * FROM %smailerlite_forms", $wpdb->base_prefix));
+        $number_of_custom_forms = 0;
+        $number_of_embedded_forms = 0;
+
+        foreach ($forms as $form) {
+            if ($form->type == MailerLite_Form::TYPE_CUSTOM) {
+                $number_of_custom_forms++;
+            } elseif ($form->type == MailerLite_Form::TYPE_EMBEDDED) {
+                $number_of_embedded_forms++;
+            }
+        }
+    }
+
+    $environment_group = __('Environment', 'mailerlite');
+    $plugin_group = __('Plugin', 'mailerlite');
+
+    $fields = array();
+    $fields['WordPress']['Version'] = get_bloginfo('version');
+    $fields['WordPress']['Home URL'] = get_option('home');
+    $fields['WordPress']['Site URL'] = get_option('home');
+    $fields['WordPress']['Multisite'] = is_multisite() ? 'Yes' : 'No';
+    $fields['WordPress']['Debug mode'] = (defined('WP_DEBUG') && WP_DEBUG) ? 'Yes' : 'No';
+    $fields['WordPress']['Theme name'] = $theme->get('Name');
+    $fields['WordPress']['Theme URI'] = $theme->get('ThemeURI');
+    $fields['WordPress']['Active plugins'] = implode(', ', get_option('active_plugins'));
+    $fields[$environment_group]['Required PHP version'] = MAILERLITE_PHP_VERSION;
+    $fields[$environment_group]['PHP version'] = phpversion();
+    $fields[$environment_group]['Server information'] = isset($_SERVER['SERVER_SOFTWARE']) ? wp_unslash($_SERVER['SERVER_SOFTWARE']) : '';
+    $fields[$environment_group]['cURL version'] = $curl_version;
+    $fields[$plugin_group]['Version'] = MAILERLITE_VERSION;
+    $fields[$plugin_group]['API key provided'] = (bool)get_option('mailerlite_api_key') ? 'Yes' : 'No';
+    $fields[$plugin_group]['Popups enabled'] =! get_option( 'mailerlite_popups_disabled' )?'Yes': 'No';
+    $fields[$plugin_group]['Double opt-in enabled'] =! get_option( 'mailerlite_double_optin_disabled' )?'Yes': 'No';
+
+    if (class_exists('MailerLite_Form')) {
+        $fields[$plugin_group]['Custom forms'] = $number_of_custom_forms;
+        $fields[$plugin_group]['Embedded forms'] = $number_of_embedded_forms;
+    }
+
+    return $fields;
+}
+
+mailerlite_status_information();
+
+if (in_array('official-mailerlite-sign-up-forms/mailerlite.php', get_option('active_plugins'))) {
+
+    // Double check
+    if (!version_compare(PHP_VERSION, MAILERLITE_PHP_VERSION, '<')) {
+
+        if (is_admin()) {
+            require_once(MAILERLITE_PLUGIN_DIR.'include/mailerlite-admin.php');
+            require_once(MAILERLITE_PLUGIN_DIR.'include/mailerlite-admin-status.php');
+
+            add_action('init', array('MailerLite_Admin', 'init'));
+            add_action('init', array('MailerLite_Admin_Status', 'init'));
+        }
+
+        require_once(MAILERLITE_PLUGIN_DIR.'include/mailerlite-widget.php');
+        require_once(MAILERLITE_PLUGIN_DIR.'include/mailerlite-shortcode.php');
+        require_once(MAILERLITE_PLUGIN_DIR.'include/mailerlite-gutenberg.php');
+
+        add_action('init', array('MailerLite_Shortcode', 'init'));
+        add_action('init', array('MailerLite_Form', 'init'));
+        add_action('init', array('MailerLite_Gutenberg', 'init'));
+    } else {
+        function mailerlite_old_php_notice() {
+            $class = 'notice notice-error';
+            $message = '<p> The <strong>MailerLite</strong> plugin requires PHP version ' . MAILERLITE_PHP_VERSION . ' or greater. You are currently using PHP version <strong>'.PHP_VERSION.'</strong></p>';
+
+            printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), $message );
+        }
+        add_action( 'admin_notices', 'mailerlite_old_php_notice' );
+
+        require_once(MAILERLITE_PLUGIN_DIR.'include/mailerlite-admin-status.php');
+        add_action('init', array('MailerLite_Admin_Status', 'init'));
+    }
+}
