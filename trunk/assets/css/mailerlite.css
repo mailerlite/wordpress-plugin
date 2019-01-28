@@ -111,10 +111,6 @@ p.success {
     max-width: 100%;
 }
 
-@media screen and (max-width: 782px) {
-
-}
-
 .mailerlite-col .mailerlite-icon {
     margin: 0 auto;
     display: block;

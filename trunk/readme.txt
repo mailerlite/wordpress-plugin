@@ -5,7 +5,7 @@ Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
 Tested up to: 5.0.2
 Requires PHP: 5.6.0
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,11 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 
 == Changelog ==
+
+= 1.3.6 =
+* Feature - Status page to provide information about your environment
+* Tweak - Even better support for older PHP versions in main plugin file
+* Fix - Plugin's stylesheet is only included in pages where it is required
 
 = 1.3.5 =
 * Tweak - Better support for older PHP versions in main plugin file
