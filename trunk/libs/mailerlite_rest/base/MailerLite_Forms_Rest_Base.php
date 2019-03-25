@@ -20,7 +20,7 @@ class MailerLite_Forms_Rest_Base {
 	private $curlError = false;
 
 	/**
-	 * ML_Rest_Base constructor.
+	 * MailerLite_Forms_Rest_Base constructor.
 	 *
 	 * @param string $url
 	 * @param string $verb
