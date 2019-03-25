@@ -5,7 +5,7 @@ Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
 Tested up to: 5.0.2
 Requires PHP: 5.6.0
-Stable tag: 1.3.6
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,13 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 
 == Changelog ==
+
+= 1.4 =
+* Tweak - Show more than 100 groups when creating a custom form
+* Tweak - Renamed some classes to avoid fatal errors from other plugin having the same class names
+* Tweak - Reformatted code to WordPress code style
+* Tweak - Loading custom form javascript after window load for better optimisations
+* Tweak - Switched loading jQuery validate plugin from MailerLite CDN to your local WordPress site
 
 = 1.3.6 =
 * Feature - Status page to provide information about your environment

@@ -7,7 +7,9 @@
             <p><?php echo _e( 'Have any questions? Stuck on something or found bug? Feel free to contact us!',
 					'mailerlite' ); ?></p>
 
-            <p><a href="mailto:info@mailerlite.com?subject=Official MailerLite Sign Up Forms for WordPress&body=<?php echo mailerlite_status_information_for_mailto_link();?>">info@mailerlite.com</a></p>
+            <p>
+                <a href="mailto:info@mailerlite.com?subject=Official MailerLite Sign Up Forms for WordPress&body=<?php echo mailerlite_status_information_for_mailto_link(); ?>">info@mailerlite.com</a>
+            </p>
         </div>
     </div>
 

@@ -1,13 +1,13 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/base/ML_Rest.php';
+require_once dirname( __FILE__ ) . '/base/MailerLite_Forms_Rest.php';
 
 /**
- * Class ML_Campaigns
+ * Class MailerLite_Forms_Campaigns
  */
-class ML_Campaigns extends ML_Rest {
+class MailerLite_Forms_Campaigns extends MailerLite_Forms_Rest {
 	/**
-	 * ML_Campaigns constructor.
+	 * MailerLite_Forms_Campaigns constructor.
 	 *
 	 * @param $api_key
 	 */

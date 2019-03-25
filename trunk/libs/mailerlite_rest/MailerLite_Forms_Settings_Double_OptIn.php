@@ -1,14 +1,13 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/base/ML_Rest.php';
+require_once dirname( __FILE__ ) . '/base/MailerLite_Forms_Rest.php';
 
 /**
- * Class ML_Settings_Double_OptIn
+ * Class MailerLite_Forms_Settings_Double_OptIn
  */
-class ML_Settings_Double_OptIn extends ML_Rest {
-
+class MailerLite_Forms_Settings_Double_OptIn extends MailerLite_Forms_Rest {
 	/**
-	 * ML_Settings_Double_OptIn constructor.
+	 * MailerLite_Forms_Settings_Double_OptIn constructor.
 	 *
 	 * @param $api_key
 	 */

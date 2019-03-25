@@ -48,7 +48,7 @@
 <?php endif; ?>
 
 <script type="text/javascript">
-    (function () {
+    window.addEventListener("load", function (event) {
         var jQuery = window.jQueryWP || window.jQuery;
 
         jQuery(document).ready(function () {
@@ -74,5 +74,5 @@
                 }
             });
         });
-    })();
+    }, false);
 </script>
