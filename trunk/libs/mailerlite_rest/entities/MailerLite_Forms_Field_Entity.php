@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class ML_Field_Entity
+ * Class MailerLite_Forms_Field_Entity
  */
-class ML_Field_Entity {
+class MailerLite_Forms_Field_Entity {
 	public $id;
 	public $title;
 	public $key;

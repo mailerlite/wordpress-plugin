@@ -1,16 +1,16 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/ML_Rest_Base.php';
+require_once dirname( __FILE__ ) . '/MailerLite_Forms_Rest_Base.php';
 
 /**
- * Class ML_Rest
+ * Class MailerLite_Forms_Rest
  */
-class ML_Rest extends ML_Rest_Base {
+class MailerLite_Forms_Rest extends MailerLite_Forms_Rest_Base {
 	/** @var string */
 	var $endpoint = '';
 
 	/**
-	 * ML_Rest constructor.
+	 * MailerLite_Forms_Rest constructor.
 	 *
 	 * @param $api_key
 	 */
@@ -26,8 +26,14 @@ class ML_Rest extends ML_Rest_Base {
 		return $this->execute( 'GET' );
 	}
 
-	function getAllJson() {
-		return json_decode( $this->execute( 'GET' ) );
+	/**
+	 * @param array $data
+	 *
+	 * @return array|mixed|object|null
+	 * @throws Exception
+	 */
+	function getAllJson( $data = [] ) {
+		return json_decode( $this->execute( 'GET', $data ) );
 	}
 
 	function get( $data = null ) {
