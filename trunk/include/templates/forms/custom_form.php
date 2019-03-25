@@ -43,8 +43,15 @@
 </div>
 
 <?php if ( ! empty( $form_data['language'] ) ): ?>
-    <script type='text/javascript'
-            src='<?php echo MAILERLITE_PLUGIN_URL ?>/assets/js/localization/jquery.validate/messages_<?php echo strtolower( $form_data['language'] ) ?>.js'></script>
+
+    <script type='text/javascript'>
+        window.addEventListener("load", function (event) {
+            var jQuery = window.jQueryWP || window.jQuery;
+
+            var js = jQuery("<" + "script src='<?php echo MAILERLITE_PLUGIN_URL ?>/assets/js/localization/jquery.validate/messages_<?php echo strtolower( $form_data['language'] ) ?>.js'></" + "script>");
+            jQuery("body").append(js);
+        });
+    </script>
 <?php endif; ?>
 
 <script type="text/javascript">
