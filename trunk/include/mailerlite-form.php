@@ -1,6 +1,6 @@
 <?php
 
-require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Subscribers.php";
+require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/MailerLite_Forms_Subscribers.php";
 
 /**
  * Class MailerLite_Form
@@ -15,7 +15,6 @@ class MailerLite_Form {
 	public $form_data;
 
 	/**
-	 *
 	 * Sets form data for class
 	 */
 	public static function init() {
@@ -68,7 +67,7 @@ class MailerLite_Form {
 
 				$form->data = unserialize( $form->data );
 
-				$ML_Subscribers = new ML_Subscribers( $api_key );
+				$ML_Subscribers = new MailerLite_Forms_Subscribers( $api_key );
 
 				$form_email = $form_fields['email'];
 				unset( $form_fields['email'] );
@@ -76,7 +75,7 @@ class MailerLite_Form {
 				$fields = [];
 
 				foreach ( $form_fields as $field => $value ) {
-					$fields[$field] = $value;
+					$fields[ $field ] = $value;
 				}
 
 				$subscriber = [
@@ -162,8 +161,8 @@ class MailerLite_Form {
 		) {
 			wp_register_script(
 				'jquery-validation-plugin',
-				'https://static.mailerlite.com/js/jquery.validate.min.js',
-				[ 'jquery' ]
+				MAILERLITE_PLUGIN_URL . '/assets/js/jquery.validate.min.js',
+				[ 'jquery' ], false, true
 			);
 		} elseif ( ! wp_script_is( 'jquery-validation-plugin' )
 		           && wp_script_is(
@@ -172,8 +171,8 @@ class MailerLite_Form {
 		) {
 			wp_register_script(
 				'jquery-validation-plugin',
-				'https://static.mailerlite.com/js/jquery.validate.min.js',
-				[ 'google-hosted-jquery' ]
+				MAILERLITE_PLUGIN_URL . '/assets/js/jquery.validate.min.js',
+				[ 'google-hosted-jquery' ], false, true
 			);
 		}
 

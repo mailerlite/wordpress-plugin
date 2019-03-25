@@ -1,16 +1,16 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/base/ML_Rest.php';
+require_once dirname( __FILE__ ) . '/base/MailerLite_Forms_Rest.php';
 
 /**
- * Class ML_Subscribers
+ * Class MailerLite_Forms_Subscribers
  */
-class ML_Subscribers extends ML_Rest {
+class MailerLite_Forms_Subscribers extends MailerLite_Forms_Rest {
 	/** @var int|null */
 	var $groupId = null;
 
 	/**
-	 * ML_Subscribers constructor.
+	 * MailerLite_Forms_Subscribers constructor.
 	 *
 	 * @param $api_key
 	 */

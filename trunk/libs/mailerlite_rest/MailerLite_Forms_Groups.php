@@ -1,13 +1,13 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/base/ML_Rest.php';
+require_once dirname( __FILE__ ) . '/base/MailerLite_Forms_Rest.php';
 
 /**
- * Class ML_Groups
+ * Class MailerLite_Forms_Groups
  */
-class ML_Groups extends ML_Rest {
+class MailerLite_Forms_Groups extends MailerLite_Forms_Rest {
 	/**
-	 * ML_Groups constructor.
+	 * MailerLite_Forms_Groups constructor.
 	 *
 	 * @param $api_key
 	 */
@@ -18,10 +18,13 @@ class ML_Groups extends ML_Rest {
 	}
 
 	/**
-	 * @return ML_Group_Entity[]
+	 * @param array $data
+	 *
+	 * @return MailerLite_Forms_Group_Entity[]
+	 * @throws Exception
 	 */
-	public function getAllJson() {
-		return parent::getAllJson();
+	public function getAllJson( $data = [] ) {
+		return parent::getAllJson( $data );
 	}
 
 	function getActive() {

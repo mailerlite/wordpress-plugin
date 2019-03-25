@@ -152,7 +152,7 @@
                                                     <tbody>
 
 													<?php
-													/** @var ML_Field_Entity $field */
+													/** @var MailerLite_Forms_Field_Entity $field */
 													foreach ( $fields as $field ): ?>
                                                         <tr>
                                                             <th style="width:1%;"><input type="checkbox"
@@ -168,8 +168,7 @@
                                                                        name="form_field[<?php echo $field->key; ?>]"
                                                                        size="30" maxlength="255"
                                                                        value="<?php echo array_key_exists( $field->key,
-																           $form->data['fields'] ) ? $form->data['fields'][ $field->key ] : $field->title; ?>"<?php echo $field->
-																key == 'email' || array_key_exists( $field->key,
+																           $form->data['fields'] ) ? $form->data['fields'][ $field->key ] : $field->title; ?>"<?php echo $field->key == 'email' || array_key_exists( $field->key,
 																	$form->data['fields'] ) ?
 																	'' : ' disabled="disabled"'; ?>>
                                                             </td>
@@ -185,7 +184,7 @@
                                                 <table class="form-table">
                                                     <tbody>
 													<?php
-													/** @var ML_Group_Entity $group */
+													/** @var MailerLite_Forms_Group_Entity $group */
 													foreach ( $groups as $group ) { ?>
                                                         <tr>
                                                             <th style="width:1%;"><input
@@ -204,6 +203,17 @@
 													<?php } ?>
                                                     </tbody>
                                                 </table>
+                                                <table id="more-groups" class="form-table" style="display: none;">
+
+                                                </table>
+												<?php if ( $can_load_more_groups ) {
+													?>
+                                                    <button id="load-more-groups" class="button-primary" type="button">
+                                                        Load more
+                                                    </button>
+													<?php
+												}
+												?>
                                             </td>
                                         </tr>
                                     </table>
@@ -277,7 +287,20 @@
                     }
                 });
             });
-        })();
+
+            $('#load-more-groups').on('click', function () {
+                $('#load-more-groups').prop('disabled', true);
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: ajaxurl,
+                    data: {action: 'mailerlite_get_more_groups', form_id: <?php echo $form->id;?>}
+                }).done(function (html) {
+                    $('#more-groups').show().html(html);
+                    $('#load-more-groups').hide();
+                });
+            });
+        });
     </script>
 
 

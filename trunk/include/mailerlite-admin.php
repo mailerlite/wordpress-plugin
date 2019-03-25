@@ -1,14 +1,16 @@
 <?php defined( 'ABSPATH' ) or die( "No direct access allowed!" );
 
-require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Groups.php";
-require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Fields.php";
-require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Webforms.php";
-require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/ML_Settings_Double_OptIn.php";
+require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/MailerLite_Forms_Groups.php";
+require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/MailerLite_Forms_Fields.php";
+require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/MailerLite_Forms_Webforms.php";
+require_once MAILERLITE_PLUGIN_DIR . "libs/mailerlite_rest/MailerLite_Forms_Settings_Double_OptIn.php";
 
 /**
  * Class MailerLite_Admin
  */
 class MailerLite_Admin {
+
+	const FIRST_GROUP_LOAD = 100;
 
 	private static $initiated = false;
 	private static $api_key = false;
@@ -49,6 +51,31 @@ class MailerLite_Admin {
 		) {
 			self::toggle_double_opt_in();
 		}
+
+		add_action( 'wp_ajax_mailerlite_get_more_groups', 'MailerLite_Admin::ajax_get_more_groups' );
+		add_action( 'wp_ajax_nopriv_mailerlite_get_more_groups', 'MailerLite_Admin::ajax_get_more_groups' );
+	}
+
+	function ajax_get_more_groups() {
+		global $wpdb;
+
+		$form = $wpdb->get_row(
+			"SELECT * FROM " . $wpdb->base_prefix
+			. "mailerlite_forms WHERE id = " . $_POST['form_id']
+		);
+
+		$form->data = unserialize( $form->data );
+
+		$ML_Groups = new MailerLite_Forms_Groups( self::$api_key );
+
+		$groups = $ML_Groups->getAllJson( [
+			'limit'  => 1000,
+			'offset' => self::FIRST_GROUP_LOAD,
+		] );
+
+		include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/ajax_groups.php' );
+
+		exit;
 	}
 
 	/**
@@ -68,28 +95,27 @@ class MailerLite_Admin {
 			]
 		);
 
-        add_action( 'admin_enqueue_scripts', ['MailerLite_Admin', 'load_mailerlite_admin_css'] );
+		add_action( 'admin_enqueue_scripts', [ 'MailerLite_Admin', 'load_mailerlite_admin_css' ] );
 	}
 
-    public static function load_mailerlite_admin_css($hook)
-    {
-        $allowed_hooks = [
-            'toplevel_page_mailerlite_main',
-            'mailerlite_page_mailerlite_settings',
-            'mailerlite_page_mailerlite_status',
-        ];
+	public static function load_mailerlite_admin_css( $hook ) {
+		$allowed_hooks = [
+			'toplevel_page_mailerlite_main',
+			'mailerlite_page_mailerlite_settings',
+			'mailerlite_page_mailerlite_status',
+		];
 
-        if (!in_array($hook, $allowed_hooks)) {
-            return;
-        }
+		if ( ! in_array( $hook, $allowed_hooks ) ) {
+			return;
+		}
 
-        wp_register_style(
-            'mailerlite.css',
-            MAILERLITE_PLUGIN_URL . '/assets/css/mailerlite.css', [],
-            MAILERLITE_VERSION
-        );
-        wp_enqueue_style( 'mailerlite.css' );
-    }
+		wp_register_style(
+			'mailerlite.css',
+			MAILERLITE_PLUGIN_URL . '/assets/css/mailerlite.css', [],
+			MAILERLITE_VERSION
+		);
+		wp_enqueue_style( 'mailerlite.css' );
+	}
 
 	/**
 	 * Generates admin menu links
@@ -102,25 +128,25 @@ class MailerLite_Admin {
 
 		add_submenu_page(
 			'mailerlite_main',
-            __( 'Forms', 'mailerlite' ),
+			__( 'Forms', 'mailerlite' ),
 			__( 'Signup forms', 'mailerlite' ),
-            'manage_options',
+			'manage_options',
 			'mailerlite_main',
-            [ 'MailerLite_Admin', 'mailerlite_main' ]
+			[ 'MailerLite_Admin', 'mailerlite_main' ]
 		);
 		add_submenu_page(
 			'mailerlite_main',
-            __( 'Settings', 'mailerlite' ),
 			__( 'Settings', 'mailerlite' ),
-            'manage_options',
+			__( 'Settings', 'mailerlite' ),
+			'manage_options',
 			'mailerlite_settings',
 			[ 'MailerLite_Admin', 'mailerlite_settings' ]
 		);
 		add_submenu_page(
 			'mailerlite_main',
-            __( 'Status', 'mailerlite' ),
 			__( 'Status', 'mailerlite' ),
-            'manage_options',
+			__( 'Status', 'mailerlite' ),
+			'manage_options',
 			'mailerlite_status',
 			[ 'MailerLite_Admin_Status', 'mailerlite_status' ]
 		);
@@ -133,7 +159,7 @@ class MailerLite_Admin {
 	 * Checks if there is API key set
 	 */
 	private static function mailerlite_api_key_require() {
-	    global $mailerlite_error;
+		global $mailerlite_error;
 
 		if ( self::$api_key == false ) {
 			include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/api_key.php' );
@@ -167,7 +193,7 @@ class MailerLite_Admin {
 				}
 			}
 
-			$ML_Webforms = new ML_Webforms( $api_key );
+			$ML_Webforms = new MailerLite_Forms_Webforms( $api_key );
 			$webforms    = $ML_Webforms->getAllJson();
 
 			if ( ! empty( $webforms->error ) && ! empty( $webforms->error->message ) ) {
@@ -203,8 +229,22 @@ class MailerLite_Admin {
 						create_function( '', 'return "tinymce";' )
 					);
 
-					$ML_Groups = new ML_Groups( $api_key );
-					$groups    = $ML_Groups->getAllJson();
+					$ML_Groups = new MailerLite_Forms_Groups( $api_key );
+
+					$groups = $ML_Groups->getAllJson( [
+						'limit'  => self::FIRST_GROUP_LOAD,
+						'offset' => 0,
+					] );
+
+					$can_load_more_groups       = false;
+					$can_load_more_groups_check = $ML_Groups->getAllJson( [
+						'limit'  => 1,
+						'offset' => self::FIRST_GROUP_LOAD,
+					] );
+
+					if ( count( $can_load_more_groups_check ) > 0 ) {
+						$can_load_more_groups = true;
+					}
 
 					if ( $ML_Groups->hasCurlError() ) {
 						$mailerlite_error = '<u>' . __( 'Send this error to info@mailerlite.com or our chat',
@@ -212,7 +252,7 @@ class MailerLite_Admin {
 
 					}
 
-					$ML_Fields = new ML_Fields( $api_key );
+					$ML_Fields = new MailerLite_Forms_Fields( $api_key );
 					$fields    = $ML_Fields->getAllJson();
 
 					if ( isset( $_POST['save_custom_signup_form'] ) ) {
@@ -287,7 +327,7 @@ class MailerLite_Admin {
 
 					include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/edit_custom.php' );
 				} elseif ( $form->type == MailerLite_Form::TYPE_EMBEDDED ) {
-					$ML_Webforms = new ML_Webforms( $api_key );
+					$ML_Webforms = new MailerLite_Forms_Webforms( $api_key );
 					$webforms    = $ML_Webforms->getAllJson();
 
 					if ( ! empty( $webforms->error ) && ! empty( $webforms->error->message ) ) {
@@ -367,12 +407,12 @@ class MailerLite_Admin {
 	 * Settings page method
 	 */
 	public static function mailerlite_settings() {
-	    global $mailerlite_error;
+		global $mailerlite_error;
 		self::mailerlite_api_key_require();
 
 		$api_key = self::$api_key;
 
-		$ML_Settings_Double_OptIn   = new ML_Settings_Double_OptIn( $api_key );
+		$ML_Settings_Double_OptIn   = new MailerLite_Forms_Settings_Double_OptIn( $api_key );
 		$double_optin_enabled       = $ML_Settings_Double_OptIn->status();
 		$double_optin_enabled_local = ! get_option( 'mailerlite_double_optin_disabled' );
 
@@ -405,7 +445,7 @@ class MailerLite_Admin {
 			update_option( 'mailerlite_popups_disabled', false );
 			self::$api_key = $key;
 		} else {
-			$ML_Lists = new ML_Groups( $key );
+			$ML_Lists = new MailerLite_Forms_Groups( $key );
 			$ML_Lists->getAll();
 			$response = $ML_Lists->getResponseInfo();
 
@@ -447,7 +487,7 @@ class MailerLite_Admin {
 
 		$api_key = self::$api_key;
 
-		$ML_Settings_Double_OptIn = new ML_Settings_Double_OptIn( $api_key );
+		$ML_Settings_Double_OptIn = new MailerLite_Forms_Settings_Double_OptIn( $api_key );
 
 		if ( get_option( 'mailerlite_double_optin_disabled' ) ) {
 			$ML_Settings_Double_OptIn->enable();
@@ -513,7 +553,7 @@ class MailerLite_Admin {
 				$form_name          = $_POST['form_name'];
 				$form_data['lists'] = $_POST['form_lists'];
 			} else {
-				$ML_Groups = new ML_Groups( self::$api_key );
+				$ML_Groups = new MailerLite_Forms_Groups( self::$api_key );
 				$groups    = $ML_Groups->getAllJson();
 
 				require_once( ABSPATH . 'wp-admin/admin-header.php' );

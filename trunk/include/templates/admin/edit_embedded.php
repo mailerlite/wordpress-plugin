@@ -34,7 +34,7 @@
                             <td>
                                 <select id="form_webform_id" name="form_webform_id">
 									<?php
-									/** @var ML_Webform_Entity[] $webforms */
+									/** @var MailerLite_Forms_Webform_Entity $webform */
 									foreach ( $webforms as $webform ): ?>
 										<?php if ( ! in_array( $webform->type, [ 'embed', 'embedded', 'button' ] ) ) {
 											continue;

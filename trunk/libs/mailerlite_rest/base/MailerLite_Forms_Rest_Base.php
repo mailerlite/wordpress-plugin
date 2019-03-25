@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class ML_Rest_Base
+ * Class MailerLite_Forms_Rest_Base
  */
-class ML_Rest_Base {
+class MailerLite_Forms_Rest_Base {
 	protected $url;
 	protected $verb;
 	protected $requestBody;
@@ -90,7 +90,7 @@ class ML_Rest_Base {
 		$data['apiKey'] = $this->apiKey;
 
 		if ( ! is_array( $data ) ) {
-			throw new InvalidArgumentException( 'Invalid data input for postBody.  Array expected' );
+			throw new InvalidArgumentException( 'Invalid data input for postBody. Array expected' );
 		}
 
 		$data              = http_build_query( $data, '', '&' );

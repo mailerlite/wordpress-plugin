@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class ML_Group_Entity
+ * Class MailerLite_Forms_Group_Entity
  */
-class ML_Group_Entity {
+class MailerLite_Forms_Group_Entity {
 	public $id;
 	public $name;
 	public $total;
