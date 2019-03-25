@@ -3,8 +3,9 @@ Contributors: mailerlite
 Donate link: https://www.mailerlite.com/
 Tags: mailerlite, newsletter, subscribe, form, webform
 Requires at least: 3.0.1
-Tested up to: 4.9
-Stable tag: 1.2.7
+Tested up to: 5.0.2
+Requires PHP: 5.6.0
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,22 +15,24 @@ Add newsletter sign up forms to your WordPress site. Subscribers will be saved d
 
 = Official MailerLite WordPress plugin =
 
-The Official MailerLite Sign Up Form plugin makes it easy to grow your newsletter subscriber list. Use the plugin to add newsletter sign up form to your Wordpress blog or website and automatically integrate it with your MailerLite account.
+The Official MailerLite Sign Up Form plugin makes it easy to grow your newsletter subscriber list from your WordPress blog or website. The plugin automatically integrates your Wordpress form with your MailerLite email marketing account.
 
 If you don't have MailerLite account yet, [you can signup for a FREE trial here](https://www.mailerlite.com/).
 
-Once you activate the plugin, you'll be able to select and add any of webforms you have in your MailerLite account or create a new webform. Place the webform in the sidebar using widget or put it enywhere in your post with a shortcode.
+Once you activate the plugin, you’ll be able to select and add any of the pre-built webforms from your MailerLite account or create a new form from scratch. You can place the form in the sidebar using a widget or use a shortcode to put it wherever you want.
 
-Setup is fast and easy! You just need to enter your MailerLite account API code and you're all set.
+Setup is fast and easy! You just need to enter your MailerLite account API code and you’re all set.
 
-Plugin features:
+Plugin features include:
 
-* Add webforms from your MailerLite account to your Wordpress blog or website
-* Create new webforms
+* Easily-to-add webforms from MailerLite to your WordPress blog or website
+* Option to create new webforms
+* Wordpress 5 new editor support
 * Save subscribers automatically to your MailerLite account
 * Place webforms using widget or shortcode
 * Double opt-in signup
-* Setup welcome emails in your MailerLite account
+* Updated plugin layout
+* Automate welcome emails from your MailerLite account
 
 == Installation ==
 
@@ -75,7 +78,7 @@ Yes, you can easily register at www.mailerlite.com
 Use shortcode with form id which you created [mailerlite_form form_id=1].
 
 = How to display a form in widget areas like a sidebar? =
-Just add "Mailerlite sign up form widget" and select form you have created
+Just add "MailerLite sign up form widget" and select form you have created
 
 = How to display a form in my template files? =
 
@@ -127,6 +130,34 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.3.6 =
+* Feature - Status page to provide information about your environment
+* Tweak - Even better support for older PHP versions in main plugin file
+* Fix - Plugin's stylesheet is only included in pages where it is required
+
+= 1.3.5 =
+* Tweak - Better support for older PHP versions in main plugin file
+
+= 1.3.4 =
+* Fix - Subscriber adding bug
+
+= 1.3.3 =
+* Fix - Form edit redirect not working
+
+= 1.3.2 =
+* Fix - Form block js file version bump
+
+= 1.3.1 =
+* Fix - "Media views" block bug
+
+= 1.3 =
+* Feature - WordPress 5 block
+* Feature - Double opt-in feature
+* Tweak - New admin design
+* Update - The plugin uses MailerLite API V2 from now on
+
+= 1.2.8 =
+Check WP 5.0 support
 = 1.2.7 =
 API url fix
 = 1.2.6 =
@@ -236,6 +267,8 @@ translation errors for LT language, allowing only embed and button forms
 
 == Upgrade Notice ==
 
+= 1.2.8 =
+Check WP 5.0 support
 = 1.2.7 =
 API url fix
 = 1.2.6 =

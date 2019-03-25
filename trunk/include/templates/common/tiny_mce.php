@@ -11,18 +11,19 @@
 
 <form id="mailerlite_tinymce_form" action="" method="post">
 
-    <p><?php _e('Select form from list below, and hit "Add Shortcode" to add the shortcode to your post!', 'mailerlite'); ?></p>
+    <p><?php _e( "Select form from list below, and hit \"Add Shortcode\" to add the shortcode to your post!",
+			'mailerlite' ); ?></p>
 
     <p>
         <label for="mailerlite_form_id">Form</label><br/>
         <select class="widefat" id="mailerlite_form_id" name="mailerlite_form_id">
-            <?php foreach ($forms as $form): ?>
+			<?php foreach ( $forms as $form ): ?>
                 <option value="<?php echo $form->id; ?>"><?php echo $form->name; ?></option>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
         </select>
     </p>
 
-    <input type="button" name="<?php _e('Add Shortcode', 'mailerlite'); ?>" value="Add Shortcode">
+    <input type="button" name="<?php _e( 'Add Shortcode', 'mailerlite' ); ?>" value="Add Shortcode">
 
 </form>
 <script type="text/javascript">
