@@ -42,7 +42,7 @@
 									<?php
 									$embed_button_webforms = [];
 
-									/** @var ML_Webform_Entity[] $webforms */
+									/** @var MailerLite_Forms_Webform_Entity[] $webforms */
 									if ( count( $webforms ) ) {
 										foreach ( $webforms as $webform ) {
 											if ( ! in_array( $webform->type, [ 'embed', 'embedded', 'button' ] ) ) {
