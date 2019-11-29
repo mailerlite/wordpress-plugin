@@ -35,7 +35,8 @@ class MailerLite_Admin {
 		}
 
 		if ( isset( $_POST['action'] )
-		     && $_POST['action'] == 'enter-mailerlite-key'
+			 && $_POST['action'] == 'enter-mailerlite-key'
+			 &&  (ctype_alnum($_POST['mailerlite_key']) || empty($_POST['mailerlite_key']))
 		) {
 			self::set_api_key();
 		}
@@ -410,7 +411,7 @@ class MailerLite_Admin {
 		global $mailerlite_error;
 		self::mailerlite_api_key_require();
 
-		$api_key = self::$api_key;
+		$api_key = "********************************";
 
 		$ML_Settings_Double_OptIn   = new MailerLite_Forms_Settings_Double_OptIn( $api_key );
 		$double_optin_enabled       = $ML_Settings_Double_OptIn->status();
