@@ -262,7 +262,7 @@ class MailerLite_Admin {
 						$form_title       = self::issetWithDefault( 'form_title',
 							__( 'Newsletter signup', 'mailerlite' ) );
 						$form_description = self::issetWithDefault( 'form_description',
-							__( 'Just simple MailerLite form!', 'mailerlite' ) );
+							__( 'Just simple MailerLite form!', 'mailerlite' ), false );
 						$success_message  = self::issetWithDefault( 'success_message',
 							'<span style="color: rgb(51, 153, 102);">' . __( 'Thank you for sign up!',
 								'mailerlite' ) . '</span>', false );
