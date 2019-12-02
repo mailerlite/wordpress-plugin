@@ -237,15 +237,7 @@ class MailerLite_Admin {
 						'offset' => 0,
 					] );
 
-					$can_load_more_groups       = false;
-					$can_load_more_groups_check = $ML_Groups->getAllJson( [
-						'limit'  => 1,
-						'offset' => self::FIRST_GROUP_LOAD,
-					] );
-
-					if ( count( $can_load_more_groups_check ) > 0 ) {
-						$can_load_more_groups = true;
-					}
+					$can_load_more_groups = self::checkIfMoreGroups($ML_Groups);
 
 					if ( $ML_Groups->hasCurlError() ) {
 						$mailerlite_error = '<u>' . __( 'Send this error to info@mailerlite.com or our chat',
@@ -556,6 +548,7 @@ class MailerLite_Admin {
 			} else {
 				$ML_Groups = new MailerLite_Forms_Groups( self::$api_key );
 				$groups    = $ML_Groups->getAllJson();
+				$can_load_more_groups = self::checkIfMoreGroups($ML_Groups);
 
 				require_once( ABSPATH . 'wp-admin/admin-header.php' );
 				include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/create_custom.php' );
@@ -596,5 +589,15 @@ class MailerLite_Admin {
 		}
 
 		return $default;
+	}
+
+	private static function checkIfMoreGroups($ML_Groups)
+	{
+		$can_load_more_groups_check = $ML_Groups->getAllJson( [
+			'limit'  => 1,
+			'offset' => self::FIRST_GROUP_LOAD,
+		] );
+
+		return count( $can_load_more_groups_check ) > 0;
 	}
 }

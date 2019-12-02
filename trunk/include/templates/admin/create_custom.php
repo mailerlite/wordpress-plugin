@@ -37,6 +37,12 @@
 							<?php endforeach; ?>
                             </tbody>
                         </table>
+                        <table id="more-groups" class="form-table" style="display: none;"></table>
+						<?php if ( $can_load_more_groups ) { ?>
+                            <button id="load-more-groups" class="button-primary" type="button">
+                                 Load more
+                            </button>
+						<?php } ?>
 						<?php if ( count( $groups ) === 0 ) {
 							?>
                             <div class="notice notice-error">
@@ -82,6 +88,19 @@
                     e.preventDefault();
                     return false;
                 }
+            });
+
+            $('#load-more-groups').on('click', function () {
+                $('#load-more-groups').prop('disabled', true);
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: ajaxurl,
+                    data: {action: 'mailerlite_get_more_groups'}
+                }).done(function (html) {
+                    $('#more-groups').show().html(html);
+                    $('#load-more-groups').hide();
+                });
             });
         });
     })();
