@@ -547,7 +547,10 @@ class MailerLite_Admin {
 				$form_data['lists'] = $_POST['form_lists'];
 			} else {
 				$ML_Groups = new MailerLite_Forms_Groups( self::$api_key );
-				$groups    = $ML_Groups->getAllJson();
+				$groups    = $ML_Groups->getAllJson([
+					'limit'  => self::FIRST_GROUP_LOAD,
+					'offset' => 0
+				]);
 				$can_load_more_groups = self::checkIfMoreGroups($ML_Groups);
 
 				require_once( ABSPATH . 'wp-admin/admin-header.php' );
