@@ -446,7 +446,7 @@ class MailerLite_Admin {
 
 		$api_key = "********************************";
 
-		$ML_Settings_Double_OptIn   = new MailerLite_Forms_Settings_Double_OptIn( $api_key );
+		$ML_Settings_Double_OptIn   = new MailerLite_Forms_Settings_Double_OptIn( self::$api_key );
 		$double_optin_enabled       = $ML_Settings_Double_OptIn->status();
 		$double_optin_enabled_local = ! get_option( 'mailerlite_double_optin_disabled' );
 
@@ -587,7 +587,7 @@ class MailerLite_Admin {
 				$form_name          = $_POST['form_name'];
 				$form_data['lists'] = $_POST['form_lists'];
 				$selected_groups = explode(';*',$_POST['selected_groups']);
-				
+
 				foreach ($selected_groups as $group) {
 					$group = explode('::', $group);
 					$group_data = [];
