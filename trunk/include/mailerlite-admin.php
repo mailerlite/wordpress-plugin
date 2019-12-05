@@ -444,7 +444,7 @@ class MailerLite_Admin {
 		global $mailerlite_error;
 		self::mailerlite_api_key_require();
 
-		$api_key = "********************************";
+		$api_key = "....".substr(self::$api_key, -4);
 
 		$ML_Settings_Double_OptIn   = new MailerLite_Forms_Settings_Double_OptIn( self::$api_key );
 		$double_optin_enabled       = $ML_Settings_Double_OptIn->status();
