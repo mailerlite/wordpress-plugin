@@ -35,7 +35,8 @@ class MailerLite_Admin {
 		}
 
 		if ( isset( $_POST['action'] )
-		     && $_POST['action'] == 'enter-mailerlite-key'
+			 && $_POST['action'] == 'enter-mailerlite-key'
+			 &&  (ctype_alnum($_POST['mailerlite_key']) || empty($_POST['mailerlite_key']))
 		) {
 			self::set_api_key();
 		}
@@ -68,10 +69,14 @@ class MailerLite_Admin {
 
 		$ML_Groups = new MailerLite_Forms_Groups( self::$api_key );
 
-		$groups = $ML_Groups->getAllJson( [
+		$lists = $form->data['lists'];
+		$groups_from_ml_extended = $ML_Groups->getAllJson( [
 			'limit'  => 1000,
 			'offset' => self::FIRST_GROUP_LOAD,
 		] );
+		$groups = array_filter($groups_from_ml_extended, function($group) use ($lists) {
+			return ! in_array($group->id, $lists);
+		});
 
 		include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/ajax_groups.php' );
 
@@ -231,20 +236,37 @@ class MailerLite_Admin {
 
 					$ML_Groups = new MailerLite_Forms_Groups( $api_key );
 
-					$groups = $ML_Groups->getAllJson( [
+					$groups_from_ml = $ML_Groups->getAllJson( [
 						'limit'  => self::FIRST_GROUP_LOAD,
 						'offset' => 0,
 					] );
 
-					$can_load_more_groups       = false;
-					$can_load_more_groups_check = $ML_Groups->getAllJson( [
-						'limit'  => 1,
-						'offset' => self::FIRST_GROUP_LOAD,
-					] );
+					$lists = $form->data['lists'];
+					if (! isset($form->data['selected_groups'])) {
+						$groups_selected = array_filter($groups_from_ml, function($group) use ($lists) {
+							return in_array($group->id, $lists);
+						});
 
-					if ( count( $can_load_more_groups_check ) > 0 ) {
-						$can_load_more_groups = true;
+						if (count($groups_selected) != count($lists)) {
+							$groups_from_ml_extended = $ML_Groups->getAllJson([
+								'limit'  => 1100,
+								'offset' => 0,
+							]);
+
+							$groups_selected = array_filter($groups_from_ml_extended, function($group) use ($lists) {
+								return in_array($group->id, $lists);
+							});
+						}
+					} else {
+						$groups_selected = $form->data['selected_groups'];
 					}
+
+					$groups_not_selected = array_filter($groups_from_ml, function($group) use ($lists) {
+						return ! in_array($group->id, $lists);
+					});
+					$groups = array_merge($groups_selected, $groups_not_selected);
+
+					$can_load_more_groups = self::checkIfMoreGroups($ML_Groups);
 
 					if ( $ML_Groups->hasCurlError() ) {
 						$mailerlite_error = '<u>' . __( 'Send this error to info@mailerlite.com or our chat',
@@ -261,7 +283,7 @@ class MailerLite_Admin {
 						$form_title       = self::issetWithDefault( 'form_title',
 							__( 'Newsletter signup', 'mailerlite' ) );
 						$form_description = self::issetWithDefault( 'form_description',
-							__( 'Just simple MailerLite form!', 'mailerlite' ) );
+							__( 'Just simple MailerLite form!', 'mailerlite' ), false );
 						$success_message  = self::issetWithDefault( 'success_message',
 							'<span style="color: rgb(51, 153, 102);">' . __( 'Thank you for sign up!',
 								'mailerlite' ) . '</span>', false );
@@ -284,6 +306,17 @@ class MailerLite_Admin {
 
 						$form_lists = isset( $_POST['form_lists'] ) && is_array( $_POST['form_lists'] ) ? $_POST['form_lists'] : [];
 
+						$form_selected_groups =[];
+						$selected_groups = explode(';*',$_POST['selected_groups']);
+						
+						foreach ($selected_groups as $group) {
+							$group = explode('::', $group);
+							$group_data = [];
+							$group_data['id'] = $group[0];
+							$group_data['name'] = $group[1];
+							$form_selected_groups[] = (object)$group_data;
+						}
+
 						$prepared_fields = [];
 
 						// Force to use email
@@ -304,6 +337,7 @@ class MailerLite_Admin {
 							'language'        => $language,
 							'lists'           => $form_lists,
 							'fields'          => $prepared_fields,
+							'selected_groups' => $form_selected_groups
 						];
 
 						$wpdb->update(
@@ -410,9 +444,9 @@ class MailerLite_Admin {
 		global $mailerlite_error;
 		self::mailerlite_api_key_require();
 
-		$api_key = self::$api_key;
+		$api_key = "....".substr(self::$api_key, -4);
 
-		$ML_Settings_Double_OptIn   = new MailerLite_Forms_Settings_Double_OptIn( $api_key );
+		$ML_Settings_Double_OptIn   = new MailerLite_Forms_Settings_Double_OptIn( self::$api_key );
 		$double_optin_enabled       = $ML_Settings_Double_OptIn->status();
 		$double_optin_enabled_local = ! get_option( 'mailerlite_double_optin_disabled' );
 
@@ -552,9 +586,22 @@ class MailerLite_Admin {
 			if ( array_key_exists( 'create_signup_form_now', $_POST ) ) {
 				$form_name          = $_POST['form_name'];
 				$form_data['lists'] = $_POST['form_lists'];
+				$selected_groups = explode(';*',$_POST['selected_groups']);
+
+				foreach ($selected_groups as $group) {
+					$group = explode('::', $group);
+					$group_data = [];
+					$group_data['id'] = $group[0];
+					$group_data['name'] = $group[1];
+					$form_data['selected_groups'][] = (object)$group_data;
+				}
 			} else {
 				$ML_Groups = new MailerLite_Forms_Groups( self::$api_key );
-				$groups    = $ML_Groups->getAllJson();
+				$groups    = $ML_Groups->getAllJson([
+					'limit'  => self::FIRST_GROUP_LOAD,
+					'offset' => 0
+				]);
+				$can_load_more_groups = self::checkIfMoreGroups($ML_Groups);
 
 				require_once( ABSPATH . 'wp-admin/admin-header.php' );
 				include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/create_custom.php' );
@@ -595,5 +642,15 @@ class MailerLite_Admin {
 		}
 
 		return $default;
+	}
+
+	private static function checkIfMoreGroups($ML_Groups)
+	{
+		$can_load_more_groups_check = $ML_Groups->getAllJson( [
+			'limit'  => 1,
+			'offset' => self::FIRST_GROUP_LOAD,
+		] );
+
+		return count( $can_load_more_groups_check ) > 0;
 	}
 }

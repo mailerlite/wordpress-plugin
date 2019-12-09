@@ -37,6 +37,12 @@
 							<?php endforeach; ?>
                             </tbody>
                         </table>
+                        <table id="more-groups" class="form-table" style="display: none;"></table>
+						<?php if ( $can_load_more_groups ) { ?>
+                            <button id="load-more-groups" class="button-primary" type="button">
+                                 Load more
+                            </button>
+						<?php } ?>
 						<?php if ( count( $groups ) === 0 ) {
 							?>
                             <div class="notice notice-error">
@@ -53,7 +59,7 @@
 									'mailerlite' ); ?>
                             </p>
                         </div>
-
+                        <input type="hidden" id="selected_groups" name="selected_groups" />
                         <div class="submit">
                             <input class="button-primary"
                                    value="<?php echo __( 'Create form', 'mailerlite' ); ?>" name="create_signup_form"
@@ -75,13 +81,38 @@
 
         jQuery(document).ready(function ($) {
             $('#create_custom').on('submit', function (e) {
-                var checkedLists = $("[name='form_lists[]']:checked").length;
-
-                if (checkedLists === 0) {
+                var checkedLists = $("[name='form_lists[]']:checked");
+                
+                var selected_groups = '';
+                checkedLists.each(function() {
+                    group = this.value +'::'+$("label[for='list_"+ this.value + "']").text();
+                    if (selected_groups != '') {
+                        selected_groups = selected_groups+';*'+group;
+                    } else {
+                        selected_groups = group;
+                    }
+                    
+                });
+                
+                $("[name=selected_groups]").val(selected_groups);
+                if (checkedLists.length === 0) {
                     $("#no-selections-error").show();
                     e.preventDefault();
                     return false;
                 }
+            });
+
+            $('#load-more-groups').on('click', function () {
+                $('#load-more-groups').prop('disabled', true);
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: ajaxurl,
+                    data: {action: 'mailerlite_get_more_groups'}
+                }).done(function (html) {
+                    $('#more-groups').show().html(html);
+                    $('#load-more-groups').hide();
+                });
             });
         });
     })();
