@@ -231,7 +231,9 @@ class MailerLite_Admin {
 				if ( $form->type == MailerLite_Form::TYPE_CUSTOM ) {
 					add_filter(
 						'wp_default_editor',
-						create_function( '', 'return "tinymce";' )
+						function() {
+							return 'tinymce';
+						}
 					);
 
 					$ML_Groups = new MailerLite_Forms_Groups( $api_key );
