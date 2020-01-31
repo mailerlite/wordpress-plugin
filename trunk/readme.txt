@@ -131,7 +131,7 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 == Changelog ==
 
 = 1.4.3 =
-* Fix - removed use of depricated php method
+* Fix - removed use of deprecated php method
 
 = 1.4.2 =
 * Fix - Styles on form description bug
