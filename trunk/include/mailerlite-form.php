@@ -58,10 +58,13 @@ class MailerLite_Form {
 		$api_key = get_option( 'mailerlite_api_key' );
 
 		if ( $form_id > 0 && isset( $form_fields['email'] ) ) {
-			$form = $wpdb->get_row(
-				"SELECT * FROM " . $wpdb->base_prefix
-				. "mailerlite_forms WHERE id = " . $form_id
+			$query = $wpdb->prepare(
+				"SELECT * FROM
+				{$wpdb->base_prefix}mailerlite_forms
+				WHERE id = %d",
+				$form_id
 			);
+			$form = $wpdb->get_row($query);
 
 			if ( isset( $form->data ) ) {
 
@@ -199,7 +202,13 @@ add_action(
 function load_mailerlite_form( $form_id ) {
 	global $wpdb;
 
-	$form = $wpdb->get_row( "SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms WHERE id = " . $form_id );
+	$query = $wpdb->prepare(
+		"SELECT * FROM
+		{$wpdb->base_prefix}mailerlite_forms
+		WHERE id = %d",
+		$form_id
+	);
+	$form = $wpdb->get_row($query);
 
 	if ( isset( $form->data ) ) {
 		$form_data = unserialize( $form->data );

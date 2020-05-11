@@ -79,9 +79,11 @@ class MailerLite_Shortcode {
 			return;
 		}
 
-		$forms = $wpdb->get_results(
-			"SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms"
-		);
+		$query = "
+			SELECT *
+			FROM {$wpdb->base_prefix}mailerlite_forms
+		";
+		$forms = $wpdb->get_results($query);
 
 		include( MAILERLITE_PLUGIN_DIR . 'include/templates/common/tiny_mce.php' );
 
@@ -110,9 +112,14 @@ class MailerLite_Shortcode {
 	public function redirect_to_form_edit() {
 		global $wpdb;
 
-		$form = $wpdb->get_row(
-			"SELECT * FROM `" . $wpdb->base_prefix . "mailerlite_forms` WHERE `id` = " . $_GET['form_id'] . " ORDER BY time DESC"
+		$query = $wpdb->prepare(
+			"SELECT * FROM
+			{$wpdb->base_prefix}mailerlite_forms
+			WHERE id = %d
+			ORDER BY time DESC",
+			$_GET['form_id']
 		);
+		$form = $wpdb->get_row($query);
 
 		if ( $form != null ) {
 			if ( $form->type == MailerLite_Form::TYPE_CUSTOM ) {

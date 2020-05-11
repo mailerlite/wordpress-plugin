@@ -58,12 +58,23 @@ class MailerLite_Admin {
 	}
 
 	function ajax_get_more_groups() {
+		if( !current_user_can( 'administrator' ) ) {
+			wp_die(
+				'You must be an administrator to use this plugin',
+				'Plugin Error',
+				[ 'response' => 403, 'back_link' => true ]
+			);
+		}
+
 		global $wpdb;
 
-		$form = $wpdb->get_row(
-			"SELECT * FROM " . $wpdb->base_prefix
-			. "mailerlite_forms WHERE id = " . $_POST['form_id']
+		$query = $wpdb->prepare(
+			"SELECT *
+			FROM {$wpdb->base_prefix}mailerlite_forms
+			WHERE id=%d",
+			$_POST['form_id']
 		);
+		$form = $wpdb->get_row($query);
 
 		$form->data = unserialize( $form->data );
 
@@ -220,10 +231,13 @@ class MailerLite_Admin {
 
 			$form_id = absint( $_GET['id'] );
 
-			$form = $wpdb->get_row(
-				"SELECT * FROM " . $wpdb->base_prefix
-				. "mailerlite_forms WHERE id = " . $form_id
+			$query = $wpdb->prepare(
+				"SELECT *
+				FROM {$wpdb->base_prefix}mailerlite_forms
+				WHERE id=%d",
+				$form_id
 			);
+			$form = $wpdb->get_row($query);
 
 			if ( isset( $form->data ) ) {
 				$form->data = unserialize( $form->data );
@@ -310,7 +324,7 @@ class MailerLite_Admin {
 
 						$form_selected_groups =[];
 						$selected_groups = explode(';*',$_POST['selected_groups']);
-						
+
 						foreach ($selected_groups as $group) {
 							$group = explode('::', $group);
 							$group_data = [];
@@ -414,9 +428,12 @@ class MailerLite_Admin {
 					include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/edit_embedded.php' );
 				}
 			} else {
-				$forms_data = $wpdb->get_results(
-					"SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms ORDER BY time DESC"
-				);
+				$query = "
+					SELECT * FROM
+					{$wpdb->base_prefix}mailerlite_forms
+					ORDER BY time DESC
+				";
+				$forms_data = $wpdb->get_results($query);
 
 				include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/main.php' );
 			}
@@ -430,10 +447,12 @@ class MailerLite_Admin {
 			wp_redirect( 'admin.php?page=mailerlite_main' );
 		} // Signup forms list
 		else {
-			$forms_data = $wpdb->get_results(
-				"SELECT * FROM " . $wpdb->base_prefix
-				. "mailerlite_forms ORDER BY time DESC"
-			);
+			$query = "
+				SELECT * FROM
+				{$wpdb->base_prefix}mailerlite_forms
+				ORDER BY time DESC
+			";
+			$forms_data = $wpdb->get_results($query);
 
 			include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/main.php' );
 		}

@@ -54,9 +54,13 @@ class MailerLite_Gutenberg {
 	 */
 	public static function ajax_forms() {
 		global $wpdb;
-		$forms_data = $wpdb->get_results(
-			"SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms ORDER BY time DESC"
-		);
+
+		$query = "
+			SELECT * FROM
+			{$wpdb->base_prefix}mailerlite_forms
+			ORDER BY time DESC
+		";
+		$forms_data = $wpdb->get_results($query);
 
 		$forms_data = array_map( function ( $form ) {
 			return [
@@ -86,9 +90,14 @@ class MailerLite_Gutenberg {
 	public function form_preview_iframe() {
 		global $wpdb;
 
-		$form = $wpdb->get_results(
-			"SELECT * FROM `" . $wpdb->base_prefix . "mailerlite_forms` WHERE `id` = " . $_POST['form_id'] . " ORDER BY time DESC"
+		$query = $wpdb->prepare(
+			"SELECT * FROM
+			{$wpdb->base_prefix}mailerlite_forms
+			WHERE id = %d
+			ORDER BY time DESC",
+			$_POST['form_id']
 		);
+		$form = $wpdb->get_results($query);
 
 		if ( count( $form ) === 0 ) {
 			echo wp_send_json_success( [ 'html' => false, 'edit_link' => false ] );
