@@ -47,7 +47,7 @@ Plugin features include:
 
 ### Requirements
 
-* Requires PHP `>=5.3`.
+* Requires PHP `>=5.6`.
 
 ### What is the plugin license?
 
