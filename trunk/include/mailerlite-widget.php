@@ -35,10 +35,13 @@ class MailerLite_Widget extends WP_Widget {
 		           && intval(
 			           $instance['mailerlite_form_id']
 		           ) ? $instance['mailerlite_form_id'] : 0;
-		$form    = $wpdb->get_row(
-			"SELECT * FROM " . $wpdb->base_prefix . "mailerlite_forms WHERE id = "
-			. $form_id
+		$query = $wpdb->prepare(
+			"SELECT * FROM
+			{$wpdb->base_prefix}mailerlite_forms
+			WHERE id = %d",
+			$form_id
 		);
+		$form = $wpdb->get_row($query);
 
 		if ( isset( $form->data ) ) {
 			$form_data = unserialize( $form->data );
@@ -66,10 +69,12 @@ class MailerLite_Widget extends WP_Widget {
 	public function form( $instance ) {
 		global $wpdb;
 
-		$forms_data = $wpdb->get_results(
-			"SELECT * FROM " . $wpdb->base_prefix
-			. "mailerlite_forms ORDER BY time DESC"
-		);
+		$query = "
+			SELECT * FROM
+			{$wpdb->base_prefix}mailerlite_forms
+			ORDER BY time DESC
+		";
+		$forms_data = $wpdb->get_results($query);
 
 		if ( isset( $instance['mailerlite_form_id'] ) ) {
 			$id = $instance['mailerlite_form_id'];

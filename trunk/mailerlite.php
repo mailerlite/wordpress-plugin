@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Official MailerLite Sign Up Forms
  * Description: Official MailerLite Sign Up Forms plugin for WordPress. Ability to embed MailerLite webforms and create custom ones just with few clicks.
- * Version: 1.4
+ * Version: 1.4.2
  * Author: MailerGroup
  * Author URI: https://www.mailerlite.com
  * License: GPLv2 or later
@@ -29,7 +29,7 @@
 define( 'MAILERLITE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MAILERLITE_PLUGIN_URL', plugins_url( '', __FILE__ ) );
 
-define( 'MAILERLITE_VERSION', '1.4' );
+define( 'MAILERLITE_VERSION', '1.4.4' );
 
 define( 'MAILERLITE_PHP_VERSION', '5.6.0' );
 define( 'MAILERLITE_WP_VERSION', '3.0.1' );
@@ -83,13 +83,25 @@ function mailerlite_install() {
            ) DEFAULT " . $charset_collate . ";";
 	dbDelta( $sql );
 
-	$sql = "ALTER TABLE  " . $table_name . " " . $charset_collate . ";";
+	$sql = $wpdb->prepare(
+		"ALTER TABLE %s %s;",
+		$table_name,
+		$charset_collate
+	);
 	$wpdb->query( $sql );
 
-	$sql = "ALTER TABLE  " . $table_name . " CHANGE  `name`  `name` TINYTEXT " . $charset_collate . ";";
+	$sql = $wpdb->prepare(
+		"ALTER TABLE  %s CHANGE  `name` `name` TINYTEXT %s;",
+		$table_name,
+		$charset_collate
+	);
 	$wpdb->query( $sql );
 
-	$sql = "ALTER TABLE  " . $table_name . " CHANGE  `data`  `data` TEXT " . $charset_collate . ";";
+	$sql = $wpdb->prepare(
+		"ALTER TABLE %s CHANGE  `data` `data` TEXT %s;",
+		$table_name,
+		$charset_collate
+	);
 	$wpdb->query( $sql );
 }
 
@@ -142,8 +154,11 @@ function mailerlite_status_information() {
 
 	// Only if loading the plugin succeeded
 	if ( class_exists( 'MailerLite_Form' ) ) {
-		$forms                    = $wpdb->get_results( sprintf( "SELECT * FROM %smailerlite_forms",
-			$wpdb->base_prefix ) );
+		$query = "
+			SELECT *
+			FROM {$wpdb->base_prefix}mailerlite_forms
+		";
+		$forms = $wpdb->get_results($query);
 		$number_of_custom_forms   = 0;
 		$number_of_embedded_forms = 0;
 
