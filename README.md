@@ -101,4 +101,4 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 ### Where can I find my MailerLite API key?
 
-[Check it here!](https://kb.mailerlite.com/does-mailerlite-offer-an-api "Check it here!")
+[Check it here!](https://help.mailerlite.com/article/show/35040-where-can-i-find-the-api-key "Check it here!")
