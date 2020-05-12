@@ -130,6 +130,9 @@ Add your custom CSS rules to the end of your theme stylesheet, /wp-content/theme
 
 == Changelog ==
 
+= 1.4.4 =
+* Fix - Additional security for database queries
+
 = 1.4.3 =
 * Fix - removed use of deprecated php method
 
