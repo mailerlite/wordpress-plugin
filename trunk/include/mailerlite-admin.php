@@ -54,18 +54,9 @@ class MailerLite_Admin {
 		}
 
 		add_action( 'wp_ajax_mailerlite_get_more_groups', 'MailerLite_Admin::ajax_get_more_groups' );
-		add_action( 'wp_ajax_nopriv_mailerlite_get_more_groups', 'MailerLite_Admin::ajax_get_more_groups' );
 	}
 
 	function ajax_get_more_groups() {
-		if( !current_user_can( 'administrator' ) ) {
-			wp_die(
-				'You must be an administrator to use this plugin',
-				'Plugin Error',
-				[ 'response' => 403, 'back_link' => true ]
-			);
-		}
-
 		global $wpdb;
 
 		$query = $wpdb->prepare(
