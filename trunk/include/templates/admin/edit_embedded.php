@@ -46,7 +46,7 @@
 									<?php endforeach; ?>
                                 </select>
 
-                                <a href="<?php echo admin_url( 'admin-ajax.php' ) . '?action=mailerlite_redirect_to_form_edit&'.wp_create_nonce('mailerlite_redirect').'&form_id=' . $form->id; ?>"
+                                <a href="<?php echo admin_url( 'admin-ajax.php' ) . '?action=mailerlite_redirect_to_form_edit&ml_nonce='.wp_create_nonce('mailerlite_redirect').'&form_id=' . $form->id; ?>"
                                    target="_blank" class="button button-primary">
 									<?php _e( 'Edit form', 'mailerlite' ); ?>
                                 </a>
