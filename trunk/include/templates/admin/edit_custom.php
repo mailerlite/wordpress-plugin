@@ -307,7 +307,10 @@
                 jQuery.ajax({
                     type: "POST",
                     url: ajaxurl,
-                    data: {action: 'mailerlite_get_more_groups', form_id: <?php echo $form->id;?>}
+                    data: {
+                        action: 'mailerlite_get_more_groups', form_id: <?php echo $form->id;?>,
+                        ml_nonce: '<?php echo wp_create_nonce( 'mailerlite_load_more_groups' );?>'
+                    }
                 }).done(function (html) {
                     $('#more-groups').show().html(html);
                     $('#load-more-groups').hide();

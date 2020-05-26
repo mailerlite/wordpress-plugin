@@ -112,7 +112,9 @@ class MailerLite_Shortcode {
 	public function redirect_to_form_edit() {
 		global $wpdb;
 
-		$query = $wpdb->prepare(
+        check_admin_referer( 'mailerlite_redirect', 'ml_nonce' );
+
+        $query = $wpdb->prepare(
 			"SELECT * FROM
 			{$wpdb->base_prefix}mailerlite_forms
 			WHERE id = %d
@@ -124,6 +126,7 @@ class MailerLite_Shortcode {
 		if ( $form != null ) {
 			if ( $form->type == MailerLite_Form::TYPE_CUSTOM ) {
 				wp_redirect( admin_url( 'admin.php?page=mailerlite_main&view=edit&id=' . $form->id ) );
+				exit;
 			} elseif ( $form->type == MailerLite_Form::TYPE_EMBEDDED ) {
 				$form_data = unserialize( $form->data );
 				wp_redirect( 'https://app.mailerlite.com/webforms/new/content/' . ( $form_data['id'] ) );

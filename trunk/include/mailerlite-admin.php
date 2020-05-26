@@ -59,6 +59,8 @@ class MailerLite_Admin {
 	function ajax_get_more_groups() {
 		global $wpdb;
 
+        check_admin_referer( 'mailerlite_load_more_groups', 'ml_nonce' );
+
 		$query = $wpdb->prepare(
 			"SELECT *
 			FROM {$wpdb->base_prefix}mailerlite_forms

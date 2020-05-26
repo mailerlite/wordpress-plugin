@@ -30,6 +30,7 @@
                 </div>
                 <input type="hidden" name="form_id" value="<?php echo $form_id; ?>"/>
                 <input type="hidden" name="action" value="mailerlite_subscribe_form"/>
+                <input type="hidden" name="ml_nonce" value="<?php echo wp_create_nonce('mailerlite_form'); ?>"/>
             </div>
             <div class="mailerlite-form-response">
 				<?php if ( ! empty( $form_data['success_message'] ) ) { ?>
