@@ -45,7 +45,7 @@ export default class MailerLiteFormBlock extends Component {
     }
 
     componentDidMount() {
-        wp.ajax.post('mailerlite_gutenberg_forms').then(response => {
+        wp.ajax.post('mailerlite_gutenberg_forms', {ml_nonce: mailerlite_vars.ml_nonce}).then(response => {
             if (response.count) {
                 this.setState({
                     forms: response.forms,
@@ -68,7 +68,7 @@ export default class MailerLiteFormBlock extends Component {
         const {setAttributes} = this.props;
 
         if (preview_html === null) {
-            wp.ajax.post('mailerlite_gutenberg_form_preview', {form_id}).then(response => {
+            wp.ajax.post('mailerlite_gutenberg_form_preview', {form_id, ml_nonce: mailerlite_vars.ml_nonce}).then(response => {
                 this.setState({
                     preview_html: response.html,
                     edit_link: response.edit_link
@@ -101,13 +101,11 @@ export default class MailerLiteFormBlock extends Component {
         const {form_id} = this.props.attributes;
 
         return <Fragment>
-            <SelectControl
-                value={form_id}
-                options={forms}
-                onChange={(value) => {
-                    this.setState({selected_form: value, preview_html: null});
-                }}
-            />
+            <select>
+                {forms.map(form =>
+                    <option key={form.value} value={form.value}>{form.label}</option>
+                )};
+            </select>
             <IconButton
                 isPrimary style={{marginLeft: 12}} onClick={() => setAttributes({
                 form_id: selected_form,

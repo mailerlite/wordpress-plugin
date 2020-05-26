@@ -27,7 +27,9 @@ class MailerLite_Gutenberg {
 				MAILERLITE_VERSION
 			);
 
-			register_block_type( 'mailerlite/form-block', [
+            add_action('enqueue_block_editor_assets', ['MailerLite_Gutenberg', 'enqueue_gutenberg_scripts'], 100, 0);
+
+            register_block_type( 'mailerlite/form-block', [
 				'editor_script' => 'mailerlite-form-block',
 			] );
 
@@ -49,13 +51,22 @@ class MailerLite_Gutenberg {
 		}
 	}
 
+    public function enqueue_gutenberg_scripts()
+    {
+        wp_localize_script('mailerlite-form-block', 'mailerlite_vars', [
+            'ml_nonce' => wp_create_nonce('mailerlite_gutenberg'),
+        ]);
+	}
+
 	/**
 	 * Return all forms for the block editor
 	 */
 	public static function ajax_forms() {
 		global $wpdb;
 
-		$query = "
+        check_admin_referer( 'mailerlite_gutenberg', 'ml_nonce' );
+
+        $query = "
 			SELECT * FROM
 			{$wpdb->base_prefix}mailerlite_forms
 			ORDER BY time DESC
@@ -80,7 +91,9 @@ class MailerLite_Gutenberg {
 	 * The selected block preview HTML
 	 */
 	public function form_preview_html() {
-		include( MAILERLITE_PLUGIN_DIR . 'include/templates/forms/preview.php' );
+        check_admin_referer( 'mailerlite_preview', 'ml_nonce' );
+
+        include( MAILERLITE_PLUGIN_DIR . 'include/templates/forms/preview.php' );
 		exit;
 	}
 
@@ -90,7 +103,9 @@ class MailerLite_Gutenberg {
 	public function form_preview_iframe() {
 		global $wpdb;
 
-		$query = $wpdb->prepare(
+        check_admin_referer( 'mailerlite_gutenberg', 'ml_nonce' );
+
+        $query = $wpdb->prepare(
 			"SELECT * FROM
 			{$wpdb->base_prefix}mailerlite_forms
 			WHERE id = %d
@@ -103,15 +118,19 @@ class MailerLite_Gutenberg {
 			echo wp_send_json_success( [ 'html' => false, 'edit_link' => false ] );
 		}
 
-		$url = admin_url( 'admin-ajax.php' ) . '?action=mailerlite_gutenberg_form_preview2&form_id=' . $_POST['form_id'];
+		$nonce = wp_create_nonce('mailerlite_preview');
+
+        $url = admin_url('admin-ajax.php').'?action=mailerlite_gutenberg_form_preview2&ml_nonce='.$nonce.'&form_id='.$_POST['form_id'];
 
 		ob_start();
 		include( MAILERLITE_PLUGIN_DIR . 'include/templates/forms/iframe.php' );
 		$html = ob_get_clean();
 
-		echo wp_send_json_success( [
+        $nonce = wp_create_nonce('mailerlite_redirect');
+
+        echo wp_send_json_success( [
 			'html'      => $html,
-			'edit_link' => admin_url( 'admin-ajax.php' ) . '?action=mailerlite_redirect_to_form_edit&form_id=' . $_POST['form_id'],
+			'edit_link' => admin_url( 'admin-ajax.php' ) . '?action=mailerlite_redirect_to_form_edit&ml_nonce='.$nonce.'&form_id=' . $_POST['form_id'],
 		] );
 	}
 }

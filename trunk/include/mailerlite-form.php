@@ -51,7 +51,9 @@ class MailerLite_Form {
 	public static function save_form_data() {
 		global $wpdb;
 
-		$form_id     = isset( $_POST['form_id'] ) ? absint( $_POST['form_id'] ) : 0;
+        check_admin_referer( 'mailerlite_form', 'ml_nonce' );
+
+        $form_id     = isset( $_POST['form_id'] ) ? absint( $_POST['form_id'] ) : 0;
 		$form_fields = isset( $_POST['form_fields'] ) ? $_POST['form_fields']
 			: [];
 
