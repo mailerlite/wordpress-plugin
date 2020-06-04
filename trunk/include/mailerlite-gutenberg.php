@@ -51,7 +51,7 @@ class MailerLite_Gutenberg {
 		}
 	}
 
-    public function enqueue_gutenberg_scripts()
+    public static function enqueue_gutenberg_scripts()
     {
         wp_localize_script('mailerlite-form-block', 'mailerlite_vars', [
             'ml_nonce' => wp_create_nonce('mailerlite_gutenberg'),
