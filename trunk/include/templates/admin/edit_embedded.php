@@ -96,7 +96,7 @@
 
         jQuery('#webform_example').html(jQuery('<iframe></iframe>', {
             id: 'webform_example_iframe',
-            src: "https://app.mailerlite.com/webforms/submit/" + code + "/",
+            src: "https://static.mailerlite.com/webforms/submit/" + code + "/",
             style: 'width:100%;height:400px;'
         }));
     }
