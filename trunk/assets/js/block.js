@@ -101,16 +101,19 @@ export default class MailerLiteFormBlock extends Component {
         const {form_id} = this.props.attributes;
 
         return <Fragment>
-            <select>
+            <select value={selected_form} onChange={e => this.setState({selected_form: e.target.value})}>
                 {forms.map(form =>
                     <option key={form.value} value={form.value}>{form.label}</option>
                 )};
             </select>
             <IconButton
-                isPrimary style={{marginLeft: 12}} onClick={() => setAttributes({
-                form_id: selected_form,
-                editMode: false
-            })}
+                isPrimary style={{marginLeft: 12}} onClick={() => {
+                                                        this.setState({preview_html: null});
+                                                        setAttributes({
+                                                            form_id: selected_form,
+                                                            editMode: false
+                                                        });
+                                                    }}
                 icon="yes"
             />
         </Fragment>;
