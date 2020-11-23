@@ -1,3 +1,7 @@
 .idea
 .svn
 tags
+trunk/node_modules
+trunk/package-lock.json
+
+.DS_Store
