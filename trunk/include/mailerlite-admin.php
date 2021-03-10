@@ -203,7 +203,10 @@ class MailerLite_Admin {
 			}
 
 			$ML_Webforms = new MailerLite_Forms_Webforms( $api_key );
-			$webforms    = $ML_Webforms->getAllJson();
+			$webforms    = $ML_Webforms->getAllJson([
+			    'limit' => 1000,
+                'type' => 'embedded'
+            ]);
 
 			if ( ! empty( $webforms->error ) && ! empty( $webforms->error->message ) ) {
 				$mailerlite_error = '<u>' . __( 'Error happened', 'mailerlite' ) . '</u>: ' . $webforms->error->message;
@@ -371,7 +374,10 @@ class MailerLite_Admin {
 					include( MAILERLITE_PLUGIN_DIR . 'include/templates/admin/edit_custom.php' );
 				} elseif ( $form->type == MailerLite_Form::TYPE_EMBEDDED ) {
 					$ML_Webforms = new MailerLite_Forms_Webforms( $api_key );
-					$webforms    = $ML_Webforms->getAllJson();
+					$webforms    = $ML_Webforms->getAllJson([
+					    'limit' => 1000,
+                        'type' => 'embedded'
+                    ]);
 
 					if ( ! empty( $webforms->error ) && ! empty( $webforms->error->message ) ) {
 						$mailerlite_error = '<u>' . __( 'Error happened',
