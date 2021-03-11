@@ -16,7 +16,8 @@
                         <label for="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"><?php echo $title; ?></label>
                         <input id="mailerlite-<?php echo $form_id; ?>-field-<?php echo $field; ?>"
                                type="<?php echo $input_type; ?>" required="required"
-                               name="form_fields[<?php echo $field; ?>]"/>
+                               name="form_fields[<?php echo $field; ?>]"
+			       placeholder="<?php echo $title; ?>"/>
                     </div>
 				<?php endforeach; ?>
                 <div class="mailerlite-form-loader"><?php if ( ! empty( $form_data['please_wait'] ) ) {
