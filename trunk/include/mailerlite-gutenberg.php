@@ -56,6 +56,8 @@ class MailerLite_Gutenberg {
         wp_localize_script('mailerlite-form-block', 'mailerlite_vars', [
             'ml_nonce' => wp_create_nonce('mailerlite_gutenberg'),
         ]);
+
+        wp_enqueue_script( 'mailerlite-form-iframe', MAILERLITE_PLUGIN_URL . '/assets/js/iframe.js');
 	}
 
 	/**
@@ -102,6 +104,8 @@ class MailerLite_Gutenberg {
 	 */
 	public function form_preview_iframe() {
 		global $wpdb;
+error_log('test');
+
 
         check_admin_referer( 'mailerlite_gutenberg', 'ml_nonce' );
 
